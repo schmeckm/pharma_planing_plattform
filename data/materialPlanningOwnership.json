@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "mrpController": "001",
+      "mrpControllerUserId": "USR-MRP-001",
+      "mrpControllerName": "Anna Becker (MRP)",
+      "detailedScheduler": "DS-01",
+      "detailedSchedulerUserId": "USR-PLANNER01",
+      "detailedSchedulerName": "Markus Plant Scheduler",
+      "productPortfolio": "ONCOLOGY",
+      "planningArea": "PACK_TABLETS",
+      "primaryLine": "PACK_LINE_01",
+      "plantId": "1000"
+    },
+    {
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "mrpController": "002",
+      "mrpControllerUserId": "USR-MRP-002",
+      "mrpControllerName": "Thomas Krüger (MRP)",
+      "detailedScheduler": "DS-01",
+      "detailedSchedulerUserId": "USR-PLANNER01",
+      "detailedSchedulerName": "Markus Plant Scheduler",
+      "productPortfolio": "DIABETES",
+      "planningArea": "PACK_CAPSULES",
+      "primaryLine": "PACK_LINE_02",
+      "plantId": "1000"
+    },
+    {
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma Blister",
+      "mrpController": "001",
+      "mrpControllerUserId": "USR-MRP-001",
+      "mrpControllerName": "Anna Becker (MRP)",
+      "detailedScheduler": "DS-02",
+      "detailedSchedulerUserId": "USR-PLANNER02",
+      "detailedSchedulerName": "Sandra Line Scheduler",
+      "productPortfolio": "ONCOLOGY",
+      "planningArea": "PACK_BLISTER",
+      "primaryLine": "PACK_LINE_03",
+      "plantId": "1000"
+    },
+    {
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta Parenteral",
+      "mrpController": "003",
+      "mrpControllerUserId": "USR-MRP-003",
+      "mrpControllerName": "Elena Vogt (MRP)",
+      "detailedScheduler": "DS-02",
+      "detailedSchedulerUserId": "USR-PLANNER02",
+      "detailedSchedulerName": "Sandra Line Scheduler",
+      "productPortfolio": "IMMUNOLOGY",
+      "planningArea": "PACK_PARENTERAL",
+      "primaryLine": "PACK_LINE_04",
+      "plantId": "1000"
+    },
+    {
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon Sachets",
+      "mrpController": "002",
+      "mrpControllerUserId": "USR-MRP-002",
+      "mrpControllerName": "Thomas Krüger (MRP)",
+      "detailedScheduler": "DS-01",
+      "detailedSchedulerUserId": "USR-PLANNER01",
+      "detailedSchedulerName": "Markus Plant Scheduler",
+      "productPortfolio": "DIABETES",
+      "planningArea": "PACK_SACHETS",
+      "primaryLine": "PACK_LINE_05",
+      "plantId": "1000"
+    },
+    {
+      "materialNumber": "DP-9999",
+      "materialDescription": "Demo High-Risk Material",
+      "mrpController": "003",
+      "mrpControllerUserId": "USR-MRP-003",
+      "mrpControllerName": "Elena Vogt (MRP)",
+      "detailedScheduler": "DS-02",
+      "detailedSchedulerUserId": "USR-PLANNER02",
+      "detailedSchedulerName": "Sandra Line Scheduler",
+      "productPortfolio": "IMMUNOLOGY",
+      "planningArea": "PACK_PARENTERAL",
+      "primaryLine": "PACK_LINE_04",
+      "plantId": "1000"
+    }
+  ]
+}

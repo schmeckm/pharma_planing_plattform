@@ -1,0 +1,7 @@
+{
+  "errors.unauthorized": "Unauthorized",
+  "errors.forbidden": "Forbidden",
+  "errors.internal": "Internal server error",
+  "errors.notImplemented": "Not implemented yet",
+  "errors.tokenRevoked": "Token has been revoked"
+}

@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "reservationId": "RES-DEMO-001",
+      "batchId": "BATCH-0001",
+      "reservedQuantity": 500,
+      "reservedForOrderId": "FG-20005",
+      "reservedForCountry": "DE",
+      "status": "ACTIVE",
+      "reason": "Demo reservation — small ATP headroom reduction"
+    }
+  ]
+}

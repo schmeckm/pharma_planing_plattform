@@ -1,0 +1,84 @@
+{
+  "items": [
+    {
+      "forecastId": "FC-DE-2026-Q3",
+      "marketId": "MKT-DE",
+      "materialNumber": "DP-1000",
+      "period": "2026-Q3",
+      "forecastQuantity": 8000,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-GB-2026-Q3",
+      "marketId": "MKT-GB",
+      "materialNumber": "DP-2000",
+      "period": "2026-Q3",
+      "forecastQuantity": 10500,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-JP-2026-Q3",
+      "marketId": "MKT-JP",
+      "materialNumber": "DP-3000",
+      "period": "2026-Q3",
+      "forecastQuantity": 13000,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-CH-2026-Q3",
+      "marketId": "MKT-CH",
+      "materialNumber": "DP-4000",
+      "period": "2026-Q3",
+      "forecastQuantity": 15500,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-AT-2026-Q3",
+      "marketId": "MKT-AT",
+      "materialNumber": "DP-5000",
+      "period": "2026-Q3",
+      "forecastQuantity": 18000,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-FR-2026-Q3",
+      "marketId": "MKT-FR",
+      "materialNumber": "DP-1000",
+      "period": "2026-Q3",
+      "forecastQuantity": 20500,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-US-2026-Q3",
+      "marketId": "MKT-US",
+      "materialNumber": "DP-2000",
+      "period": "2026-Q3",
+      "forecastQuantity": 23000,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-IT-2026-Q3",
+      "marketId": "MKT-IT",
+      "materialNumber": "DP-3000",
+      "period": "2026-Q3",
+      "forecastQuantity": 25500,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-NL-2026-Q3",
+      "marketId": "MKT-NL",
+      "materialNumber": "DP-4000",
+      "period": "2026-Q3",
+      "forecastQuantity": 28000,
+      "unit": "EA"
+    },
+    {
+      "forecastId": "FC-AU-2026-Q3",
+      "marketId": "MKT-AU",
+      "materialNumber": "DP-5000",
+      "period": "2026-Q3",
+      "forecastQuantity": 30500,
+      "unit": "EA"
+    }
+  ]
+}

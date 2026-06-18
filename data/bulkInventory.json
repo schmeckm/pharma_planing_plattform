@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "bulkId": "BULK-001", "materialNumber": "DP-1000-BULK", "materialDescription": "Product Alpha Bulk Granulate", "plantId": "2000", "quantity": 50000, "availableQuantity": 42000, "allocatedQuantity": 8000, "blockedQuantity": 0, "unit": "KG", "expiryDate": "2028-12-01", "qualityStatus": "RELEASED" },
+    { "bulkId": "BULK-002", "materialNumber": "DP-2000-BULK", "materialDescription": "Product Beta Bulk Powder", "plantId": "2000", "quantity": 30000, "availableQuantity": 25000, "allocatedQuantity": 5000, "blockedQuantity": 0, "unit": "KG", "expiryDate": "2029-03-15", "qualityStatus": "RELEASED" },
+    { "bulkId": "BULK-003", "materialNumber": "DP-1000-BULK", "materialDescription": "Product Alpha Bulk Granulate", "plantId": "2000", "quantity": 10000, "availableQuantity": 0, "allocatedQuantity": 0, "blockedQuantity": 10000, "unit": "KG", "expiryDate": "2026-09-01", "qualityStatus": "BLOCKED", "blockReason": "QA_HOLD" }
+  ]
+}

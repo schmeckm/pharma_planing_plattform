@@ -1,0 +1,979 @@
+{
+  "runs": [
+    {
+      "runId": "AUTO-CF2165E1",
+      "status": "COMPLETED",
+      "dryRun": true,
+      "startedAt": "2026-06-13T15:22:34.684Z",
+      "completedAt": "2026-06-13T15:22:36.524Z",
+      "triggeredBy": "USR-E2E01",
+      "summary": {
+        "totalOrders": 5,
+        "sequenceAuto": false,
+        "autoAllocated": 0,
+        "escalated": 6,
+        "escalatedAlloc": 5,
+        "openOrders": 0
+      },
+      "sequenceEvaluation": {
+        "action": "AUTO_SEQUENCE",
+        "allowed": false,
+        "autoExecute": false,
+        "confidence": 0.65,
+        "blockers": [
+          {
+            "packagingOrderId": "FG-20007",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "Sequence check requires planner review",
+            "code": "JAPAN_SEQUENCE"
+          }
+        ]
+      },
+      "actions": [],
+      "escalations": [
+        {
+          "action": "AUTO_SEQUENCE",
+          "reason": "Sequence policy gate — planner review required",
+          "confidence": 0.65,
+          "blockers": [
+            {
+              "packagingOrderId": "FG-20007",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "Sequence check requires planner review",
+              "code": "JAPAN_SEQUENCE"
+            }
+          ]
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20001",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.88,
+          "blockers": [],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20004",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084"
+            },
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084",
+              "ruleName": "ATP Check"
+            },
+            {
+              "reason": "Insufficient quantity on batch BATCH-0084: available 7500, required 8000",
+              "ruleName": "Batch Split"
+            }
+          ],
+          "destinationCountry": "AT"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20016",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE"
+            },
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20007",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE"
+            },
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "NL"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20010",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU"
+            },
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "JP"
+        }
+      ],
+      "policy": {
+        "minConfidence": 0.9,
+        "allowedActions": [
+          "AUTO_SEQUENCE",
+          "AUTO_ALLOCATE"
+        ]
+      },
+      "advisorNote": "Dry run — no data written."
+    },
+    {
+      "runId": "AUTO-DC17BDA8",
+      "status": "COMPLETED",
+      "dryRun": true,
+      "startedAt": "2026-06-13T15:11:25.759Z",
+      "completedAt": "2026-06-13T15:11:27.432Z",
+      "triggeredBy": "USR-E2E01",
+      "summary": {
+        "totalOrders": 5,
+        "sequenceAuto": false,
+        "autoAllocated": 0,
+        "escalated": 6,
+        "escalatedAlloc": 5,
+        "openOrders": 188
+      },
+      "sequenceEvaluation": {
+        "action": "AUTO_SEQUENCE",
+        "allowed": false,
+        "autoExecute": false,
+        "confidence": 0.65,
+        "blockers": [
+          {
+            "packagingOrderId": "FG-20007",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "Sequence check requires planner review",
+            "code": "JAPAN_SEQUENCE"
+          }
+        ]
+      },
+      "actions": [],
+      "escalations": [
+        {
+          "action": "AUTO_SEQUENCE",
+          "reason": "Sequence policy gate — planner review required",
+          "confidence": 0.65,
+          "blockers": [
+            {
+              "packagingOrderId": "FG-20007",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "Sequence check requires planner review",
+              "code": "JAPAN_SEQUENCE"
+            }
+          ]
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20001",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.88,
+          "blockers": [],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20004",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084"
+            },
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084",
+              "ruleName": "ATP Check"
+            },
+            {
+              "reason": "Insufficient quantity on batch BATCH-0084: available 7500, required 8000",
+              "ruleName": "Batch Split"
+            }
+          ],
+          "destinationCountry": "AT"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20016",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE"
+            },
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20007",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE"
+            },
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "NL"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20010",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU"
+            },
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "JP"
+        }
+      ],
+      "policy": {
+        "minConfidence": 0.9,
+        "allowedActions": [
+          "AUTO_SEQUENCE",
+          "AUTO_ALLOCATE"
+        ]
+      },
+      "advisorNote": "Dry run — no data written."
+    },
+    {
+      "runId": "AUTO-084D0925",
+      "status": "COMPLETED",
+      "dryRun": true,
+      "startedAt": "2026-06-13T04:57:07.464Z",
+      "completedAt": "2026-06-13T04:57:11.035Z",
+      "triggeredBy": "USR-E2E01",
+      "summary": {
+        "totalOrders": 5,
+        "sequenceAuto": false,
+        "autoAllocated": 0,
+        "escalated": 6,
+        "escalatedAlloc": 5,
+        "openOrders": 188
+      },
+      "sequenceEvaluation": {
+        "action": "AUTO_SEQUENCE",
+        "allowed": false,
+        "autoExecute": false,
+        "confidence": 0.65,
+        "blockers": [
+          {
+            "packagingOrderId": "FG-20007",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "Sequence check requires planner review",
+            "code": "JAPAN_SEQUENCE"
+          }
+        ]
+      },
+      "actions": [],
+      "escalations": [
+        {
+          "action": "AUTO_SEQUENCE",
+          "reason": "Sequence policy gate — planner review required",
+          "confidence": 0.65,
+          "blockers": [
+            {
+              "packagingOrderId": "FG-20007",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "Sequence check requires planner review",
+              "code": "JAPAN_SEQUENCE"
+            }
+          ]
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20001",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.88,
+          "blockers": [],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20004",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084"
+            },
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084",
+              "ruleName": "ATP Check"
+            },
+            {
+              "reason": "Insufficient quantity on batch BATCH-0084: available 7500, required 8000",
+              "ruleName": "Batch Split"
+            }
+          ],
+          "destinationCountry": "AT"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20016",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE"
+            },
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20007",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE"
+            },
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "NL"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20010",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU"
+            },
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "JP"
+        }
+      ],
+      "policy": {
+        "minConfidence": 0.9,
+        "allowedActions": [
+          "AUTO_SEQUENCE",
+          "AUTO_ALLOCATE"
+        ]
+      },
+      "advisorNote": "Dry run — no data written."
+    },
+    {
+      "runId": "AUTO-EA472D33",
+      "status": "COMPLETED",
+      "dryRun": true,
+      "startedAt": "2026-06-12T18:26:01.888Z",
+      "completedAt": "2026-06-12T18:26:02.929Z",
+      "triggeredBy": "USR-E2E01",
+      "summary": {
+        "totalOrders": 5,
+        "sequenceAuto": false,
+        "autoAllocated": 0,
+        "escalated": 6,
+        "escalatedAlloc": 5,
+        "openOrders": 188
+      },
+      "sequenceEvaluation": {
+        "action": "AUTO_SEQUENCE",
+        "allowed": false,
+        "autoExecute": false,
+        "confidence": 0.65,
+        "blockers": [
+          {
+            "packagingOrderId": "FG-20007",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "Sequence check requires planner review",
+            "code": "JAPAN_SEQUENCE"
+          }
+        ]
+      },
+      "actions": [],
+      "escalations": [
+        {
+          "action": "AUTO_SEQUENCE",
+          "reason": "Sequence policy gate — planner review required",
+          "confidence": 0.65,
+          "blockers": [
+            {
+              "packagingOrderId": "FG-20007",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "Sequence check requires planner review",
+              "code": "JAPAN_SEQUENCE"
+            }
+          ]
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20001",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.88,
+          "blockers": [],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20004",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084"
+            },
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084",
+              "ruleName": "ATP Check"
+            },
+            {
+              "reason": "Insufficient quantity on batch BATCH-0084: available 7500, required 8000",
+              "ruleName": "Batch Split"
+            }
+          ],
+          "destinationCountry": "AT"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20016",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE"
+            },
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20007",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE"
+            },
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "NL"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20010",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU"
+            },
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "JP"
+        }
+      ],
+      "policy": {
+        "minConfidence": 0.9,
+        "allowedActions": [
+          "AUTO_SEQUENCE",
+          "AUTO_ALLOCATE"
+        ]
+      },
+      "advisorNote": "Dry run — no data written."
+    },
+    {
+      "runId": "AUTO-AE7821A4",
+      "status": "COMPLETED",
+      "dryRun": true,
+      "startedAt": "2026-06-12T18:21:12.260Z",
+      "completedAt": "2026-06-12T18:21:13.549Z",
+      "triggeredBy": "USR-E2E01",
+      "summary": {
+        "totalOrders": 5,
+        "sequenceAuto": false,
+        "autoAllocated": 0,
+        "escalated": 6,
+        "escalatedAlloc": 5,
+        "openOrders": 188
+      },
+      "sequenceEvaluation": {
+        "action": "AUTO_SEQUENCE",
+        "allowed": false,
+        "autoExecute": false,
+        "confidence": 0.65,
+        "blockers": [
+          {
+            "packagingOrderId": "FG-20007",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "Sequence check requires planner review",
+            "code": "JAPAN_SEQUENCE"
+          }
+        ]
+      },
+      "actions": [],
+      "escalations": [
+        {
+          "action": "AUTO_SEQUENCE",
+          "reason": "Sequence policy gate — planner review required",
+          "confidence": 0.65,
+          "blockers": [
+            {
+              "packagingOrderId": "FG-20007",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "Sequence check requires planner review",
+              "code": "JAPAN_SEQUENCE"
+            }
+          ]
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20001",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.88,
+          "blockers": [],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20004",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084"
+            },
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084",
+              "ruleName": "ATP Check"
+            },
+            {
+              "reason": "Insufficient quantity on batch BATCH-0084: available 7500, required 8000",
+              "ruleName": "Batch Split"
+            }
+          ],
+          "destinationCountry": "AT"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20016",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE"
+            },
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20007",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE"
+            },
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "NL"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20010",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU"
+            },
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "JP"
+        }
+      ],
+      "policy": {
+        "minConfidence": 0.9,
+        "allowedActions": [
+          "AUTO_SEQUENCE",
+          "AUTO_ALLOCATE"
+        ]
+      },
+      "advisorNote": "Dry run — no data written."
+    },
+    {
+      "runId": "AUTO-E4EE6701",
+      "status": "COMPLETED",
+      "dryRun": true,
+      "startedAt": "2026-06-12T17:50:21.594Z",
+      "completedAt": "2026-06-12T17:50:22.189Z",
+      "triggeredBy": "USR-E2E01",
+      "summary": {
+        "totalOrders": 5,
+        "sequenceAuto": false,
+        "autoAllocated": 0,
+        "escalated": 6,
+        "escalatedAlloc": 5,
+        "openOrders": 188
+      },
+      "sequenceEvaluation": {
+        "action": "AUTO_SEQUENCE",
+        "allowed": false,
+        "autoExecute": false,
+        "confidence": 0.65,
+        "blockers": [
+          {
+            "packagingOrderId": "FG-20007",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "No eligible batch",
+            "code": "NO_BATCH"
+          },
+          {
+            "packagingOrderId": "FG-20010",
+            "reason": "Sequence check requires planner review",
+            "code": "JAPAN_SEQUENCE"
+          }
+        ]
+      },
+      "actions": [],
+      "escalations": [
+        {
+          "action": "AUTO_SEQUENCE",
+          "reason": "Sequence policy gate — planner review required",
+          "confidence": 0.65,
+          "blockers": [
+            {
+              "packagingOrderId": "FG-20007",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "No eligible batch",
+              "code": "NO_BATCH"
+            },
+            {
+              "packagingOrderId": "FG-20010",
+              "reason": "Sequence check requires planner review",
+              "code": "JAPAN_SEQUENCE"
+            }
+          ]
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20001",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.88,
+          "blockers": [],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20004",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084"
+            },
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084",
+              "ruleName": "ATP Check"
+            },
+            {
+              "reason": "Insufficient quantity on batch BATCH-0084: available 7500, required 8000",
+              "ruleName": "Batch Split"
+            }
+          ],
+          "destinationCountry": "AT"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20016",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE"
+            },
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20007",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE"
+            },
+            {
+              "reason": "Batch BATCH-0252 is not TRIC-approved for NL. Approved: GB, IE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "NL"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20010",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU"
+            },
+            {
+              "reason": "Batch BATCH-0300 is not TRIC-approved for JP. Approved: AU",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "JP"
+        }
+      ],
+      "policy": {
+        "minConfidence": 0.9,
+        "allowedActions": [
+          "AUTO_SEQUENCE",
+          "AUTO_ALLOCATE"
+        ]
+      },
+      "advisorNote": "Dry run — no data written."
+    },
+    {
+      "runId": "AUTO-E662CBAE",
+      "status": "COMPLETED",
+      "dryRun": true,
+      "startedAt": "2026-06-12T17:48:41.673Z",
+      "completedAt": "2026-06-12T17:48:42.024Z",
+      "triggeredBy": "TEST",
+      "summary": {
+        "totalOrders": 3,
+        "sequenceAuto": true,
+        "autoAllocated": 0,
+        "escalated": 3,
+        "escalatedAlloc": 3,
+        "openOrders": 188
+      },
+      "sequenceEvaluation": {
+        "action": "AUTO_SEQUENCE",
+        "allowed": true,
+        "autoExecute": true,
+        "confidence": 0.95,
+        "blockers": []
+      },
+      "actions": [
+        {
+          "action": "AUTO_SEQUENCE",
+          "executed": false,
+          "dryRun": true,
+          "wouldExecute": true,
+          "itemCount": 3,
+          "confidence": 0.95
+        }
+      ],
+      "escalations": [
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20001",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.88,
+          "blockers": [],
+          "destinationCountry": "DE"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20004",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084"
+            },
+            {
+              "reason": "ATP check failed: 7500 EA < required 8000 EA on batch BATCH-0084",
+              "ruleName": "ATP Check"
+            },
+            {
+              "reason": "Insufficient quantity on batch BATCH-0084: available 7500, required 8000",
+              "ruleName": "Batch Split"
+            }
+          ],
+          "destinationCountry": "AT"
+        },
+        {
+          "action": "AUTO_ALLOCATE",
+          "packagingOrderId": "FG-20016",
+          "reason": "Allocation policy gate — planner review required",
+          "confidence": 0.5,
+          "blockers": [
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE"
+            },
+            {
+              "reason": "Batch BATCH-0276 is not TRIC-approved for DE. Approved: FR, BE",
+              "ruleName": "TRIC Validation"
+            }
+          ],
+          "destinationCountry": "DE"
+        }
+      ],
+      "policy": {
+        "minConfidence": 0.9,
+        "allowedActions": [
+          "AUTO_SEQUENCE",
+          "AUTO_ALLOCATE"
+        ]
+      },
+      "advisorNote": "Dry run — no data written."
+    }
+  ]
+}

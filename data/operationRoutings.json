@@ -1,0 +1,73 @@
+{
+  "default": [
+    {
+      "operationNo": 10,
+      "operationName": "Filling",
+      "workCenterId": "FILL_01",
+      "durationShare": 0.35,
+      "isBottleneck": true
+    },
+    {
+      "operationNo": 20,
+      "operationName": "Primary pack",
+      "workCenterId": "PK_01",
+      "durationShare": 0.25,
+      "isBottleneck": false
+    },
+    {
+      "operationNo": 30,
+      "operationName": "Secondary pack",
+      "workCenterId": "{{packagingLine}}",
+      "durationShare": 0.4,
+      "isBottleneck": false
+    }
+  ],
+  "byMaterialPrefix": {
+    "DP-2": [
+      {
+        "operationNo": 10,
+        "operationName": "Filling",
+        "workCenterId": "FILL_01",
+        "durationShare": 0.3,
+        "isBottleneck": true
+      },
+      {
+        "operationNo": 20,
+        "operationName": "Capsule pack",
+        "workCenterId": "PK_01",
+        "durationShare": 0.3,
+        "isBottleneck": false
+      },
+      {
+        "operationNo": 30,
+        "operationName": "Secondary pack",
+        "workCenterId": "{{packagingLine}}",
+        "durationShare": 0.4,
+        "isBottleneck": false
+      }
+    ],
+    "DP-3": [
+      {
+        "operationNo": 10,
+        "operationName": "Aseptic fill",
+        "workCenterId": "FILL_01",
+        "durationShare": 0.45,
+        "isBottleneck": true
+      },
+      {
+        "operationNo": 20,
+        "operationName": "Blister",
+        "workCenterId": "PK_02",
+        "durationShare": 0.25,
+        "isBottleneck": false
+      },
+      {
+        "operationNo": 30,
+        "operationName": "Secondary pack",
+        "workCenterId": "{{packagingLine}}",
+        "durationShare": 0.3,
+        "isBottleneck": false
+      }
+    ]
+  }
+}

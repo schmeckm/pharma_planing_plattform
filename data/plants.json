@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "plantId": "1000", "plantName": "Basel Packaging Center", "countryCode": "CH", "type": "PACKAGING", "capacityUnitsPerDay": 25000 },
+    { "plantId": "2000", "plantName": "Frankfurt Bulk Manufacturing", "countryCode": "DE", "type": "BULK", "capacityUnitsPerDay": 50000 },
+    { "plantId": "3000", "plantName": "Singapore Regional Hub", "countryCode": "SG", "type": "DISTRIBUTION", "capacityUnitsPerDay": 15000 }
+  ]
+}

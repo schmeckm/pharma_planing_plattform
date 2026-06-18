@@ -1,0 +1,16 @@
+# MVP 2.0 Enterprise Edition overlay
+# Usage: docker compose -f docker-compose.yml -f docker-compose.mvp2.yml up --build
+
+services:
+  backend:
+    environment:
+      - HAP_DATA_PROVIDER=json
+      - HAP_EDITION=MVP_2_0_ENTERPRISE
+    labels:
+      - "hap.edition=2.0-enterprise"
+
+  cockpit:
+    environment:
+      - VITE_USE_MOCK=false
+    labels:
+      - "hap.edition=2.0-enterprise"

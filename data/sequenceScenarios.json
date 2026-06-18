@@ -1,0 +1,296 @@
+{
+  "repositoryVersion": "1.0.0",
+  "items": [
+    {
+      "scenarioId": "SCN-0CC9AF27",
+      "type": "SIMULATE",
+      "score": {
+        "lateOrders": 0,
+        "rmslViolations": 0,
+        "fifoDeviations": 0,
+        "jpSequenceIssues": 2,
+        "highRisk": 12,
+        "totalRisk": 600
+      },
+      "kpis": {
+        "openOrders": 60,
+        "openRoughPlanned": 60,
+        "optimizedOrders": 60,
+        "highRiskOrders": 12,
+        "lateOrders": 0,
+        "rmslRiskOrders": 0,
+        "jpSequenceIssues": 2,
+        "lineUtilization": [
+          {
+            "lineId": "PACK_LINE_01",
+            "lineName": "Packaging Line 01 — Tablets",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_02",
+            "lineName": "Packaging Line 02 — Capsules",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_03",
+            "lineName": "Packaging Line 03 — Blister",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_04",
+            "lineName": "Packaging Line 04 — Parenteral",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_05",
+            "lineName": "Packaging Line 05 — Liquid Fill",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_06",
+            "lineName": "Packaging Line 06 — Topical",
+            "avgUtilizationPercent": 0
+          }
+        ],
+        "peakUtilization": 0
+      },
+      "timelineStart": "2026-09-01",
+      "timelineEnd": "2026-09-28",
+      "itemCount": 60,
+      "createdAt": "2026-06-18T05:28:03.261Z"
+    },
+    {
+      "scenarioId": "SCN-0194845B",
+      "type": "SIMULATE",
+      "score": {
+        "lateOrders": 0,
+        "rmslViolations": 0,
+        "fifoDeviations": 0,
+        "jpSequenceIssues": 2,
+        "highRisk": 12,
+        "totalRisk": 600
+      },
+      "kpis": {
+        "openOrders": 60,
+        "openRoughPlanned": 60,
+        "optimizedOrders": 60,
+        "highRiskOrders": 12,
+        "lateOrders": 0,
+        "rmslRiskOrders": 0,
+        "jpSequenceIssues": 2,
+        "lineUtilization": [
+          {
+            "lineId": "PACK_LINE_01",
+            "lineName": "Packaging Line 01 — Tablets",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_02",
+            "lineName": "Packaging Line 02 — Capsules",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_03",
+            "lineName": "Packaging Line 03 — Blister",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_04",
+            "lineName": "Packaging Line 04 — Parenteral",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_05",
+            "lineName": "Packaging Line 05 — Liquid Fill",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_06",
+            "lineName": "Packaging Line 06 — Topical",
+            "avgUtilizationPercent": 0
+          }
+        ],
+        "peakUtilization": 0
+      },
+      "timelineStart": "2026-09-01",
+      "timelineEnd": "2026-09-28",
+      "itemCount": 60,
+      "createdAt": "2026-06-18T04:56:43.110Z"
+    },
+    {
+      "scenarioId": "SCN-BF4AB499",
+      "type": "SIMULATE",
+      "score": {
+        "lateOrders": 0,
+        "rmslViolations": 0,
+        "fifoDeviations": 0,
+        "jpSequenceIssues": 2,
+        "highRisk": 12,
+        "totalRisk": 600
+      },
+      "kpis": {
+        "openOrders": 60,
+        "openRoughPlanned": 60,
+        "optimizedOrders": 60,
+        "highRiskOrders": 12,
+        "lateOrders": 0,
+        "rmslRiskOrders": 0,
+        "jpSequenceIssues": 2,
+        "lineUtilization": [
+          {
+            "lineId": "PACK_LINE_01",
+            "lineName": "Packaging Line 01 — Tablets",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_02",
+            "lineName": "Packaging Line 02 — Capsules",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_03",
+            "lineName": "Packaging Line 03 — Blister",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_04",
+            "lineName": "Packaging Line 04 — Parenteral",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_05",
+            "lineName": "Packaging Line 05 — Liquid Fill",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_06",
+            "lineName": "Packaging Line 06 — Topical",
+            "avgUtilizationPercent": 0
+          }
+        ],
+        "peakUtilization": 0
+      },
+      "timelineStart": "2026-09-01",
+      "timelineEnd": "2026-09-28",
+      "itemCount": 60,
+      "createdAt": "2026-06-18T04:56:30.219Z"
+    },
+    {
+      "scenarioId": "SCN-6EEE5B91",
+      "type": "SIMULATE",
+      "score": {
+        "lateOrders": 0,
+        "rmslViolations": 0,
+        "fifoDeviations": 0,
+        "jpSequenceIssues": 2,
+        "highRisk": 12,
+        "totalRisk": 600
+      },
+      "kpis": {
+        "openOrders": 60,
+        "openRoughPlanned": 60,
+        "optimizedOrders": 60,
+        "highRiskOrders": 12,
+        "lateOrders": 0,
+        "rmslRiskOrders": 0,
+        "jpSequenceIssues": 2,
+        "lineUtilization": [
+          {
+            "lineId": "PACK_LINE_01",
+            "lineName": "Packaging Line 01 — Tablets",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_02",
+            "lineName": "Packaging Line 02 — Capsules",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_03",
+            "lineName": "Packaging Line 03 — Blister",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_04",
+            "lineName": "Packaging Line 04 — Parenteral",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_05",
+            "lineName": "Packaging Line 05 — Liquid Fill",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_06",
+            "lineName": "Packaging Line 06 — Topical",
+            "avgUtilizationPercent": 0
+          }
+        ],
+        "peakUtilization": 0
+      },
+      "timelineStart": "2026-09-01",
+      "timelineEnd": "2026-09-05",
+      "itemCount": 60,
+      "createdAt": "2026-06-17T20:13:01.986Z"
+    },
+    {
+      "scenarioId": "SCN-196DDB01",
+      "type": "SIMULATE",
+      "score": {
+        "lateOrders": 0,
+        "rmslViolations": 0,
+        "fifoDeviations": 0,
+        "jpSequenceIssues": 2,
+        "highRisk": 12,
+        "totalRisk": 600
+      },
+      "kpis": {
+        "openOrders": 60,
+        "openRoughPlanned": 60,
+        "optimizedOrders": 60,
+        "highRiskOrders": 12,
+        "lateOrders": 0,
+        "rmslRiskOrders": 0,
+        "jpSequenceIssues": 2,
+        "lineUtilization": [
+          {
+            "lineId": "PACK_LINE_01",
+            "lineName": "Packaging Line 01 — Tablets",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_02",
+            "lineName": "Packaging Line 02 — Capsules",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_03",
+            "lineName": "Packaging Line 03 — Blister",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_04",
+            "lineName": "Packaging Line 04 — Parenteral",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_05",
+            "lineName": "Packaging Line 05 — Liquid Fill",
+            "avgUtilizationPercent": 0
+          },
+          {
+            "lineId": "PACK_LINE_06",
+            "lineName": "Packaging Line 06 — Topical",
+            "avgUtilizationPercent": 0
+          }
+        ],
+        "peakUtilization": 0
+      },
+      "timelineStart": "2026-09-01",
+      "timelineEnd": "2026-10-03",
+      "itemCount": 60,
+      "createdAt": "2026-06-14T19:47:54.852Z"
+    }
+  ],
+  "label": "Reset — optimize via Production Sequencing"
+}

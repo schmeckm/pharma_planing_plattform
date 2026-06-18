@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "plantId": "1000", "weekStarting": "2026-06-09", "totalCapacity": 125000, "allocatedCapacity": 98000, "remainingCapacity": 27000, "utilizationPercent": 78.4 },
+    { "plantId": "1000", "weekStarting": "2026-06-16", "totalCapacity": 125000, "allocatedCapacity": 112000, "remainingCapacity": 13000, "utilizationPercent": 89.6 },
+    { "plantId": "1000", "weekStarting": "2026-06-23", "totalCapacity": 125000, "allocatedCapacity": 85000, "remainingCapacity": 40000, "utilizationPercent": 68.0 }
+  ]
+}

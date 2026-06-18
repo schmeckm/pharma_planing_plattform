@@ -1,0 +1,11 @@
+{
+  "items": [
+    { "id": "PM-1001", "desc": "Blister foil Alpha 200µm", "drugProductId": "DP-1000", "unit": "M2", "batchManaged": true },
+    { "id": "PM-1002", "desc": "Carton Alpha 120×80mm", "drugProductId": "DP-1000", "unit": "EA", "batchManaged": false },
+    { "id": "PM-2001", "desc": "Capsule shell Beta size 1", "drugProductId": "DP-2000", "unit": "EA", "batchManaged": true },
+    { "id": "PM-2002", "desc": "Label Beta 50mg", "drugProductId": "DP-2000", "unit": "EA", "batchManaged": false },
+    { "id": "PM-3001", "desc": "Vial Gamma 10ml", "drugProductId": "DP-3000", "unit": "EA", "batchManaged": true },
+    { "id": "PM-4001", "desc": "Bottle Delta 100ml", "drugProductId": "DP-4000", "unit": "EA", "batchManaged": true },
+    { "id": "PM-5001", "desc": "Tube Epsilon 30g", "drugProductId": "DP-5000", "unit": "EA", "batchManaged": false }
+  ]
+}

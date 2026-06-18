@@ -1,0 +1,232 @@
+{
+  "rules": [
+    {
+      "ruleId": "CR-DE-001",
+      "category": "COUNTRY",
+      "name": "Germany Country Rule",
+      "scope": { "countryCode": "DE" },
+      "parameters": {
+        "allowBatchSplit": true,
+        "rmslThresholdMonths": 12,
+        "requiresTric": true,
+        "requiresContinuousSequence": false
+      },
+      "version": 2,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z",
+      "updatedBy": "USR-ADMIN01",
+      "updatedAt": "2026-03-15T10:00:00Z"
+    },
+    {
+      "ruleId": "CR-GB-001",
+      "category": "COUNTRY",
+      "name": "United Kingdom Country Rule",
+      "scope": { "countryCode": "GB" },
+      "parameters": {
+        "allowBatchSplit": false,
+        "rmslThresholdMonths": 18,
+        "requiresTric": true,
+        "requiresContinuousSequence": false
+      },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "CR-JP-001",
+      "category": "COUNTRY",
+      "name": "Japan Country Rule",
+      "scope": { "countryCode": "JP" },
+      "parameters": {
+        "allowBatchSplit": false,
+        "rmslThresholdMonths": 24,
+        "requiresTric": true,
+        "requiresContinuousSequence": true
+      },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "MR-EU-001",
+      "category": "MARKET",
+      "name": "EU Market Release Policy",
+      "scope": { "market": "MKT-EU" },
+      "parameters": {
+        "requiresTric": true,
+        "gmpDocumentationRequired": true,
+        "releaseWindowDays": 30
+      },
+      "version": 1,
+      "effectiveFrom": "2025-06-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-06-01T00:00:00Z"
+    },
+    {
+      "ruleId": "MR-JP-SEQ-001",
+      "category": "SEQUENCE",
+      "name": "Japan Continuous Output Sequence",
+      "scope": { "countryCode": "JP", "market": "MKT-JP" },
+      "parameters": { "continuousSequence": true, "startSequence": 1 },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "BS-GLOBAL-001",
+      "category": "BATCH_SPLIT",
+      "name": "Default Batch Split Policy",
+      "scope": { "global": true },
+      "parameters": { "defaultAllowSplit": true, "maxSplitBatches": 2 },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "RR-MAT1000-001",
+      "category": "RMSL",
+      "name": "Product Alpha RMSL Requirements",
+      "scope": { "materialNumber": "DP-1000" },
+      "parameters": { "defaultMinimumMonths": 12, "warningThresholdMonths": 6 },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "CU-PHARMA-001",
+      "category": "CUSTOMER",
+      "name": "PharmaCorp Germany Customer Rule",
+      "scope": { "customerName": "PharmaCorp Germany" },
+      "parameters": { "priorityAllocation": true, "minimumRmslMonths": 14 },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "PR-MAT1000-001",
+      "category": "PRODUCT",
+      "name": "Product Alpha Allocation Policy",
+      "scope": { "materialNumber": "DP-1000" },
+      "parameters": { "fifoStrategy": "PRODUCTION_DATE", "allowPartialAllocation": false },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "CR-CH-001",
+      "category": "COUNTRY",
+      "name": "Switzerland Country Rule",
+      "scope": { "countryCode": "CH" },
+      "parameters": {
+        "allowBatchSplit": false,
+        "rmslThresholdMonths": 6,
+        "requiresTric": true,
+        "requiresContinuousSequence": false
+      },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    },
+    {
+      "ruleId": "CR-AT-001",
+      "category": "COUNTRY",
+      "name": "Austria Country Rule",
+      "scope": { "countryCode": "AT" },
+      "parameters": {
+        "allowBatchSplit": true,
+        "rmslThresholdMonths": 12,
+        "requiresTric": true,
+        "requiresContinuousSequence": false
+      },
+      "version": 1,
+      "effectiveFrom": "2025-01-01",
+      "effectiveTo": null,
+      "active": true,
+      "createdBy": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00Z"
+    }
+  ],
+  "versions": [
+    {
+      "ruleId": "CR-DE-001",
+      "version": 2,
+      "previousVersion": 1,
+      "snapshot": {
+        "ruleId": "CR-DE-001",
+        "category": "COUNTRY",
+        "name": "Germany Country Rule",
+        "scope": { "countryCode": "DE" },
+        "parameters": {
+          "allowBatchSplit": true,
+          "rmslThresholdMonths": 10,
+          "requiresTric": true,
+          "requiresContinuousSequence": false
+        },
+        "version": 1,
+        "effectiveFrom": "2025-01-01",
+        "active": true
+      },
+      "effectiveFrom": "2026-03-15",
+      "createdBy": "USR-ADMIN01",
+      "createdAt": "2026-03-15T10:00:00Z",
+      "changeNotes": "Increased RMSL threshold from 10 to 12 months"
+    }
+  ],
+  "auditLog": [
+    {
+      "action": "RULE_CREATED",
+      "ruleId": "CR-DE-001",
+      "userId": "ADMIN",
+      "timestamp": "2025-01-01T00:00:00Z"
+    },
+    {
+      "action": "VERSION_CREATED",
+      "ruleId": "CR-DE-001",
+      "version": 2,
+      "timestamp": "2026-03-15T10:00:00Z",
+      "userId": "USR-ADMIN01"
+    },
+    {
+      "action": "RULE_UPDATED",
+      "ruleId": "CR-DE-001",
+      "version": 2,
+      "userId": "USR-ADMIN01",
+      "timestamp": "2026-03-15T10:00:00Z"
+    },
+    {
+      "action": "RULE_CREATED",
+      "ruleId": "MR-EU-001",
+      "userId": "ADMIN",
+      "timestamp": "2025-06-01T00:00:00Z"
+    }
+  ]
+}

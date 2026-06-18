@@ -1,0 +1,274 @@
+{
+  "items": [
+    {
+      "lineId": "PACK_LINE_01",
+      "weekStarting": "2026-09-01",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 8000
+    },
+    {
+      "lineId": "PACK_LINE_01",
+      "weekStarting": "2026-09-08",
+      "availableHours": 96,
+      "plannedMaintenance": [
+        {
+          "date": "2026-09-10",
+          "hours": 8,
+          "reason": "Line sanitization"
+        }
+      ],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 8000
+    },
+    {
+      "lineId": "PACK_LINE_01",
+      "weekStarting": "2026-09-15",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 8000
+    },
+    {
+      "lineId": "PACK_LINE_01",
+      "weekStarting": "2026-09-22",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 8000
+    },
+    {
+      "lineId": "PACK_LINE_02",
+      "weekStarting": "2026-09-01",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 6000
+    },
+    {
+      "lineId": "PACK_LINE_02",
+      "weekStarting": "2026-09-08",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 6000
+    },
+    {
+      "lineId": "PACK_LINE_02",
+      "weekStarting": "2026-09-15",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 6000
+    },
+    {
+      "lineId": "PACK_LINE_02",
+      "weekStarting": "2026-09-22",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 6000
+    },
+    {
+      "lineId": "PACK_LINE_03",
+      "weekStarting": "2026-09-01",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5500
+    },
+    {
+      "lineId": "PACK_LINE_03",
+      "weekStarting": "2026-09-08",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5500
+    },
+    {
+      "lineId": "PACK_LINE_03",
+      "weekStarting": "2026-09-15",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5500
+    },
+    {
+      "lineId": "PACK_LINE_03",
+      "weekStarting": "2026-09-22",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5500
+    },
+    {
+      "lineId": "PACK_LINE_04",
+      "weekStarting": "2026-09-01",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 4000
+    },
+    {
+      "lineId": "PACK_LINE_04",
+      "weekStarting": "2026-09-08",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 4000
+    },
+    {
+      "lineId": "PACK_LINE_04",
+      "weekStarting": "2026-09-15",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 4000
+    },
+    {
+      "lineId": "PACK_LINE_04",
+      "weekStarting": "2026-09-22",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 4000
+    },
+    {
+      "lineId": "PACK_LINE_05",
+      "weekStarting": "2026-09-01",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 7000
+    },
+    {
+      "lineId": "PACK_LINE_05",
+      "weekStarting": "2026-09-08",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 7000
+    },
+    {
+      "lineId": "PACK_LINE_05",
+      "weekStarting": "2026-09-15",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 7000
+    },
+    {
+      "lineId": "PACK_LINE_05",
+      "weekStarting": "2026-09-22",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 7000
+    },
+    {
+      "lineId": "PACK_LINE_06",
+      "weekStarting": "2026-09-01",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5000
+    },
+    {
+      "lineId": "PACK_LINE_06",
+      "weekStarting": "2026-09-08",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5000
+    },
+    {
+      "lineId": "PACK_LINE_06",
+      "weekStarting": "2026-09-15",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5000
+    },
+    {
+      "lineId": "PACK_LINE_06",
+      "weekStarting": "2026-09-22",
+      "availableHours": 96,
+      "plannedMaintenance": [],
+      "shiftPattern": {
+        "shifts": 2,
+        "hoursPerShift": 8
+      },
+      "maxUnitsPerDay": 5000
+    }
+  ]
+}

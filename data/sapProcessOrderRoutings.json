@@ -1,0 +1,109 @@
+{
+  "source": "SAP_AFVC_MOCK",
+  "plant": "1000",
+  "lastSync": "2026-09-01T08:00:00.000Z",
+  "routingsByMaterial": {
+    "DP-1000": {
+      "routingId": "50000001",
+      "routingGroup": "DP1000_STD",
+      "materialNumber": "DP-1000",
+      "operations": [
+        {
+          "operationNo": 10,
+          "sapOperationNo": "0010",
+          "workCenterId": "FILL_01",
+          "description": "Tablet filling",
+          "standardDurationHours": 6,
+          "isBottleneck": true,
+          "controlKey": "PP01"
+        },
+        {
+          "operationNo": 20,
+          "sapOperationNo": "0020",
+          "workCenterId": "PK_01",
+          "description": "Blister primary pack",
+          "standardDurationHours": 4,
+          "isBottleneck": false,
+          "controlKey": "PP01"
+        },
+        {
+          "operationNo": 30,
+          "sapOperationNo": "0030",
+          "workCenterId": "{{packagingLine}}",
+          "description": "Secondary packaging",
+          "standardDurationHours": 6,
+          "isBottleneck": false,
+          "controlKey": "PP01"
+        }
+      ]
+    },
+    "DP-2000": {
+      "routingId": "50000002",
+      "routingGroup": "DP2000_STD",
+      "materialNumber": "DP-2000",
+      "operations": [
+        {
+          "operationNo": 10,
+          "sapOperationNo": "0010",
+          "workCenterId": "FILL_01",
+          "description": "Capsule filling",
+          "standardDurationHours": 5,
+          "isBottleneck": true,
+          "controlKey": "PP01"
+        },
+        {
+          "operationNo": 20,
+          "sapOperationNo": "0020",
+          "workCenterId": "PK_01",
+          "description": "Capsule primary pack",
+          "standardDurationHours": 5,
+          "isBottleneck": false,
+          "controlKey": "PP01"
+        },
+        {
+          "operationNo": 30,
+          "sapOperationNo": "0030",
+          "workCenterId": "{{packagingLine}}",
+          "description": "Secondary packaging",
+          "standardDurationHours": 6,
+          "isBottleneck": false,
+          "controlKey": "PP01"
+        }
+      ]
+    },
+    "DP-3000": {
+      "routingId": "50000003",
+      "routingGroup": "DP3000_STD",
+      "materialNumber": "DP-3000",
+      "operations": [
+        {
+          "operationNo": 10,
+          "sapOperationNo": "0010",
+          "workCenterId": "FILL_01",
+          "description": "Aseptic filling",
+          "standardDurationHours": 8,
+          "isBottleneck": true,
+          "controlKey": "PP01"
+        },
+        {
+          "operationNo": 20,
+          "sapOperationNo": "0020",
+          "workCenterId": "PK_02",
+          "description": "Blister pack",
+          "standardDurationHours": 4,
+          "isBottleneck": false,
+          "controlKey": "PP01"
+        },
+        {
+          "operationNo": 30,
+          "sapOperationNo": "0030",
+          "workCenterId": "{{packagingLine}}",
+          "description": "Secondary packaging",
+          "standardDurationHours": 5,
+          "isBottleneck": false,
+          "controlKey": "PP01"
+        }
+      ]
+    }
+  }
+}

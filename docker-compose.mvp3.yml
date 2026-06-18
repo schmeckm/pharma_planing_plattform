@@ -1,0 +1,59 @@
+# MVP 3.0 optional infrastructure — Neo4j + Kafka (Redpanda)
+# Usage: docker compose -f docker-compose.yml -f docker-compose.mvp3.yml up
+
+services:
+  backend:
+    environment:
+      - HAP_EVENT_BUS=kafka
+      - KAFKA_BROKERS=redpanda:9092
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=hap_mvp3_dev
+      - AGENTS_ENABLED=true
+    depends_on:
+      - neo4j
+      - redpanda
+
+  neo4j:
+    image: neo4j:5.26-community
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/hap_mvp3_dev
+      - NEO4J_PLUGINS=["apoc"]
+    volumes:
+      - neo4j_data:/data
+      - ./knowledge-graph/schema.cypher:/import/schema.cypher:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  redpanda:
+    image: redpandadata/redpanda:v24.2.4
+    command:
+      - redpanda
+      - start
+      - --overprovisioned
+      - --smp
+      - "1"
+      - --memory
+      - "512M"
+      - --reserve-memory
+      - "0M"
+      - --node-id
+      - "0"
+      - --kafka-addr
+      - PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr
+      - PLAINTEXT://redpanda:9092
+    ports:
+      - "9092:9092"
+    volumes:
+      - redpanda_data:/var/lib/redpanda/data
+
+volumes:
+  neo4j_data:
+  redpanda_data:

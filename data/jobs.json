@@ -1,0 +1,939 @@
+{
+  "repositoryVersion": "1.0.0",
+  "items": [
+    {
+      "jobId": "JOB-4CE9F05E",
+      "type": "MASS_ALLOCATION",
+      "period": "DAILY",
+      "status": "COMPLETED",
+      "progress": 100,
+      "totalItems": 1,
+      "processedItems": 1,
+      "successful": 1,
+      "failed": 0,
+      "execute": false,
+      "orderIds": [
+        "FG-20001"
+      ],
+      "results": [
+        {
+          "packagingOrderId": "FG-20001",
+          "salesOrderId": "SO-10001",
+          "status": "SIMULATED",
+          "recommendedBatchId": "BATCH-0012",
+          "allocatedQuantity": 2000,
+          "ruleChecks": [
+            {
+              "ruleId": "RULE-007",
+              "ruleName": "Packing System FG-SO Mapping",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Packing system PKS-1000: FG FG-20001 → SO SO-10001 validated",
+              "evidence": {
+                "packingSystemId": "PKS-1000",
+                "salesOrderId": "SO-10001",
+                "packagingOrderId": "FG-20001"
+              }
+            },
+            {
+              "ruleId": "RULE-008",
+              "ruleName": "Quality Stock Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Quality stock OK: status RELEASED, stock type UNRESTRICTED"
+            },
+            {
+              "ruleId": "RULE-009",
+              "ruleName": "Inspection Lot Release",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Inspection lot IL-90011 released for batch BATCH-0012",
+              "evidence": {
+                "lotId": "IL-90011",
+                "lotStatus": "RELEASED"
+              }
+            },
+            {
+              "ruleId": "RULE-010",
+              "ruleName": "ATP Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "ATP 25000 EA >= required 2000 EA (available 25000, reserved 0)",
+              "evidence": {
+                "atpQuantity": 25000,
+                "reservedQuantity": 0,
+                "requiredQuantity": 2000
+              }
+            },
+            {
+              "ruleId": "RULE-011",
+              "ruleName": "Reserved Inventory Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "No active reservations on batch"
+            },
+            {
+              "ruleId": "RULE-001",
+              "ruleName": "Quality Status",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Batch BATCH-0012 is released for allocation"
+            },
+            {
+              "ruleId": "RULE-002",
+              "ruleName": "TRIC Validation",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Batch BATCH-0012 is TRIC-approved for DE"
+            },
+            {
+              "ruleId": "RULE-003",
+              "ruleName": "RMSL Validation",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "RMSL 40.3 months >= threshold 12 months for DE",
+              "evidence": {
+                "remainingShelfLifeMonths": 40.3,
+                "thresholdMonths": 12
+              }
+            },
+            {
+              "ruleId": "RULE-004",
+              "ruleName": "Batch Split",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Sufficient quantity available on batch BATCH-0012"
+            },
+            {
+              "ruleId": "RULE-006",
+              "ruleName": "FIFO Selection",
+              "phase": "FIFO",
+              "result": "PASSED",
+              "message": "FIFO: selected oldest compliant batch BATCH-0012 (production 2025-01-10)"
+            },
+            {
+              "ruleId": "RULE-012",
+              "ruleName": "Optimization Selection",
+              "phase": "OPTIMIZATION",
+              "result": "PASSED",
+              "message": "Optimization: batch BATCH-0012 maximizes RMSL margin while meeting all compliance gates"
+            }
+          ],
+          "failureReasons": [],
+          "alternativeBatches": [
+            "BATCH-0001",
+            "BATCH-0013",
+            "BATCH-0002"
+          ],
+          "executionStrategy": "COMPLIANCE_FIRST",
+          "executionPhases": {
+            "COMPLIANCE": {
+              "passed": true,
+              "checks": [
+                {
+                  "ruleId": "RULE-007",
+                  "ruleName": "Packing System FG-SO Mapping",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Packing system PKS-1000: FG FG-20001 → SO SO-10001 validated",
+                  "evidence": {
+                    "packingSystemId": "PKS-1000",
+                    "salesOrderId": "SO-10001",
+                    "packagingOrderId": "FG-20001"
+                  }
+                },
+                {
+                  "ruleId": "RULE-008",
+                  "ruleName": "Quality Stock Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Quality stock OK: status RELEASED, stock type UNRESTRICTED"
+                },
+                {
+                  "ruleId": "RULE-009",
+                  "ruleName": "Inspection Lot Release",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Inspection lot IL-90011 released for batch BATCH-0012",
+                  "evidence": {
+                    "lotId": "IL-90011",
+                    "lotStatus": "RELEASED"
+                  }
+                },
+                {
+                  "ruleId": "RULE-010",
+                  "ruleName": "ATP Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "ATP 25000 EA >= required 2000 EA (available 25000, reserved 0)",
+                  "evidence": {
+                    "atpQuantity": 25000,
+                    "reservedQuantity": 0,
+                    "requiredQuantity": 2000
+                  }
+                },
+                {
+                  "ruleId": "RULE-011",
+                  "ruleName": "Reserved Inventory Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "No active reservations on batch"
+                },
+                {
+                  "ruleId": "RULE-001",
+                  "ruleName": "Quality Status",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Batch BATCH-0012 is released for allocation"
+                },
+                {
+                  "ruleId": "RULE-002",
+                  "ruleName": "TRIC Validation",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Batch BATCH-0012 is TRIC-approved for DE"
+                },
+                {
+                  "ruleId": "RULE-003",
+                  "ruleName": "RMSL Validation",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "RMSL 40.3 months >= threshold 12 months for DE",
+                  "evidence": {
+                    "remainingShelfLifeMonths": 40.3,
+                    "thresholdMonths": 12
+                  }
+                },
+                {
+                  "ruleId": "RULE-004",
+                  "ruleName": "Batch Split",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Sufficient quantity available on batch BATCH-0012"
+                }
+              ],
+              "failures": []
+            },
+            "MARKET_RULES": {
+              "passed": true,
+              "checks": [],
+              "failures": []
+            }
+          },
+          "ruleSetVersion": "2.2.4-enterprise",
+          "timeRmsl": {
+            "batchId": "BATCH-0012",
+            "packagingOrderId": "FG-20001",
+            "thresholdMonths": 12,
+            "checkpoints": [
+              {
+                "checkpoint": "PACKAGING_START",
+                "date": "2026-09-01",
+                "label": "RMSL at Packaging Start",
+                "rmslMonths": 40.3,
+                "percentOfShelfLife": 67.2,
+                "percentOfThreshold": 335.8,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              },
+              {
+                "checkpoint": "PACKAGING_END",
+                "date": "2026-09-02",
+                "label": "RMSL at Packaging End",
+                "rmslMonths": 40.3,
+                "percentOfShelfLife": 67.2,
+                "percentOfThreshold": 335.8,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              },
+              {
+                "checkpoint": "CUSTOMER_DELIVERY",
+                "date": "2026-09-09",
+                "label": "RMSL at Customer Delivery",
+                "rmslMonths": 40,
+                "percentOfShelfLife": 66.7,
+                "percentOfThreshold": 333.3,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              }
+            ],
+            "warnings": [
+              {
+                "code": "RMSL_EROSION_TO_DELIVERY",
+                "severity": "MEDIUM",
+                "message": "RMSL margin erodes from 335.8% to 333.3% of threshold by delivery"
+              }
+            ],
+            "overallPassed": true
+          },
+          "risk": {
+            "score": 5,
+            "level": "LOW",
+            "factors": [
+              {
+                "factor": "Eligible Batches",
+                "value": 4,
+                "impact": "LOW",
+                "message": "Multiple compliant batches available"
+              },
+              {
+                "factor": "RMSL Margin",
+                "value": "30.9 mo",
+                "impact": "LOW",
+                "message": "Adequate RMSL margin"
+              },
+              {
+                "factor": "ATP Inventory Coverage",
+                "value": "1250%",
+                "impact": "LOW",
+                "message": "Adequate ATP inventory coverage"
+              },
+              {
+                "factor": "Market Restriction",
+                "value": "TRIC Required",
+                "impact": "MEDIUM",
+                "message": "Market release approval required for destination"
+              },
+              {
+                "factor": "Delivery Urgency",
+                "value": "86 days",
+                "impact": "LOW",
+                "message": "Adequate lead time"
+              }
+            ]
+          }
+        }
+      ],
+      "createdBy": "SMOKE",
+      "createdAt": "2026-06-14T20:00:46.240Z",
+      "startedAt": "2026-06-14T20:00:46.358Z",
+      "completedAt": "2026-06-14T20:00:46.389Z"
+    },
+    {
+      "jobId": "JOB-E828CE2D",
+      "type": "MASS_ALLOCATION",
+      "period": "DAILY",
+      "status": "COMPLETED",
+      "progress": 100,
+      "totalItems": 1,
+      "processedItems": 1,
+      "successful": 1,
+      "failed": 0,
+      "execute": false,
+      "orderIds": [
+        "FG-20001"
+      ],
+      "results": [
+        {
+          "packagingOrderId": "FG-20001",
+          "salesOrderId": "SO-10001",
+          "status": "SIMULATED",
+          "recommendedBatchId": "BATCH-0012",
+          "allocatedQuantity": 2000,
+          "ruleChecks": [
+            {
+              "ruleId": "RULE-007",
+              "ruleName": "Packing System FG-SO Mapping",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Packing system PKS-1000: FG FG-20001 → SO SO-10001 validated",
+              "evidence": {
+                "packingSystemId": "PKS-1000",
+                "salesOrderId": "SO-10001",
+                "packagingOrderId": "FG-20001"
+              }
+            },
+            {
+              "ruleId": "RULE-008",
+              "ruleName": "Quality Stock Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Quality stock OK: status RELEASED, stock type UNRESTRICTED"
+            },
+            {
+              "ruleId": "RULE-009",
+              "ruleName": "Inspection Lot Release",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Inspection lot IL-90011 released for batch BATCH-0012",
+              "evidence": {
+                "lotId": "IL-90011",
+                "lotStatus": "RELEASED"
+              }
+            },
+            {
+              "ruleId": "RULE-010",
+              "ruleName": "ATP Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "ATP 25000 EA >= required 2000 EA (available 25000, reserved 0)",
+              "evidence": {
+                "atpQuantity": 25000,
+                "reservedQuantity": 0,
+                "requiredQuantity": 2000
+              }
+            },
+            {
+              "ruleId": "RULE-011",
+              "ruleName": "Reserved Inventory Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "No active reservations on batch"
+            },
+            {
+              "ruleId": "RULE-001",
+              "ruleName": "Quality Status",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Batch BATCH-0012 is released for allocation"
+            },
+            {
+              "ruleId": "RULE-002",
+              "ruleName": "TRIC Validation",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Batch BATCH-0012 is TRIC-approved for DE"
+            },
+            {
+              "ruleId": "RULE-003",
+              "ruleName": "RMSL Validation",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "RMSL 40.3 months >= threshold 12 months for DE",
+              "evidence": {
+                "remainingShelfLifeMonths": 40.3,
+                "thresholdMonths": 12
+              }
+            },
+            {
+              "ruleId": "RULE-004",
+              "ruleName": "Batch Split",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Sufficient quantity available on batch BATCH-0012"
+            },
+            {
+              "ruleId": "RULE-006",
+              "ruleName": "FIFO Selection",
+              "phase": "FIFO",
+              "result": "PASSED",
+              "message": "FIFO: selected oldest compliant batch BATCH-0012 (production 2025-01-10)"
+            },
+            {
+              "ruleId": "RULE-012",
+              "ruleName": "Optimization Selection",
+              "phase": "OPTIMIZATION",
+              "result": "PASSED",
+              "message": "Optimization: batch BATCH-0012 maximizes RMSL margin while meeting all compliance gates"
+            }
+          ],
+          "failureReasons": [],
+          "alternativeBatches": [
+            "BATCH-0001",
+            "BATCH-0013",
+            "BATCH-0002"
+          ],
+          "executionStrategy": "COMPLIANCE_FIRST",
+          "executionPhases": {
+            "COMPLIANCE": {
+              "passed": true,
+              "checks": [
+                {
+                  "ruleId": "RULE-007",
+                  "ruleName": "Packing System FG-SO Mapping",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Packing system PKS-1000: FG FG-20001 → SO SO-10001 validated",
+                  "evidence": {
+                    "packingSystemId": "PKS-1000",
+                    "salesOrderId": "SO-10001",
+                    "packagingOrderId": "FG-20001"
+                  }
+                },
+                {
+                  "ruleId": "RULE-008",
+                  "ruleName": "Quality Stock Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Quality stock OK: status RELEASED, stock type UNRESTRICTED"
+                },
+                {
+                  "ruleId": "RULE-009",
+                  "ruleName": "Inspection Lot Release",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Inspection lot IL-90011 released for batch BATCH-0012",
+                  "evidence": {
+                    "lotId": "IL-90011",
+                    "lotStatus": "RELEASED"
+                  }
+                },
+                {
+                  "ruleId": "RULE-010",
+                  "ruleName": "ATP Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "ATP 25000 EA >= required 2000 EA (available 25000, reserved 0)",
+                  "evidence": {
+                    "atpQuantity": 25000,
+                    "reservedQuantity": 0,
+                    "requiredQuantity": 2000
+                  }
+                },
+                {
+                  "ruleId": "RULE-011",
+                  "ruleName": "Reserved Inventory Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "No active reservations on batch"
+                },
+                {
+                  "ruleId": "RULE-001",
+                  "ruleName": "Quality Status",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Batch BATCH-0012 is released for allocation"
+                },
+                {
+                  "ruleId": "RULE-002",
+                  "ruleName": "TRIC Validation",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Batch BATCH-0012 is TRIC-approved for DE"
+                },
+                {
+                  "ruleId": "RULE-003",
+                  "ruleName": "RMSL Validation",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "RMSL 40.3 months >= threshold 12 months for DE",
+                  "evidence": {
+                    "remainingShelfLifeMonths": 40.3,
+                    "thresholdMonths": 12
+                  }
+                },
+                {
+                  "ruleId": "RULE-004",
+                  "ruleName": "Batch Split",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Sufficient quantity available on batch BATCH-0012"
+                }
+              ],
+              "failures": []
+            },
+            "MARKET_RULES": {
+              "passed": true,
+              "checks": [],
+              "failures": []
+            }
+          },
+          "ruleSetVersion": "2.2.4-enterprise",
+          "timeRmsl": {
+            "batchId": "BATCH-0012",
+            "packagingOrderId": "FG-20001",
+            "thresholdMonths": 12,
+            "checkpoints": [
+              {
+                "checkpoint": "PACKAGING_START",
+                "date": "2026-09-01",
+                "label": "RMSL at Packaging Start",
+                "rmslMonths": 40.3,
+                "percentOfShelfLife": 67.2,
+                "percentOfThreshold": 335.8,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              },
+              {
+                "checkpoint": "PACKAGING_END",
+                "date": "2026-09-02",
+                "label": "RMSL at Packaging End",
+                "rmslMonths": 40.3,
+                "percentOfShelfLife": 67.2,
+                "percentOfThreshold": 335.8,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              },
+              {
+                "checkpoint": "CUSTOMER_DELIVERY",
+                "date": "2026-09-09",
+                "label": "RMSL at Customer Delivery",
+                "rmslMonths": 40,
+                "percentOfShelfLife": 66.7,
+                "percentOfThreshold": 333.3,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              }
+            ],
+            "warnings": [
+              {
+                "code": "RMSL_EROSION_TO_DELIVERY",
+                "severity": "MEDIUM",
+                "message": "RMSL margin erodes from 335.8% to 333.3% of threshold by delivery"
+              }
+            ],
+            "overallPassed": true
+          },
+          "risk": {
+            "score": 5,
+            "level": "LOW",
+            "factors": [
+              {
+                "factor": "Eligible Batches",
+                "value": 4,
+                "impact": "LOW",
+                "message": "Multiple compliant batches available"
+              },
+              {
+                "factor": "RMSL Margin",
+                "value": "30.9 mo",
+                "impact": "LOW",
+                "message": "Adequate RMSL margin"
+              },
+              {
+                "factor": "ATP Inventory Coverage",
+                "value": "1250%",
+                "impact": "LOW",
+                "message": "Adequate ATP inventory coverage"
+              },
+              {
+                "factor": "Market Restriction",
+                "value": "TRIC Required",
+                "impact": "MEDIUM",
+                "message": "Market release approval required for destination"
+              },
+              {
+                "factor": "Delivery Urgency",
+                "value": "86 days",
+                "impact": "LOW",
+                "message": "Adequate lead time"
+              }
+            ]
+          }
+        }
+      ],
+      "createdBy": "SMOKE",
+      "createdAt": "2026-06-14T19:57:14.610Z",
+      "startedAt": "2026-06-14T19:57:14.726Z",
+      "completedAt": "2026-06-14T19:57:14.757Z"
+    },
+    {
+      "jobId": "JOB-E438B614",
+      "type": "MASS_ALLOCATION",
+      "period": "DAILY",
+      "status": "COMPLETED",
+      "progress": 100,
+      "totalItems": 1,
+      "processedItems": 1,
+      "successful": 1,
+      "failed": 0,
+      "execute": false,
+      "orderIds": [
+        "FG-20001"
+      ],
+      "results": [
+        {
+          "packagingOrderId": "FG-20001",
+          "salesOrderId": "SO-10001",
+          "status": "SIMULATED",
+          "recommendedBatchId": "BATCH-0012",
+          "allocatedQuantity": 2000,
+          "ruleChecks": [
+            {
+              "ruleId": "RULE-007",
+              "ruleName": "Packing System FG-SO Mapping",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Packing system PKS-1000: FG FG-20001 → SO SO-10001 validated",
+              "evidence": {
+                "packingSystemId": "PKS-1000",
+                "salesOrderId": "SO-10001",
+                "packagingOrderId": "FG-20001"
+              }
+            },
+            {
+              "ruleId": "RULE-008",
+              "ruleName": "Quality Stock Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Quality stock OK: status RELEASED, stock type UNRESTRICTED"
+            },
+            {
+              "ruleId": "RULE-009",
+              "ruleName": "Inspection Lot Release",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Inspection lot IL-90011 released for batch BATCH-0012",
+              "evidence": {
+                "lotId": "IL-90011",
+                "lotStatus": "RELEASED"
+              }
+            },
+            {
+              "ruleId": "RULE-010",
+              "ruleName": "ATP Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "ATP 25000 EA >= required 2000 EA (available 25000, reserved 0)",
+              "evidence": {
+                "atpQuantity": 25000,
+                "reservedQuantity": 0,
+                "requiredQuantity": 2000
+              }
+            },
+            {
+              "ruleId": "RULE-011",
+              "ruleName": "Reserved Inventory Check",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "No active reservations on batch"
+            },
+            {
+              "ruleId": "RULE-001",
+              "ruleName": "Quality Status",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Batch BATCH-0012 is released for allocation"
+            },
+            {
+              "ruleId": "RULE-002",
+              "ruleName": "TRIC Validation",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Batch BATCH-0012 is TRIC-approved for DE"
+            },
+            {
+              "ruleId": "RULE-003",
+              "ruleName": "RMSL Validation",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "RMSL 40.3 months >= threshold 12 months for DE",
+              "evidence": {
+                "remainingShelfLifeMonths": 40.3,
+                "thresholdMonths": 12
+              }
+            },
+            {
+              "ruleId": "RULE-004",
+              "ruleName": "Batch Split",
+              "phase": "COMPLIANCE",
+              "result": "PASSED",
+              "message": "Sufficient quantity available on batch BATCH-0012"
+            },
+            {
+              "ruleId": "RULE-006",
+              "ruleName": "FIFO Selection",
+              "phase": "FIFO",
+              "result": "PASSED",
+              "message": "FIFO: selected oldest compliant batch BATCH-0012 (production 2025-01-10)"
+            },
+            {
+              "ruleId": "RULE-012",
+              "ruleName": "Optimization Selection",
+              "phase": "OPTIMIZATION",
+              "result": "PASSED",
+              "message": "Optimization: batch BATCH-0012 maximizes RMSL margin while meeting all compliance gates"
+            }
+          ],
+          "failureReasons": [],
+          "alternativeBatches": [
+            "BATCH-0001",
+            "BATCH-0013",
+            "BATCH-0002"
+          ],
+          "executionStrategy": "COMPLIANCE_FIRST",
+          "executionPhases": {
+            "COMPLIANCE": {
+              "passed": true,
+              "checks": [
+                {
+                  "ruleId": "RULE-007",
+                  "ruleName": "Packing System FG-SO Mapping",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Packing system PKS-1000: FG FG-20001 → SO SO-10001 validated",
+                  "evidence": {
+                    "packingSystemId": "PKS-1000",
+                    "salesOrderId": "SO-10001",
+                    "packagingOrderId": "FG-20001"
+                  }
+                },
+                {
+                  "ruleId": "RULE-008",
+                  "ruleName": "Quality Stock Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Quality stock OK: status RELEASED, stock type UNRESTRICTED"
+                },
+                {
+                  "ruleId": "RULE-009",
+                  "ruleName": "Inspection Lot Release",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Inspection lot IL-90011 released for batch BATCH-0012",
+                  "evidence": {
+                    "lotId": "IL-90011",
+                    "lotStatus": "RELEASED"
+                  }
+                },
+                {
+                  "ruleId": "RULE-010",
+                  "ruleName": "ATP Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "ATP 25000 EA >= required 2000 EA (available 25000, reserved 0)",
+                  "evidence": {
+                    "atpQuantity": 25000,
+                    "reservedQuantity": 0,
+                    "requiredQuantity": 2000
+                  }
+                },
+                {
+                  "ruleId": "RULE-011",
+                  "ruleName": "Reserved Inventory Check",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "No active reservations on batch"
+                },
+                {
+                  "ruleId": "RULE-001",
+                  "ruleName": "Quality Status",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Batch BATCH-0012 is released for allocation"
+                },
+                {
+                  "ruleId": "RULE-002",
+                  "ruleName": "TRIC Validation",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Batch BATCH-0012 is TRIC-approved for DE"
+                },
+                {
+                  "ruleId": "RULE-003",
+                  "ruleName": "RMSL Validation",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "RMSL 40.3 months >= threshold 12 months for DE",
+                  "evidence": {
+                    "remainingShelfLifeMonths": 40.3,
+                    "thresholdMonths": 12
+                  }
+                },
+                {
+                  "ruleId": "RULE-004",
+                  "ruleName": "Batch Split",
+                  "phase": "COMPLIANCE",
+                  "result": "PASSED",
+                  "message": "Sufficient quantity available on batch BATCH-0012"
+                }
+              ],
+              "failures": []
+            },
+            "MARKET_RULES": {
+              "passed": true,
+              "checks": [],
+              "failures": []
+            }
+          },
+          "ruleSetVersion": "2.2.4-enterprise",
+          "timeRmsl": {
+            "batchId": "BATCH-0012",
+            "packagingOrderId": "FG-20001",
+            "thresholdMonths": 12,
+            "checkpoints": [
+              {
+                "checkpoint": "PACKAGING_START",
+                "date": "2026-09-01",
+                "label": "RMSL at Packaging Start",
+                "rmslMonths": 40.3,
+                "percentOfShelfLife": 67.2,
+                "percentOfThreshold": 335.8,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              },
+              {
+                "checkpoint": "PACKAGING_END",
+                "date": "2026-09-02",
+                "label": "RMSL at Packaging End",
+                "rmslMonths": 40.3,
+                "percentOfShelfLife": 67.2,
+                "percentOfThreshold": 335.8,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              },
+              {
+                "checkpoint": "CUSTOMER_DELIVERY",
+                "date": "2026-09-09",
+                "label": "RMSL at Customer Delivery",
+                "rmslMonths": 40,
+                "percentOfShelfLife": 66.7,
+                "percentOfThreshold": 333.3,
+                "thresholdMonths": 12,
+                "passed": true,
+                "status": "OK"
+              }
+            ],
+            "warnings": [
+              {
+                "code": "RMSL_EROSION_TO_DELIVERY",
+                "severity": "MEDIUM",
+                "message": "RMSL margin erodes from 335.8% to 333.3% of threshold by delivery"
+              }
+            ],
+            "overallPassed": true
+          },
+          "risk": {
+            "score": 5,
+            "level": "LOW",
+            "factors": [
+              {
+                "factor": "Eligible Batches",
+                "value": 4,
+                "impact": "LOW",
+                "message": "Multiple compliant batches available"
+              },
+              {
+                "factor": "RMSL Margin",
+                "value": "30.9 mo",
+                "impact": "LOW",
+                "message": "Adequate RMSL margin"
+              },
+              {
+                "factor": "ATP Inventory Coverage",
+                "value": "1250%",
+                "impact": "LOW",
+                "message": "Adequate ATP inventory coverage"
+              },
+              {
+                "factor": "Market Restriction",
+                "value": "TRIC Required",
+                "impact": "MEDIUM",
+                "message": "Market release approval required for destination"
+              },
+              {
+                "factor": "Delivery Urgency",
+                "value": "86 days",
+                "impact": "LOW",
+                "message": "Adequate lead time"
+              }
+            ]
+          }
+        }
+      ],
+      "createdBy": "SMOKE",
+      "createdAt": "2026-06-14T20:19:57.754Z",
+      "startedAt": "2026-06-14T20:19:57.870Z",
+      "completedAt": "2026-06-14T20:19:57.903Z"
+    }
+  ],
+  "label": "Reset — start Mass Allocation from cockpit"
+}

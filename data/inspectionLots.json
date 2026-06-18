@@ -1,0 +1,260 @@
+{
+  "items": [
+    {
+      "lotId": "IL-90000",
+      "batchId": "BATCH-0001",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-02-10",
+      "releaseDate": "2025-02-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90001",
+      "batchId": "BATCH-0002",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-03-10",
+      "releaseDate": "2025-03-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90002",
+      "batchId": "BATCH-0003",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-04-10",
+      "releaseDate": "2025-04-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90003",
+      "batchId": "BATCH-0004",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-05-10",
+      "releaseDate": "2025-05-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90004",
+      "batchId": "BATCH-0005",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-06-10",
+      "releaseDate": "2025-06-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90005",
+      "batchId": "BATCH-0006",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-07-10",
+      "releaseDate": "2025-07-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90006",
+      "batchId": "BATCH-0007",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-08-10",
+      "releaseDate": "2025-08-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90007",
+      "batchId": "BATCH-0008",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-09-10",
+      "releaseDate": "2025-09-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90008",
+      "batchId": "BATCH-0009",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-10-10",
+      "releaseDate": "2025-10-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90009",
+      "batchId": "BATCH-0010",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-11-10",
+      "releaseDate": "2025-11-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90010",
+      "batchId": "BATCH-0011",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-12-10",
+      "releaseDate": "2025-12-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90011",
+      "batchId": "BATCH-0012",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-01-10",
+      "releaseDate": "2025-01-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90012",
+      "batchId": "BATCH-0013",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-02-10",
+      "releaseDate": "2025-02-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90013",
+      "batchId": "BATCH-0014",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-03-10",
+      "releaseDate": "2025-03-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90014",
+      "batchId": "BATCH-0015",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-04-10",
+      "releaseDate": "2025-04-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90015",
+      "batchId": "BATCH-0016",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-05-10",
+      "releaseDate": "2025-05-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90016",
+      "batchId": "BATCH-0017",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-06-10",
+      "releaseDate": "2025-06-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90017",
+      "batchId": "BATCH-0018",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-07-10",
+      "releaseDate": "2025-07-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90018",
+      "batchId": "BATCH-0019",
+      "materialNumber": "DP-1000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-08-10",
+      "releaseDate": "2025-08-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90019",
+      "batchId": "BATCH-0020",
+      "materialNumber": "DP-2000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-09-10",
+      "releaseDate": "2025-09-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90020",
+      "batchId": "BATCH-0021",
+      "materialNumber": "DP-2000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-10-10",
+      "releaseDate": "2025-10-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90021",
+      "batchId": "BATCH-0022",
+      "materialNumber": "DP-2000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-11-10",
+      "releaseDate": "2025-11-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90022",
+      "batchId": "BATCH-0023",
+      "materialNumber": "DP-2000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-12-10",
+      "releaseDate": "2025-12-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90023",
+      "batchId": "BATCH-0024",
+      "materialNumber": "DP-2000",
+      "status": "RELEASED",
+      "usageDecision": "A",
+      "createdDate": "2025-01-10",
+      "releaseDate": "2025-01-10",
+      "expectedReleaseDate": null
+    },
+    {
+      "lotId": "IL-90024",
+      "batchId": "BATCH-0037",
+      "materialNumber": "DP-2000",
+      "status": "PENDING",
+      "createdDate": "2026-06-01",
+      "expectedReleaseDate": "2026-09-02"
+    },
+    {
+      "lotId": "IL-90025",
+      "batchId": "BATCH-0074",
+      "materialNumber": "DP-4000",
+      "status": "PENDING",
+      "createdDate": "2026-06-01",
+      "expectedReleaseDate": "2026-09-03"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "lineId": "PACK_LINE_01",
+      "lineName": "Packaging Line 01 — Tablets",
+      "plantId": "1000",
+      "capacityUnitsPerDay": 8000,
+      "shiftPattern": "2_SHIFT",
+      "active": true,
+      "performanceFactor": 0.9411764705882353,
+      "performanceFactorReason": "Abgeleitet aus 12 historischen Aufträgen (OEE 32%)",
+      "performanceFactorUpdatedAt": "2026-06-14T19:31:16.017Z",
+      "performanceFactorUpdatedBy": "HISTORICAL_ANALYSIS"
+    },
+    {
+      "lineId": "PACK_LINE_02",
+      "lineName": "Packaging Line 02 — Capsules",
+      "plantId": "1000",
+      "capacityUnitsPerDay": 6000,
+      "shiftPattern": "2_SHIFT",
+      "active": true,
+      "performanceFactor": 0.8695652173913044,
+      "performanceFactorReason": "Abgeleitet aus 24 historischen Aufträgen (OEE 32%)",
+      "performanceFactorUpdatedAt": "2026-06-14T19:31:16.017Z",
+      "performanceFactorUpdatedBy": "HISTORICAL_ANALYSIS"
+    },
+    {
+      "lineId": "PACK_LINE_03",
+      "lineName": "Packaging Line 03 — Blister",
+      "plantId": "1000",
+      "capacityUnitsPerDay": 5500,
+      "shiftPattern": "2_SHIFT",
+      "active": true,
+      "performanceFactor": 0.9142857142857143,
+      "performanceFactorReason": "Abgeleitet aus 12 historischen Aufträgen (OEE 34%)",
+      "performanceFactorUpdatedAt": "2026-06-14T19:31:16.017Z",
+      "performanceFactorUpdatedBy": "HISTORICAL_ANALYSIS"
+    },
+    {
+      "lineId": "PACK_LINE_04",
+      "lineName": "Packaging Line 04 — Parenteral",
+      "plantId": "1000",
+      "capacityUnitsPerDay": 4000,
+      "shiftPattern": "2_SHIFT",
+      "active": true,
+      "performanceFactor": 0.9815950920245399,
+      "performanceFactorReason": "Abgeleitet aus 24 historischen Aufträgen (OEE 52%)",
+      "performanceFactorUpdatedAt": "2026-06-14T19:31:16.017Z",
+      "performanceFactorUpdatedBy": "HISTORICAL_ANALYSIS"
+    },
+    {
+      "lineId": "PACK_LINE_05",
+      "lineName": "Packaging Line 05 — Liquid Fill",
+      "plantId": "1000",
+      "capacityUnitsPerDay": 7000,
+      "shiftPattern": "2_SHIFT",
+      "active": true,
+      "performanceFactor": 0.9248554913294798,
+      "performanceFactorReason": "Abgeleitet aus 24 historischen Aufträgen (OEE 31%)",
+      "performanceFactorUpdatedAt": "2026-06-14T19:31:16.017Z",
+      "performanceFactorUpdatedBy": "HISTORICAL_ANALYSIS"
+    },
+    {
+      "lineId": "PACK_LINE_06",
+      "lineName": "Packaging Line 06 — Topical",
+      "plantId": "1000",
+      "capacityUnitsPerDay": 5000,
+      "shiftPattern": "2_SHIFT",
+      "active": true,
+      "performanceFactor": 0.8247422680412372,
+      "performanceFactorReason": "Abgeleitet aus 24 historischen Aufträgen (OEE 34%)",
+      "performanceFactorUpdatedAt": "2026-06-14T19:31:16.017Z",
+      "performanceFactorUpdatedBy": "HISTORICAL_ANALYSIS"
+    }
+  ]
+}

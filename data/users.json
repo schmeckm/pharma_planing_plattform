@@ -1,0 +1,66 @@
+{
+  "items": [
+    {
+      "userId": "USR-PLANNER01",
+      "username": "planner",
+      "displayName": "Maria Planner",
+      "email": "maria.planner@pharma.com",
+      "role": "PLANNER",
+      "active": true,
+      "enabledFeatures": [
+        "dashboard",
+        "help"
+      ],
+      "featuresUpdatedAt": "2026-06-14T20:22:25.525Z",
+      "featuresUpdatedBy": "USR-ADMIN01"
+    },
+    {
+      "userId": "USR-QA01",
+      "username": "qa",
+      "displayName": "Thomas QA",
+      "email": "thomas.qa@pharma.com",
+      "role": "QA",
+      "active": true,
+      "enabledFeatures": [
+        "dashboard",
+        "daily-planning",
+        "orders",
+        "simulation",
+        "confirmed-assignments",
+        "exceptions",
+        "audit",
+        "help"
+      ]
+    },
+    {
+      "userId": "USR-SC01",
+      "username": "supplychain",
+      "displayName": "Lisa Supply Chain",
+      "email": "lisa.sc@pharma.com",
+      "role": "SUPPLY_CHAIN",
+      "active": true
+    },
+    {
+      "userId": "USR-ADMIN01",
+      "username": "admin",
+      "displayName": "System Admin",
+      "email": "admin@pharma.com",
+      "role": "ADMIN",
+      "active": true
+    },
+    {
+      "userId": "USR-VIEWER01",
+      "username": "viewer",
+      "displayName": "Read Only User",
+      "email": "viewer@pharma.com",
+      "role": "VIEWER",
+      "active": true,
+      "enabledFeatures": [
+        "dashboard",
+        "orders",
+        "audit",
+        "help"
+      ]
+    }
+  ]
+}

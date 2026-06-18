@@ -1,0 +1,762 @@
+openapi: 3.0.3
+info:
+  title: Hard Allocation Platform API
+  description: |
+    Pharmaceutical Production Sequencing & Allocation Optimizer.
+    v1 Core allocation · v2 Enterprise (rules, exceptions, risk, RBAC) ·
+    v3 AI-Assisted Planning (copilot, agents, digital twin, predictive risk).
+    AI recommends — human planner retains final approval.
+  version: 3.0.0
+  contact:
+    name: Enterprise Architecture
+
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Core allocation API (MVP 1.0)
+  - url: http://localhost:8000/api/v2
+    description: Enterprise API (MVP 2.0) — requires X-User-Id, X-User-Role headers
+  - url: http://localhost:8000/api/v3
+    description: AI-Assisted Planning (MVP 3.0) — requires X-User-Id, X-User-Role headers
+
+tags:
+  - name: Orders
+  - name: Batches
+  - name: Allocation
+  - name: Audit
+  - name: Rules
+  - name: Line Optimization
+  - name: Enterprise Auth
+  - name: Enterprise Rules
+  - name: Exceptions
+  - name: Mass Jobs
+  - name: Copilot
+  - name: What-If
+  - name: AI Planning
+  - name: Digital Twin
+  - name: Executive
+  - name: Data Provider
+  - name: Daily Planning
+
+paths:
+  /orders:
+    get:
+      tags: [Orders]
+      summary: List packaging orders
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, example: OPEN }
+        - in: query
+          name: country
+          schema: { type: string, example: DE }
+      responses:
+        '200':
+          description: Packaging orders with linked sales orders
+
+  /batches:
+    get:
+      tags: [Batches]
+      summary: List finished goods batches
+      parameters:
+        - in: query
+          name: materialNumber
+          schema: { type: string }
+        - in: query
+          name: qualityStatus
+          schema: { type: string }
+      responses:
+        '200':
+          description: Batch inventory with RMSL compliance
+
+  /allocation/simulate:
+    post:
+      tags: [Allocation]
+      summary: Simulate hard allocation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [packagingOrderId]
+              properties:
+                packagingOrderId: { type: string, example: PO-20001 }
+                userId: { type: string, example: UI-USER }
+      responses:
+        '200':
+          description: Simulation result with rule checks
+
+  /allocation/execute:
+    post:
+      tags: [Allocation]
+      summary: Execute hard allocation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [packagingOrderId]
+              properties:
+                packagingOrderId: { type: string }
+                batchId: { type: string, nullable: true }
+                userId: { type: string }
+                force: { type: boolean, default: false }
+      responses:
+        '200':
+          description: Execution result
+
+  /allocation/mass-simulate:
+    post:
+      tags: [Allocation]
+      summary: Mass allocation simulation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                packagingOrderIds: { type: array, items: { type: string } }
+                destinationCountry: { type: string }
+                statusFilter: { type: string, default: OPEN }
+                userId: { type: string }
+      responses:
+        '200':
+          description: Bulk simulation results
+
+  /allocation/release:
+    post:
+      tags: [Allocation]
+      summary: Release (unallocate) a packaging order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [packagingOrderId]
+              properties:
+                packagingOrderId: { type: string, example: FG-20001 }
+                userId: { type: string, example: UI-USER }
+      responses:
+        '200':
+          description: Release result with restored inventory
+
+  /allocation/mass-release:
+    post:
+      tags: [Allocation]
+      summary: Mass release (unallocate) packaging orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                packagingOrderIds: { type: array, items: { type: string } }
+                userId: { type: string }
+      responses:
+        '200':
+          description: Bulk release results
+
+  /audit-trail:
+    get:
+      tags: [Audit]
+      summary: Retrieve allocation audit trail
+      parameters:
+        - in: query
+          name: packagingOrderId
+          schema: { type: string }
+        - in: query
+          name: batchId
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { type: string }
+        - in: query
+          name: limit
+          schema: { type: integer, default: 100 }
+      responses:
+        '200':
+          description: Audit entries
+
+  /rules:
+    get:
+      tags: [Rules]
+      summary: Get country rules and rule definitions
+      responses:
+        '200':
+          description: Configurable rules from JSON
+    put:
+      tags: [Rules]
+      summary: Update country or rule configuration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                countryCode: { type: string }
+                allowBatchSplit: { type: boolean }
+                rmslThresholdMonths: { type: integer }
+                requiresTric: { type: boolean }
+                requiresContinuousSequence: { type: boolean }
+                active: { type: boolean }
+      responses:
+        '200':
+          description: Updated rules
+
+  /dashboard:
+    get:
+      tags: [Orders]
+      summary: Dashboard KPI statistics
+      responses:
+        '200':
+          description: KPI metrics
+
+  /line-optimization/orders:
+    get:
+      tags: [Line Optimization]
+      summary: Rough planned orders with Gantt tasks and KPIs
+      responses:
+        '200':
+          description: Orders, ganttTasks, timeline, kpis
+
+  /line-optimization/lines:
+    get:
+      tags: [Line Optimization]
+      summary: Production lines and calendars
+      responses:
+        '200':
+          description: Lines and shift calendars
+
+  /line-optimization/simulate:
+    post:
+      tags: [Line Optimization]
+      summary: Simulate custom sequence after drag-drop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sequence:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      packagingOrder: { type: string }
+                      productionLine: { type: string }
+                      plannedStartDate: { type: string }
+                      plannedEndDate: { type: string }
+      responses:
+        '200':
+          description: Simulation result with before/after comparison
+
+  /line-optimization/optimize:
+    post:
+      tags: [Line Optimization]
+      summary: Auto-optimize production sequence
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                startAnchor: { type: string, example: '2026-09-01' }
+      responses:
+        '200':
+          description: Optimized sequence with Gantt data
+
+  /line-optimization/save-sequence:
+    post:
+      tags: [Line Optimization]
+      summary: Persist optimized plant sequence
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sequence: { type: array }
+                label: { type: string }
+      responses:
+        '200':
+          description: Saved schedule confirmation
+
+  /planning/planner-dashboard:
+    get:
+      tags: [Daily Planning]
+      summary: Planner dashboard — KPIs, line utilization, and recommendations
+      description: |
+        Returns open/high-risk/late orders, shelf-life and sequence-check issues,
+        line utilization, recommended sequence, recommended production lines, and batch previews.
+      parameters:
+        - in: query
+          name: date
+          schema: { type: string, format: date, example: '2026-09-01' }
+      responses:
+        '200':
+          description: Planner dashboard with KPIs and recommendations
+
+  /planning/daily-orders:
+    get:
+      tags: [Daily Planning]
+      summary: Daily rough planned orders with Gantt data and KPIs
+      parameters:
+        - in: query
+          name: date
+          schema: { type: string, format: date, example: '2026-09-01' }
+      responses:
+        '200':
+          description: Orders with time-aware attributes, lines, and Gantt tasks
+
+  /planning/recommended-sequence:
+    get:
+      tags: [Daily Planning]
+      summary: Build recommended production sequence
+      parameters:
+        - in: query
+          name: startAnchor
+          schema: { type: string, format: date }
+      responses:
+        '200':
+          description: Optimized sequence with before/after comparison
+
+  /planning/what-if:
+    post:
+      tags: [Daily Planning]
+      summary: What-if simulation after drag-drop sequence changes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sequence: { type: array }
+                compareToBaseline: { type: boolean, default: true }
+      responses:
+        '200':
+          description: Simulation result with risk recalculation
+
+  /planning/confirm-sequence:
+    post:
+      tags: [Daily Planning]
+      summary: Confirm final plant production sequence
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sequence: { type: array }
+                label: { type: string }
+      responses:
+        '200':
+          description: Confirmed schedule persisted to optimizedSchedule.json
+
+  /planning/simulate-batch-assignment:
+    post:
+      tags: [Daily Planning]
+      summary: Simulate batch assignment for sequenced packaging orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                packagingOrderIds: { type: array, items: { type: string } }
+                sequence: { type: array }
+      responses:
+        '200':
+          description: Batch recommendation simulation results
+
+  /performance/line-scores:
+    get:
+      tags: [Daily Planning]
+      summary: Historical performance line scores by material
+      parameters:
+        - in: query
+          name: materialNumber
+          schema: { type: string, example: MAT-1000 }
+      responses:
+        '200':
+          description: Weighted line scores (30% OEE, 25% throughput, 20% reliability, 15% yield, 10% setup)
+
+  /performance/recommend-line:
+    get:
+      tags: [Daily Planning]
+      summary: Recommend production line by historical performance
+      parameters:
+        - in: query
+          name: materialNumber
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Line recommendation with score breakdown
+
+  /planning/confirmed-schedule:
+    get:
+      tags: [Daily Planning]
+      summary: Last confirmed plant production sequence
+      responses:
+        '200':
+          description: Confirmed schedule from optimizedSchedule.json
+
+  /planning/exceptions:
+    get:
+      tags: [Daily Planning]
+      summary: Planning exceptions from sequencing and allocation
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string, example: OPEN }
+        - in: query
+          name: date
+          schema: { type: string, format: date }
+      responses:
+        '200':
+          description: Combined planning exceptions list
+
+  # --- MVP 2.0 Enterprise (use server http://localhost:8000/api/v2) ---
+
+  /auth/login:
+    post:
+      tags: [Enterprise Auth]
+      summary: Login with demo username
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username: { type: string, example: planner }
+      responses:
+        '200':
+          description: User profile with permissions
+
+  /auth/me:
+    get:
+      tags: [Enterprise Auth]
+      summary: Current user profile
+      parameters:
+        - in: header
+          name: X-User-Id
+          schema: { type: string }
+        - in: header
+          name: X-User-Role
+          schema: { type: string, enum: [PLANNER, QA, SUPPLY_CHAIN, ADMIN, VIEWER] }
+      responses:
+        '200':
+          description: User with role permissions
+
+  /rules:
+    get:
+      tags: [Enterprise Rules]
+      summary: List versioned rules (v2)
+      parameters:
+        - in: query
+          name: category
+          schema: { type: string, enum: [COUNTRY, CUSTOMER, PRODUCT, MARKET, SEQUENCE, RMSL, BATCH_SPLIT] }
+      responses:
+        '200':
+          description: Rules with categories and audit log
+    post:
+      tags: [Enterprise Rules]
+      summary: Create rule (ADMIN)
+      responses:
+        '201':
+          description: Created rule
+
+  /rules/export:
+    get:
+      tags: [Enterprise Rules]
+      summary: Export all rules and versions
+      responses:
+        '200':
+          description: JSON export bundle
+
+  /rules/{ruleId}:
+    get:
+      tags: [Enterprise Rules]
+      summary: Get rule with version history
+      parameters:
+        - in: path
+          name: ruleId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Rule detail
+    put:
+      tags: [Enterprise Rules]
+      summary: Update rule (creates new version)
+      parameters:
+        - in: path
+          name: ruleId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Updated rule
+
+  /exceptions:
+    get:
+      tags: [Exceptions]
+      summary: Exception queue
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string }
+        - in: query
+          name: type
+          schema: { type: string }
+      responses:
+        '200':
+          description: Exception list
+
+  /exceptions/{exceptionId}/comments:
+    post:
+      tags: [Exceptions]
+      summary: Add comment to exception
+      parameters:
+        - in: path
+          name: exceptionId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Updated exception
+
+  /exceptions/{exceptionId}/review:
+    post:
+      tags: [Exceptions]
+      summary: Mark exception in review
+      parameters:
+        - in: path
+          name: exceptionId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Updated exception
+
+  /exceptions/{exceptionId}/escalate:
+    post:
+      tags: [Exceptions]
+      summary: Escalate exception
+      parameters:
+        - in: path
+          name: exceptionId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Escalated exception
+
+  /exceptions/{exceptionId}/resolve:
+    post:
+      tags: [Exceptions]
+      summary: Resolve exception
+      parameters:
+        - in: path
+          name: exceptionId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Resolved exception
+
+  /jobs/mass-allocation:
+    post:
+      tags: [Mass Jobs]
+      summary: Start background mass allocation job
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                period: { type: string, enum: [DAILY, WEEKLY], default: DAILY }
+                execute: { type: boolean, default: false }
+                orderIds: { type: array, items: { type: string } }
+      responses:
+        '202':
+          description: Job queued
+
+  /jobs:
+    get:
+      tags: [Mass Jobs]
+      summary: List mass allocation jobs
+      responses:
+        '200':
+          description: Job history
+
+  /jobs/{jobId}:
+    get:
+      tags: [Mass Jobs]
+      summary: Get job with progress and results
+      parameters:
+        - in: path
+          name: jobId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Job detail with result history
+
+  /copilot/ask:
+    post:
+      tags: [Copilot]
+      summary: Allocation copilot (internal reasoning, no OpenAI)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question: { type: string }
+                packagingOrderId: { type: string, example: PO-20001 }
+      responses:
+        '200':
+          description: Copilot answer with evidence
+
+  /what-if/simulate:
+    post:
+      tags: [What-If]
+      summary: What-if allocation simulation
+      responses:
+        '200':
+          description: Simulation result
+
+  /provider:
+    get:
+      tags: [Data Provider]
+      summary: Active data provider info (JsonProvider or SAPODataProvider mock)
+      responses:
+        '200':
+          description: Provider name, mode, connection status
+
+# --- MVP 3.0 AI-Assisted Planning (use server http://localhost:8000/api/v3) ---
+
+  /agents/morning-briefing:
+    get:
+      tags: [AI Planning]
+      summary: Daily Planning Summary (Planning Agent)
+      description: Reads orders, inventory, batches, inspection lots, calendars, performance. Planner approves all actions.
+      parameters:
+        - in: query
+          name: horizonDays
+          schema: { type: integer, default: 7 }
+      responses:
+        '200':
+          description: Daily summary with open/allocatable/at-risk counts
+
+  /agents/run:
+    post:
+      tags: [AI Planning]
+      summary: Run multi-agent orchestrator (Planning, QA, Supply Chain, Compliance)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trigger: { type: string, example: SCHEDULED_DAILY }
+                horizonDays: { type: integer, default: 7 }
+      responses:
+        '200':
+          description: Agent run with recommendations (requires human approval)
+
+  /copilot/ask:
+    post:
+      tags: [AI Planning]
+      summary: Planning Copilot v3 — explainable business answers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question: { type: string }
+                packagingOrderId: { type: string, example: PO-20001 }
+      responses:
+        '200':
+          description: Answer with evidence and graph context
+
+  /twin/simulate:
+    get:
+      tags: [Digital Twin]
+      summary: Digital Twin simulation T+7/30/90
+      parameters:
+        - in: query
+          name: horizon
+          schema: { type: integer, default: 7 }
+      responses:
+        '200':
+          description: Twin projection for orders, inventory, markets, lines
+
+  /predictions:
+    get:
+      tags: [Digital Twin]
+      summary: Predictive risk engine (RMSL, shortage, expiry, bottlenecks)
+      responses:
+        '200':
+          description: Risk forecasts LOW/MEDIUM/HIGH
+
+  /recommendations:
+    get:
+      tags: [AI Planning]
+      summary: List agent recommendations (pending planner approval)
+      responses:
+        '200':
+          description: Recommendations with evidence and approver role
+
+  /recommendations/{recommendationId}/approve:
+    post:
+      tags: [AI Planning]
+      summary: Planner approves agent recommendation
+      parameters:
+        - in: path
+          name: recommendationId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Approved recommendation
+
+  /executive/dashboard:
+    get:
+      tags: [Executive]
+      summary: Executive dashboard — service level, inventory risk, RMSL compliance
+      parameters:
+        - in: query
+          name: horizon
+          schema: { type: integer, default: 7 }
+      responses:
+        '200':
+          description: KPIs, heatmap, daily summary, agent recommendations
+
+  /graph/stats:
+    get:
+      tags: [AI Planning]
+      summary: Knowledge graph statistics (Neo4j-shaped in-memory)
+      responses:
+        '200':
+          description: Node and relationship counts
+
+components:
+  securitySchemes:
+    RoleHeaders:
+      type: apiKey
+      in: header
+      name: X-User-Role
+  parameters:
+    UserIdHeader:
+      in: header
+      name: X-User-Id
+      schema: { type: string }
+    UserRoleHeader:
+      in: header
+      name: X-User-Role
+      schema: { type: string }

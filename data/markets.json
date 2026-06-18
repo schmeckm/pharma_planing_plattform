@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "marketId": "MKT-DE", "marketName": "Germany", "countryCode": "DE", "region": "EMEA", "priority": 1 },
+    { "marketId": "MKT-GB", "marketName": "United Kingdom", "countryCode": "GB", "region": "EMEA", "priority": 2 },
+    { "marketId": "MKT-JP", "marketName": "Japan", "countryCode": "JP", "region": "APAC", "priority": 1 },
+    { "marketId": "MKT-CH", "marketName": "Switzerland", "countryCode": "CH", "region": "EMEA", "priority": 1 },
+    { "marketId": "MKT-US", "marketName": "United States", "countryCode": "US", "region": "AMER", "priority": 1 }
+  ]
+}

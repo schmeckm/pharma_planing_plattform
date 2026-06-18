@@ -1,0 +1,7 @@
+{
+  "errors.unauthorized": "Nicht autorisiert",
+  "errors.forbidden": "Zugriff verweigert",
+  "errors.internal": "Interner Serverfehler",
+  "errors.notImplemented": "Noch nicht implementiert",
+  "errors.tokenRevoked": "Token wurde widerrufen"
+}

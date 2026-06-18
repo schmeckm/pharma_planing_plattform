@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "eventId": "EVT-001", "eventType": "ORDER_CREATED", "timestamp": "2026-06-10T08:15:00Z", "entityType": "PackagingOrder", "entityId": "FG-20006", "severity": "INFO", "message": "New packaging order created for JP market" },
+    { "eventId": "EVT-002", "eventType": "ALLOCATION_BLOCKED", "timestamp": "2026-06-10T09:30:00Z", "entityType": "PackagingOrder", "entityId": "FG-20005", "severity": "HIGH", "message": "Allocation blocked — RMSL threshold not met" },
+    { "eventId": "EVT-003", "eventType": "QA_RELEASE", "timestamp": "2026-06-10T10:00:00Z", "entityType": "Batch", "entityId": "BATCH-JP-002", "severity": "INFO", "message": "Inspection lot IL-90001 released for distribution" },
+    { "eventId": "EVT-004", "eventType": "INVENTORY_CHANGE", "timestamp": "2026-06-10T11:45:00Z", "entityType": "Batch", "entityId": "BATCH-DE-001", "severity": "MEDIUM", "message": "Available quantity reduced by 2000 EA — goods issue" },
+    { "eventId": "EVT-005", "eventType": "BATCH_EXPIRY_WARNING", "timestamp": "2026-06-10T12:00:00Z", "entityType": "Batch", "entityId": "BULK-003", "severity": "HIGH", "message": "Bulk inventory expires within 90 days — 10000 KG at risk" }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "ruleSetVersion": "2.2.0",
+  "executionPriority": [
+    "COMPLIANCE",
+    "AVAILABILITY",
+    "MARKET_RULES",
+    "PRODUCTION",
+    "FIFO",
+    "OPTIMIZATION"
+  ],
+  "countryRules": [
+    {
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "allowBatchSplit": true,
+      "rmslThresholdMonths": 12,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "GB",
+      "countryName": "United Kingdom",
+      "allowBatchSplit": false,
+      "rmslThresholdMonths": 18,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "JP",
+      "countryName": "Japan",
+      "allowBatchSplit": false,
+      "rmslThresholdMonths": 24,
+      "requiresTric": true,
+      "requiresContinuousSequence": true,
+      "active": true
+    },
+    {
+      "countryCode": "CH",
+      "countryName": "Switzerland",
+      "allowBatchSplit": false,
+      "rmslThresholdMonths": 6,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "AT",
+      "countryName": "Austria",
+      "allowBatchSplit": true,
+      "rmslThresholdMonths": 12,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "FR",
+      "countryName": "Santé",
+      "allowBatchSplit": true,
+      "rmslThresholdMonths": 15,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "US",
+      "countryName": "US",
+      "allowBatchSplit": false,
+      "rmslThresholdMonths": 18,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "IT",
+      "countryName": "Italia",
+      "allowBatchSplit": true,
+      "rmslThresholdMonths": 14,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "NL",
+      "countryName": "Benelux",
+      "allowBatchSplit": true,
+      "rmslThresholdMonths": 12,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    },
+    {
+      "countryCode": "AU",
+      "countryName": "Pacific",
+      "allowBatchSplit": false,
+      "rmslThresholdMonths": 20,
+      "requiresTric": true,
+      "requiresContinuousSequence": false,
+      "active": true
+    }
+  ],
+  "ruleDefinitions": [
+    {
+      "ruleId": "RULE-001",
+      "ruleName": "Quality Status",
+      "ruleType": "COMPLIANCE",
+      "description": "Only released batches may be allocated",
+      "priority": 4,
+      "active": true,
+      "parameters": {
+        "allowedStatuses": [
+          "RELEASED"
+        ]
+      }
+    },
+    {
+      "ruleId": "RULE-002",
+      "ruleName": "TRIC Validation",
+      "ruleType": "COMPLIANCE",
+      "description": "Destination country must be TRIC-approved for the batch",
+      "priority": 5,
+      "active": true,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-003",
+      "ruleName": "RMSL Validation",
+      "ruleType": "COMPLIANCE",
+      "description": "Remaining shelf life must meet country-specific threshold",
+      "priority": 6,
+      "active": true,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-004",
+      "ruleName": "Batch Split",
+      "ruleType": "COMPLIANCE",
+      "description": "Full quantity must be on single batch when splitting not allowed",
+      "priority": 7,
+      "active": true,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-005",
+      "ruleName": "Japan Sequence",
+      "ruleType": "MARKET_RULES",
+      "description": "Continuous batch sequence required for Japan market",
+      "priority": 5,
+      "active": true,
+      "version": 2,
+      "parameters": {
+        "countryCode": "JP"
+      }
+    },
+    {
+      "ruleId": "RULE-006",
+      "ruleName": "FIFO Selection",
+      "ruleType": "FIFO",
+      "description": "Oldest compliant batch selected first (after compliance gates)",
+      "priority": 6,
+      "active": true,
+      "version": 1,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-007",
+      "ruleName": "Packing System FG-SO Mapping",
+      "ruleType": "COMPLIANCE",
+      "description": "Packaging order must map to sales order via packing system",
+      "priority": 1,
+      "active": true,
+      "version": 1,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-008",
+      "ruleName": "Quality Stock Check",
+      "ruleType": "COMPLIANCE",
+      "description": "Only unrestricted released quality stock may be allocated",
+      "priority": 2,
+      "active": true,
+      "version": 1,
+      "parameters": {
+        "allowedStockTypes": [
+          "UNRESTRICTED"
+        ]
+      }
+    },
+    {
+      "ruleId": "RULE-009",
+      "ruleName": "Inspection Lot Release",
+      "ruleType": "COMPLIANCE",
+      "description": "Batch must have released SAP QM inspection lot (usage decision)",
+      "priority": 3,
+      "active": true,
+      "version": 1,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-010",
+      "ruleName": "ATP Check",
+      "ruleType": "AVAILABILITY",
+      "description": "Available-to-promise quantity must cover order requirement",
+      "priority": 1,
+      "active": true,
+      "version": 1,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-011",
+      "ruleName": "Reserved Inventory Check",
+      "ruleType": "AVAILABILITY",
+      "description": "Batch must not be reserved for conflicting market/order",
+      "priority": 2,
+      "active": true,
+      "version": 1,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-012",
+      "ruleName": "Optimization Selection",
+      "ruleType": "OPTIMIZATION",
+      "description": "Select batch maximizing service level and RMSL margin after compliance",
+      "priority": 7,
+      "active": true,
+      "version": 1,
+      "parameters": {}
+    },
+    {
+      "ruleId": "RULE-014",
+      "ruleName": "Confirmed Schedule Slot Gate",
+      "ruleType": "PRODUCTION",
+      "description": "Allocate only when the packaging order has a confirmed Gantt slot (line, planned start/end) from line planning",
+      "priority": 1,
+      "active": true,
+      "version": 1,
+      "parameters": {
+        "requireConfirmedSchedule": true,
+        "allowedPlanningStatuses": [
+          "OPTIMIZED",
+          "CONFIRMED",
+          "VALID"
+        ]
+      }
+    }
+  ],
+  "sequenceState": {
+    "JP": {
+      "lastAllocatedSequence": 7,
+      "lastBatchId": "BATCH-0045",
+      "lastOrderId": "FG-20003"
+    }
+  }
+}

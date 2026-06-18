@@ -1,0 +1,54 @@
+services:
+  backend:
+    build: ./backend
+    container_name: portal-backend
+    ports:
+      - "${BACKEND_PORT:-3000}:3000"
+    volumes:
+      - portal-data:/app/data
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DATABASE_DIALECT=sqlite
+      - DATABASE_STORAGE=/app/data/portal.sqlite
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-in-production}
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:5173}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_APP_URL: ${VITE_APP_URL:-http://localhost:5173}
+    container_name: portal-frontend
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    profiles: [postgres]
+    image: postgres:16-alpine
+    container_name: portal-postgres
+    environment:
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: portal
+      POSTGRES_DB: portal
+    volumes:
+      - portal-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portal"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  portal-data:
+  portal-pg:

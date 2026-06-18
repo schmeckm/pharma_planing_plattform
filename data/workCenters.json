@@ -1,0 +1,97 @@
+{
+  "items": [
+    {
+      "workCenterId": "FILL_01",
+      "workCenterName": "Filling Line 01",
+      "plantId": "1000",
+      "type": "PROCESS",
+      "isBottleneck": true,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 12000,
+      "performanceFactor": 0.92,
+      "active": true
+    },
+    {
+      "workCenterId": "PK_01",
+      "workCenterName": "Primary Packaging 01",
+      "plantId": "1000",
+      "type": "PROCESS",
+      "isBottleneck": false,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 10000,
+      "performanceFactor": 0.88,
+      "active": true
+    },
+    {
+      "workCenterId": "PK_02",
+      "workCenterName": "Primary Packaging 02 (Blister)",
+      "plantId": "1000",
+      "type": "PROCESS",
+      "isBottleneck": false,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 8000,
+      "performanceFactor": 0.9,
+      "active": true
+    },
+    {
+      "workCenterId": "PACK_LINE_01",
+      "workCenterName": "Packaging Line 01 — Tablets",
+      "plantId": "1000",
+      "type": "PACKAGING",
+      "lineId": "PACK_LINE_01",
+      "isBottleneck": false,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 8000,
+      "performanceFactor": 0.94,
+      "active": true
+    },
+    {
+      "workCenterId": "PACK_LINE_02",
+      "workCenterName": "Packaging Line 02 — Capsules",
+      "plantId": "1000",
+      "type": "PACKAGING",
+      "lineId": "PACK_LINE_02",
+      "isBottleneck": false,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 6000,
+      "performanceFactor": 0.87,
+      "active": true
+    },
+    {
+      "workCenterId": "PACK_LINE_03",
+      "workCenterName": "Packaging Line 03 — Blister",
+      "plantId": "1000",
+      "type": "PACKAGING",
+      "lineId": "PACK_LINE_03",
+      "isBottleneck": false,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 5500,
+      "performanceFactor": 0.91,
+      "active": true
+    },
+    {
+      "workCenterId": "PACK_LINE_04",
+      "workCenterName": "Packaging Line 04 — Parenteral",
+      "plantId": "1000",
+      "type": "PACKAGING",
+      "lineId": "PACK_LINE_04",
+      "isBottleneck": false,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 4000,
+      "performanceFactor": 0.98,
+      "active": true
+    },
+    {
+      "workCenterId": "PACK_LINE_05",
+      "workCenterName": "Packaging Line 05 — Liquid Fill",
+      "plantId": "1000",
+      "type": "PACKAGING",
+      "lineId": "PACK_LINE_05",
+      "isBottleneck": false,
+      "capacityHoursPerDay": 16,
+      "capacityUnitsPerDay": 7000,
+      "performanceFactor": 0.92,
+      "active": true
+    }
+  ]
+}

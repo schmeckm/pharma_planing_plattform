@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "packagingOrderId": "FG-20001", "salesOrderId": "SO-10001", "packingSystemId": "PKS-1000", "validationStatus": "VALID", "mappedAt": "2026-06-01T10:00:00Z" },
+    { "packagingOrderId": "FG-20002", "salesOrderId": "SO-10002", "packingSystemId": "PKS-1000", "validationStatus": "VALID", "mappedAt": "2026-06-01T10:00:00Z" },
+    { "packagingOrderId": "FG-20003", "salesOrderId": "SO-10003", "packingSystemId": "PKS-1000", "validationStatus": "VALID", "mappedAt": "2026-06-01T10:00:00Z" },
+    { "packagingOrderId": "FG-20004", "salesOrderId": "SO-10004", "packingSystemId": "PKS-1000", "validationStatus": "VALID", "mappedAt": "2026-06-01T10:00:00Z" },
+    { "packagingOrderId": "FG-20005", "salesOrderId": "SO-10005", "packingSystemId": "PKS-1000", "validationStatus": "VALID", "mappedAt": "2026-06-01T10:00:00Z" },
+    { "packagingOrderId": "FG-20006", "salesOrderId": "SO-10006", "packingSystemId": "PKS-1000", "validationStatus": "VALID", "mappedAt": "2026-06-01T10:00:00Z" }
+  ]
+}

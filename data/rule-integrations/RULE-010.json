@@ -1,0 +1,44 @@
+{
+  "ruleId": "RULE-010",
+  "enabled": false,
+  "runtimeMode": "mock",
+  "provider": "rest",
+  "description": "Example REST integration for ATP — enable and set baseUrl for live SAP middleware",
+  "rest": {
+    "baseUrl": "https://sap-middleware.example.com/api",
+    "path": "/atp/{{batch.materialNumber}}/{{batch.batchId}}",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer {{env.HAP_SAP_TOKEN}}",
+      "Accept": "application/json"
+    },
+    "query": {
+      "plant": "{{batch.plantId}}",
+      "requiredQty": "{{order.quantity}}"
+    },
+    "timeoutMs": 8000,
+    "passCondition": {
+      "type": "jsonPath",
+      "path": "availableQty",
+      "operator": ">=",
+      "value": "{{order.quantity}}"
+    }
+  },
+  "sap": {
+    "baseUrl": "https://sap.example.com/sap/opu/odata/sap",
+    "odataService": "API_BATCH_ATP_SRV",
+    "entitySet": "A_BatchATP",
+    "filter": "Material eq '{{batch.materialNumber}}' and Batch eq '{{batch.batchId}}'",
+    "timeoutMs": 8000,
+    "passCondition": {
+      "type": "jsonPath",
+      "path": "d.results[0].AvailableQty",
+      "operator": ">=",
+      "value": "{{order.quantity}}"
+    }
+  },
+  "mockResponse": {
+    "availableQty": 5000,
+    "status": "OK"
+  }
+}

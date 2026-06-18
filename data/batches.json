@@ -1,0 +1,1809 @@
+{
+  "items": [
+    {
+      "batchId": "BATCH-0001",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0002",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0003",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0004",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0005",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0006",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0007",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0008",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0009",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0010",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0011",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0012",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 25000,
+      "availableQuantity": 22000,
+      "unit": "EA",
+      "productionDate": "2025-01-10",
+      "expiryDate": "2030-01-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0013",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 10000,
+      "availableQuantity": 0,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0014",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0015",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0016",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0017",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0018",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0019",
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "DE",
+        "US",
+        "CH"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0020",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0021",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0022",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0023",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0024",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-01-10",
+      "expiryDate": "2030-01-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0025",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0026",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0027",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0028",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0029",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0030",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0031",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0032",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0033",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0034",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0035",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0036",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-01-10",
+      "expiryDate": "2030-01-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0037",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 15000,
+      "availableQuantity": 0,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "BLOCKED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0038",
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "GB",
+        "NL",
+        "AT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0039",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 1,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0040",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 2,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0041",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 3,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0042",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 4,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0043",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 5,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0044",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 6,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0045",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 7,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0046",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": 8,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0047",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0048",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-01-10",
+      "expiryDate": "2030-01-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0049",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0050",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0051",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0052",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0053",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0054",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0055",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0056",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0057",
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma 250mg Injection",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "JP",
+        "US",
+        "AU"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0058",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 268711,
+      "availableQuantity": 268711,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0059",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 403067,
+      "availableQuantity": 403067,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0060",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 537422,
+      "availableQuantity": 537422,
+      "unit": "EA",
+      "productionDate": "2025-01-10",
+      "expiryDate": "2030-01-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0061",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 671778,
+      "availableQuantity": 671778,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0062",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 268711,
+      "availableQuantity": 268711,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0063",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 403067,
+      "availableQuantity": 403067,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0064",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 537422,
+      "availableQuantity": 537422,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0065",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 671778,
+      "availableQuantity": 671778,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0066",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 268711,
+      "availableQuantity": 268711,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0067",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 403067,
+      "availableQuantity": 403067,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0068",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 537422,
+      "availableQuantity": 537422,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0069",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 671778,
+      "availableQuantity": 671778,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0070",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 268711,
+      "availableQuantity": 268711,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0071",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 403067,
+      "availableQuantity": 403067,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0072",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 537422,
+      "availableQuantity": 537422,
+      "unit": "EA",
+      "productionDate": "2025-01-10",
+      "expiryDate": "2030-01-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0073",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 671778,
+      "availableQuantity": 671778,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0074",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 10000,
+      "availableQuantity": 0,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "BLOCKED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0075",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 403067,
+      "availableQuantity": 403067,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0076",
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta 100ml Syrup",
+      "quantity": 537422,
+      "availableQuantity": 537422,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "AT",
+        "DE",
+        "IT"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0077",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 1,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0078",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 2,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0079",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 3,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0080",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 4,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0081",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 5,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0082",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 6,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0083",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 7,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0084",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-01-10",
+      "expiryDate": "2030-01-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": 8,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0085",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-02-10",
+      "expiryDate": "2030-02-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0086",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-03-10",
+      "expiryDate": "2030-03-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0087",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-04-10",
+      "expiryDate": "2030-04-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0088",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-05-10",
+      "expiryDate": "2030-05-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0089",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-06-10",
+      "expiryDate": "2030-06-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0090",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-07-10",
+      "expiryDate": "2030-07-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    },
+    {
+      "batchId": "BATCH-0091",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-08-10",
+      "expiryDate": "2030-08-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1001"
+    },
+    {
+      "batchId": "BATCH-0092",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 25000,
+      "availableQuantity": 25000,
+      "unit": "EA",
+      "productionDate": "2025-09-10",
+      "expiryDate": "2030-09-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1002"
+    },
+    {
+      "batchId": "BATCH-0093",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 10000,
+      "availableQuantity": 10000,
+      "unit": "EA",
+      "productionDate": "2025-10-10",
+      "expiryDate": "2030-10-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1003"
+    },
+    {
+      "batchId": "BATCH-0094",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 15000,
+      "availableQuantity": 15000,
+      "unit": "EA",
+      "productionDate": "2025-11-10",
+      "expiryDate": "2030-11-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1004"
+    },
+    {
+      "batchId": "BATCH-0095",
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon 30g Cream",
+      "quantity": 20000,
+      "availableQuantity": 20000,
+      "unit": "EA",
+      "productionDate": "2025-12-10",
+      "expiryDate": "2030-12-10",
+      "qualityStatus": "RELEASED",
+      "approvedCountries": [
+        "FR",
+        "NL",
+        "JP"
+      ],
+      "plant": "1000",
+      "batchSequence": null,
+      "storageLocation": "1000"
+    }
+  ]
+}

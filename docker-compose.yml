@@ -1,0 +1,52 @@
+services:
+
+  ortools:
+    build: ./scripts/ortools
+    container_name: hap-ortools
+    ports:
+      - "${ORTOOLS_PORT:-8010}:8010"
+    environment:
+      - ORTOOLS_MAX_TIME_SECONDS=${ORTOOLS_MAX_TIME_SECONDS:-30}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: .
+    container_name: hap-backend
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+    environment:
+      - HAP_DATA_DIR=/app/data
+      - PORT=8000
+      - HOST=0.0.0.0
+      - SCHEDULING_OPTIMIZER=ortools
+      - ORTOOLS_URL=http://ortools:8010
+      - ORTOOLS_REQUIRED=true
+      - ORTOOLS_TIMEOUT_MS=60000
+    depends_on:
+      ortools:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  cockpit:
+    build: ./cockpit
+    container_name: hap-cockpit
+    ports:
+      - "${COCKPIT_PORT:-3001}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

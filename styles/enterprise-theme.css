@@ -1,0 +1,139 @@
+/**
+ * Enterprise typography & base tokens — shared across Cockpit, MVP1, React frontend.
+ * SAP Fiori-style stack: "72" when installed locally, else Segoe UI / Tahoma.
+ */
+:root {
+  /* Font stacks */
+  --font-family: '72', '72 Full', 'Segoe UI', Tahoma, Arial, sans-serif;
+  --font-family-mono: 'Consolas', 'Courier New', monospace;
+
+  /* Type scale (rem, base 16px) */
+  --text-2xs: 0.625rem;   /* 10px — Gantt labels, badges */
+  --text-xs: 0.6875rem;   /* 11px — captions, hints */
+  --text-sm: 0.75rem;     /* 12px — KPI labels, tags */
+  --text-base: 0.8125rem; /* 13px — tables, forms (Fiori default) */
+  --text-md: 0.875rem;    /* 14px — body, subtitles */
+  --text-lg: 0.9375rem;   /* 15px — panel titles */
+  --text-xl: 1rem;        /* 16px — section headings */
+  --text-2xl: 1.125rem;   /* 18px — page header */
+  --text-3xl: 1.375rem;   /* 22px — page title */
+  --text-4xl: 1.5rem;     /* 24px — KPI values */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+
+  /* UI library overrides */
+  --el-font-family: var(--font-family);
+  --el-font-size-base: var(--text-base);
+}
+
+/* Global inheritance */
+html,
+body,
+#app {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* PrimeVue */
+.p-component,
+.p-inputtext,
+.p-button,
+.p-datatable {
+  font-family: var(--font-family);
+  font-size: var(--text-base);
+}
+
+/* Typography utilities */
+.text-2xs { font-size: var(--text-2xs); }
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-md { font-size: var(--text-md); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+
+.font-regular { font-weight: var(--font-weight-regular); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+.text-muted { color: var(--color-text-muted, #6a6d70); }
+
+.page-title {
+  margin: 0 0 4px;
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.page-subtitle {
+  margin: 0 0 20px;
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted, #6a6d70);
+}
+
+.panel-header h2,
+.panel-title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.kpi-value {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.kpi-label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted, #6a6d70);
+}
+
+.table-compact,
+.el-table {
+  font-size: var(--text-base);
+}
+
+.form-label {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.hint,
+.caption {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted, #6a6d70);
+}
+
+.empty-state {
+  font-size: var(--text-md);
+  color: var(--color-text-muted, #6a6d70);
+}

@@ -1,0 +1,72 @@
+{
+
+  "enabled": true,
+
+  "autonomyMode": "TIERED",
+
+  "minConfidence": 0.9,
+
+  "allowedActions": ["AUTO_SEQUENCE", "AUTO_ALLOCATE", "AUTO_CONFIRM_SEQUENCE", "AUTO_HARD_ALLOCATE"],
+
+  "maxOrdersPerRun": 200,
+
+  "blockIssueCodes": ["CAPACITY", "JAPAN_SEQUENCE", "FIFO_DEVIATION", "NO_BATCH"],
+
+  "blockRiskLevels": ["HIGH", "CRITICAL"],
+
+  "blockCountries": [],
+
+  "allowHardAllocation": false,
+
+  "dryRunDefault": false,
+
+  "autoHardAllocateMinConfidence": 0.96,
+
+  "tiers": {
+
+    "LOW": {
+
+      "autoSequence": true,
+
+      "autoConfirmSequence": true,
+
+      "autoAllocateDraft": true,
+
+      "autoHardAllocate": false,
+
+      "minConfidence": 0.88
+
+    },
+
+    "MEDIUM": {
+
+      "autoSequence": true,
+
+      "autoConfirmSequence": false,
+
+      "autoAllocateDraft": true,
+
+      "autoHardAllocate": false,
+
+      "minConfidence": 0.92
+
+    },
+
+    "HIGH": {
+
+      "autoSequence": false,
+
+      "autoConfirmSequence": false,
+
+      "autoAllocateDraft": false,
+
+      "autoHardAllocate": false,
+
+      "minConfidence": 1
+
+    }
+
+  }
+
+}
+

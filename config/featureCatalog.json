@@ -1,0 +1,44 @@
+{
+  "features": [
+    { "id": "daily-wizard", "path": "/wizard", "section": "start", "labelKey": "nav.items.dailyWizard", "permission": null },
+    { "id": "help", "path": "/help", "section": "start", "labelKey": "nav.items.help", "permission": null },
+    { "id": "dashboard", "path": "/dashboard", "section": "extended", "labelKey": "nav.items.dashboard", "permission": null, "defaultEnabled": false },
+
+    { "id": "line-optimization", "path": "/line-optimization", "section": "planning", "labelKey": "nav.items.lineOptimization", "permission": null },
+    { "id": "simulation", "path": "/simulation", "section": "planning", "labelKey": "nav.items.simulation", "permission": null },
+    { "id": "allocations", "path": "/allocations", "section": "planning", "labelKey": "nav.items.allocations", "permission": null },
+    { "id": "confirmed-assignments", "path": "/confirmed-assignments", "section": "planning", "labelKey": "nav.items.confirmedAssignments", "permission": null },
+
+    { "id": "control-tower", "path": "/control-tower", "section": "monitoring", "labelKey": "nav.items.controlTower", "permission": "orders:read" },
+    { "id": "exceptions", "path": "/exceptions", "section": "monitoring", "labelKey": "nav.items.exceptions", "permission": "exceptions:read" },
+    { "id": "inventory", "path": "/inventory", "section": "monitoring", "labelKey": "nav.items.inventory", "permission": null },
+
+    { "id": "rule-management", "path": "/rule-management", "section": "governance", "labelKey": "nav.items.ruleManagement", "permission": "rules:read" },
+    { "id": "audit", "path": "/audit", "section": "governance", "labelKey": "nav.items.audit", "permission": null },
+    { "id": "admin-system", "path": "/admin", "section": "governance", "labelKey": "nav.items.admin", "permission": "users:manage" },
+
+    { "id": "daily-planning", "path": "/daily-planning", "section": "extended", "labelKey": "nav.items.dailyPlanning", "permission": null },
+    { "id": "orders", "path": "/orders", "section": "extended", "labelKey": "nav.items.todaysOrders", "permission": null, "defaultEnabled": false },
+    { "id": "analytics", "path": "/analytics", "section": "extended", "labelKey": "nav.items.analytics", "permission": null, "defaultEnabled": false },
+    { "id": "ml-prognosis", "path": "/prognosis", "section": "extended", "labelKey": "nav.items.mlPrognosis", "permission": null, "defaultEnabled": false },
+    { "id": "reports", "path": "/reports", "section": "extended", "labelKey": "nav.items.reports", "permission": null, "defaultEnabled": false },
+    { "id": "mass-jobs", "path": "/mass-jobs", "section": "extended", "labelKey": "nav.items.massJobs", "permission": "jobs:read" },
+    { "id": "what-if", "path": "/what-if", "section": "extended", "labelKey": "nav.items.whatIf", "permission": "whatif:run", "defaultEnabled": false },
+    { "id": "time-planning", "path": "/planning", "section": "extended", "labelKey": "nav.items.timePlanning", "permission": "orders:read", "defaultEnabled": false },
+    { "id": "rules-legacy", "path": "/rules", "section": "extended", "labelKey": "nav.items.rulesLegacy", "permission": null, "defaultEnabled": false },
+
+    { "id": "agent-console", "path": "/agents", "section": "lab", "labelKey": "nav.items.agentConsole", "permission": "agents:run", "defaultEnabled": false },
+    { "id": "allocation-copilot", "path": "/copilot", "section": "lab", "labelKey": "nav.items.allocationCopilot", "permission": "copilot:use", "defaultEnabled": false },
+    { "id": "planning-copilot", "path": "/copilot-v3", "section": "lab", "labelKey": "nav.items.planningCopilot", "permission": "copilot:use" },
+    { "id": "executive-cockpit", "path": "/executive", "section": "lab", "labelKey": "nav.items.executiveCockpit", "permission": "orders:read", "defaultEnabled": false },
+    { "id": "autopilot", "path": "/autopilot", "section": "lab", "labelKey": "nav.items.autopilot", "permission": "jobs:create", "defaultEnabled": false }
+  ],
+  "sectionKeys": {
+    "start": "nav.sections.start",
+    "planning": "nav.sections.planning",
+    "monitoring": "nav.sections.monitoring",
+    "governance": "nav.sections.governance",
+    "extended": "nav.sections.extended",
+    "lab": "nav.sections.lab"
+  }
+}

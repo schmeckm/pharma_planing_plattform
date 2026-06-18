@@ -1,0 +1,10 @@
+node_modules/
+.venv/
+venv/
+dist/
+build/
+.prisma/
+postgres_data/
+redis_data/
+*.log
+.git/

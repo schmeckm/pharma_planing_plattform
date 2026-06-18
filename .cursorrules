@@ -1,0 +1,19 @@
+# Globale Verhaltensregeln für dieses Projekt
+Du entwickelst ein Feinplanungssystem (APS), das in ein bestehendes System mit
+## 1. System-Architektur & Sicherheit (Harte Vorgaben)
+* **Regressionsschutz:** Verändere niemals bestehende Schreiboperationen in d
+* **Shadow-Planning:** Schreibe Planungsresultate ausschließlich in die Tabel
+* **Abwärtskompatibilität:** Jedes neue Feld in bestehenden Tabellen MUSS in
+* **Defensive Programmierung:** Umhülle alle API-Aufrufe des Schedulers mit r
+## 2. TypeScript / Node.js Standards
+* Nutze striktes TypeScript. Die Verwendung von `any` ist verboten. Nutze sta
+* Zur Validierung von API-Payloads ist `zod` zu verwenden.
+* Nutze asynchrones Job-Processing mit `BullMQ`. Halte den Event-Loop von Fas
+## 3. Python & Google OR-Tools Standards
+* Der CP-SAT Solver versteht nur Ganzzahlen ($\mathbb{I}\mathbb{P}$). Konvert
+* Nutze `model.AddElement` für dynamische OEE-Matrix-Lookups im Solver.
+* Der Solver muss bei `INFEASIBLE` (unlösbar) automatisch in einen "Soft-Cons
+* Nutze `pydantic` zur Typsicherung der Payload im Python-Worker.
+## 4. Formatierung & Sprache
+* Sämtliche Code-Kommentare, Log-Ausgaben, Fehler-Meldungen und Benennungen i
+* Schreibe sauberen, lesbaren Code nach dem Clean-Code-Prinzip.
