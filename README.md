@@ -1,5 +1,26 @@
 # Pharmaceutical Allocation & Production Sequencing Platform
 
+[![GitHub](https://img.shields.io/badge/GitHub-pharma__planing__plattform-181717?logo=github)](https://github.com/schmeckm/pharma_planing_plattform)
+[![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![License](https://img.shields.io/badge/License-Proprietary-red)](#license)
+
+End-to-end pharmaceutical **hard allocation** and **production sequencing** for plant planners (MVP 2.0 Enterprise Edition).
+
+**Repository:** [github.com/schmeckm/pharma_planing_plattform](https://github.com/schmeckm/pharma_planing_plattform)
+
+### Clone & setup
+
+```bash
+git clone https://github.com/schmeckm/pharma_planing_plattform.git
+cd pharma_planing_plattform
+cp .env.example .env          # optional: API keys, LLM, SAP provider
+npm install && npm start
+cd cockpit && npm install && npm run dev
+```
+
+> **Secrets:** Never commit `.env` files. Use `.env.example` as a template only.
+
 > **Enterprise Architecture** — [docs/enterprise/ARCHITECTURE.md](docs/enterprise/ARCHITECTURE.md) | [Project Structure](docs/enterprise/PROJECT-STRUCTURE.md) | [Roadmap](docs/enterprise/IMPLEMENTATION-ROADMAP.md).  
 > **Daily Production Sequencing Cockpit** — [docs/daily-planning/README.md](docs/daily-planning/README.md).  
 > **MVP 2.0 Enterprise Edition** — [docs/mvp2/README.md](docs/mvp2/README.md) *(current release)*.  
@@ -259,4 +280,8 @@ Engine and service layers remain unchanged.
 
 ## License
 
-Proprietary — Internal MVP
+Proprietary — internal MVP. All rights reserved.
+
+## Contributing
+
+This repository is maintained as an internal pharmaceutical planning platform. For changes: branch from `main`, commit with a clear message, and push to [origin](https://github.com/schmeckm/pharma_planing_plattform).
