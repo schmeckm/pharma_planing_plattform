@@ -1,229 +1,180 @@
-# Pharmaceutical Allocation & Production Sequencing Platform
+# Hard Allocation Platform
 
 [![GitHub](https://img.shields.io/badge/GitHub-pharma__planing__plattform-181717?logo=github)](https://github.com/schmeckm/pharma_planing_plattform)
 [![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Vue](https://img.shields.io/badge/Vue-3-4FC08D?logo=vue.js&logoColor=white)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Backend-3178C6?logo=typescript&logoColor=white)](backend/README.md)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](#license)
 
-End-to-end pharmaceutical **hard allocation** and **production sequencing** for plant planners (MVP 2.0 Enterprise Edition).
+**Executable planning layer for pharmaceutical plants** — hard allocation, production sequencing, detailed scheduling, and measurable before/after outcomes per line.
+
+> **Product strategy (canonical):** [docs/PRODUCT_STRATEGY.md](docs/PRODUCT_STRATEGY.md)  
+> Fit before purpose · PPS & PPP BPM KPIs · Process + user + AI · Not an OMP/APO replacement
 
 **Repository:** [github.com/schmeckm/pharma_planing_plattform](https://github.com/schmeckm/pharma_planing_plattform)
 
-### Clone & setup
-
-```bash
-git clone https://github.com/schmeckm/pharma_planing_plattform.git
-cd pharma_planing_plattform
-cp .env.example .env          # optional: API keys, LLM, SAP provider
-npm install && npm start
-cd cockpit && npm install && npm run dev
-```
-
-> **Secrets:** Never commit `.env` files. Use `.env.example` as a template only.
-
-> **Enterprise Architecture** — [docs/enterprise/ARCHITECTURE.md](docs/enterprise/ARCHITECTURE.md) | [Project Structure](docs/enterprise/PROJECT-STRUCTURE.md) | [Roadmap](docs/enterprise/IMPLEMENTATION-ROADMAP.md).  
-> **Daily Production Sequencing Cockpit** — [docs/daily-planning/README.md](docs/daily-planning/README.md).  
-> **MVP 2.0 Enterprise Edition** — [docs/mvp2/README.md](docs/mvp2/README.md) *(current release)*.  
-> **MVP 5.0 Time-Based Allocation Planning** — [docs/time-planning/README.md](docs/time-planning/README.md).  
-> **Pharmaceutical GMP Compliance** — [docs/compliance/PHARMACEUTICAL-COMPLIANCE.md](docs/compliance/PHARMACEUTICAL-COMPLIANCE.md).  
-> **MVP 4.0 Global Supply Chain Control Tower** — [docs/control-tower/README.md](docs/control-tower/README.md).  
-> **MVP 3.0 AI-Assisted Global Allocation** — [docs/mvp3/README.md](docs/mvp3/README.md).
-
-| Component | Port | Path |
-|-----------|------|------|
-| Node.js API v1 + v2 | 8000 / 8001 (Docker) | `/api/v1`, `/api/v2` |
-| Vue 3 Cockpit | 3001 | `cockpit/` |
-
 ---
 
-# Enterprise Platform Overview
+## Overview
 
-End-to-end pharmaceutical **hard allocation** and **production sequencing** for plant planners.
+Global Planning (IBP, rough-cut network plans) delivers direction — not always an **executable** shop-floor plan. This platform sits between Global Planning and MES/SAP: planners enrich rough orders with plant reality (TRIC, batches, capacity, horizons), run what-if and optimization, and release stable sequences with full auditability.
 
 | Capability | Description |
 |------------|-------------|
-| **7-Tier Allocation Hierarchy** | Compliance → Availability → Market → Inventory → Performance → Optimization → Enterprise |
-| **Historical Performance Engine** | Line Score (30% OEE, 25% throughput, 20% reliability, 15% yield, 10% setup) |
-| **Production Sequencing** | Gantt drag-drop, recommended sequence, what-if, confirm |
-| **Risk Engine** | LOW / MEDIUM / HIGH with line reliability |
-| **GMP Audit Trail** | Immutable decisions with engine version |
-| **SAP Ready** | IDataProvider → JsonProvider / SAPODataProvider |
+| **Hard allocation** | 7-tier hierarchy: compliance → availability → market → inventory → performance → optimization → enterprise |
+| **Production sequencing** | Gantt with day/shift/hour zoom, drag-and-drop, OR-Tools CP-SAT sidecar, recommended sequence |
+| **Detailed scheduling** | Operation-level planning, what-if (OEE, maintenance), horizon-aware rescheduling |
+| **Planning impact** | Before/after deltas per line — late orders, utilization, setup, RMSL |
+| **Governance** | Versioned rules, exception workflow, risk engine (LOW/MEDIUM/HIGH), GMP audit trail |
+| **AI assistance** | Allocation copilot and schedule explanations — human approval, no autopilot |
+| **Integration-ready** | `IDataProvider` abstraction (JSON today, SAP OData/RFC path prepared) |
 
-### Planner Cockpit Pages
+### Strategic positioning
 
-Daily Planning · Production Sequencing · What-if · Planning Exceptions · Batch Recommendations · Confirmed Assignments · Audit Trail · Rule Management · Administration
+We deliberately **do not** replace SAP IBP/OMP/PP-DS at network level. We deliver an **Executable Planning Layer** at the plant with two BPM north-star KPIs (see [Product Strategy](docs/PRODUCT_STRATEGY.md)):
 
-### Quick Start
-
-```bash
-npm install && npm start
-cd cockpit && npm install && npm run dev
-docker compose up --build
-```
-
-| Service | URL |
-|---------|-----|
-| API | http://localhost:8000/api/v1 |
-| Performance API | http://localhost:8000/api/v1/performance/line-scores |
-| Swagger | http://localhost:8000/docs |
-| Cockpit | http://localhost:3001 |
+- **PPS** — Production Plan Stability after release  
+- **PPP** — Production Plan Performance vs. actuals after production  
 
 ---
-
-# Hard Allocation Platform — MVP 2.0 Enterprise Edition
-
-Pharmaceutical allocation platform with enterprise governance: **versioned rules**, **exception workflow**, **risk engine**, **mass allocation jobs**, **role-based access**, **SAP provider abstraction**, and **allocation copilot**.
-
-## MVP 2.0 Capabilities
-
-1. **Rule Management** — Edit Country, Customer, Product, Market, Sequence, RMSL, and Batch Split rules from the cockpit. Rules are versioned, effective-dated, auditable, and exportable.
-2. **Exception Management** — Queue for market release, shelf-life, inventory, batch split, Japan sequence, missing SO link, and missing packing system. Review, comment, escalate, resolve.
-3. **Risk Engine** — LOW / MEDIUM / HIGH scoring from eligible batches, RMSL margin, ATP coverage, delivery urgency, market restriction, batch split restriction.
-4. **Mass Allocation** — Daily and weekly background jobs with progress tracking and per-order result history.
-5. **Role-based Access** — Planner, QA, Supply Chain, Admin, Viewer (header-based RBAC for MVP).
-6. **SAP Integration Prep** — `IDataProvider` → `JsonProvider` (default) or `SAPODataProvider` mock (`HAP_DATA_PROVIDER=sap`).
-7. **Allocation Copilot** — Explains batch selection, blocked orders, order moves, and recommendations using internal rule results only.
-
-## MVP 2.0 Quick Start
-
-```bash
-npm install && npm start
-# API: http://localhost:8000/api/v2
-# Swagger: http://localhost:8000/docs
-# Cockpit: cd cockpit && npm install && npm run dev  → http://localhost:3001
-```
-
-```bash
-# Docker with MVP 2.0 overlay
-docker compose -f docker-compose.yml -f docker-compose.mvp2.yml up --build
-```
-
-Demo users: `planner`, `qa`, `supplychain`, `admin`, `viewer` — switch role in the cockpit header.
-
-```bash
-npm test             # Smoke (32) + E2E HTTP (31) — full MVP 2.0 verification
-npm run test:smoke   # Backend engines only
-npm run test:e2e     # Live API against running server
-```
-
-See [docs/mvp2/README.md](docs/mvp2/README.md) for full API reference and architecture.
-
----
-
----
-
-# Hard Allocation Platform — MVP 1.0 (Node.js)
-
-Pharmaceutical **Hard Allocation Platform** for allocating Finished Goods batches to Packaging Orders. Packaging Orders are Make-to-Stock but linked via the **Packing** planning system to Sales Orders, which determine destination country and market-specific rules.
-
-## Technology Stack
-
-| Layer | Technology |
-|-------|------------|
-| Backend | Node.js 20 + Express.js |
-| Data | JSON files (MVP) |
-| API Docs | Swagger / OpenAPI 3.0 |
-| Frontend | React (SAP Fiori-style) |
-| Future | SAP OData / RFC integration |
 
 ## Architecture
 
+```mermaid
+flowchart TB
+  subgraph input [Inputs]
+    GP[Global Planning\nRough planned orders]
+    MD[Plant master data\nTRIC · batches · capacity]
+  end
+
+  subgraph platform [Hard Allocation Platform]
+    API[Node.js API\nExpress · v1 / v2 / v3]
+    ENG[Rule & scheduling engines]
+    ORT[OR-Tools CP-SAT sidecar]
+    TS[Layered TypeScript backend\nAdmin CRUD · Zod]
+  end
+
+  subgraph ui [Planner UIs]
+    PORTAL[Portal\nAuth · embedded planning]
+    COCK[Vue 3 Cockpit\nSequencing · scheduling · admin]
+  end
+
+  subgraph output [Outputs]
+    REL[Released / frozen plan]
+    AUD[Audit trail & impact events]
+  end
+
+  GP --> API
+  MD --> API
+  API --> ENG
+  ENG --> ORT
+  TS --> API
+  PORTAL --> API
+  COCK --> API
+  API --> REL
+  API --> AUD
 ```
-server.js
-├── routes/           → HTTP routing
-├── controllers/      → Request/response handling (no business logic)
-├── services/         → Application orchestration
-├── engines/          → Configurable rule engines
-│   ├── complianceEngine.js
-│   ├── fifoEngine.js
-│   ├── sequencingEngine.js
-│   ├── optimizationEngine.js
-│   └── ruleEngine.js
-├── data/             → JSON prototype store
-├── swagger/          → OpenAPI specification
-└── utils/            → Repository, errors, dates
-```
 
-**Design principles:**
-- Controllers are thin — no hardcoded business rules
-- All rules configurable via `data/rules.json`
-- `JsonRepository` swappable for SAP OData/RFC adapters
+| Layer | Location | Role |
+|-------|----------|------|
+| HTTP API | `server.js`, `routes/`, `controllers/` | REST, Swagger, WebSocket scheduling hub |
+| Engines | `engines/` | Allocation, sequencing, exceptions, detailed scheduling |
+| Services | `services/` | Orchestration, scheduling facade, planning impact |
+| Layered backend | `backend/src/` | TypeScript Controller → Service → Repository (JSON / PostgreSQL-ready) |
+| Data | `data/` | JSON prototype store (`HAP_DATA_DIR`) |
+| Cockpit | `cockpit/` | Vue 3 planner UI (standalone or portal-embedded) |
+| Portal | `portal/` | Auth, profile, planning routes at `/planning/*` |
 
-## Business Rules
+Full documentation index: [docs/README.md](docs/README.md)
 
-1. **TRIC** — batch must be approved for destination country
-2. **RMSL** — remaining shelf life meets country threshold
-3. **Quality** — only `RELEASED` batches
-4. **Batch Split** — full quantity from one batch where required
-5. **FIFO** — oldest compliant batch first
-6. **Japan Sequence** — continuous output sequence (B01 → B02 → B03)
-7. **Audit Trail** — every decision logged with rule-level detail
+---
 
-## Quick Start
+## Technology stack
+
+| Layer | Technology |
+|-------|------------|
+| Runtime | Node.js 20+, Express.js |
+| Frontend | Vue 3, Pinia, PrimeVue |
+| Validation | Zod (TypeScript backend), Pydantic (OR-Tools worker) |
+| Optimization | Google OR-Tools CP-SAT (`scripts/ortools/`) |
+| Persistence (MVP) | JSON files via `JsonRepository` |
+| Persistence (Phase 2) | PostgreSQL stubs in `backend/` |
+| API docs | OpenAPI 3 / Swagger at `/docs` |
+| Jobs & agents | BullMQ-ready patterns, LLM agents (OpenAI / Azure) |
+
+---
+
+## Quick start
 
 ### Prerequisites
 
 - Node.js 20+
 - npm
+- Windows: PowerShell (recommended startup script) · Linux/macOS: run equivalent npm commands
 
-### Local Development
+### Clone and configure
 
 ```bash
-# Install dependencies
+git clone https://github.com/schmeckm/pharma_planing_plattform.git
+cd pharma_planing_plattform
+cp .env.example .env    # optional: LLM keys, SAP provider, OR-Tools URL
 npm install
-
-# Start API server
-npm start
-
-# Dev mode with auto-reload
-npm run dev
+npm run build:backend   # compile TypeScript admin layer (runs automatically on npm start)
 ```
 
-### Cockpit (UI)
+> **Secrets:** Never commit `.env`. Use `.env.example` as a template only.
 
-```powershell
-.\scripts\start.ps1 dev
-```
+### Run modes
 
-| Service | URL |
-|---------|-----|
-| **Cockpit** | http://localhost:3001/wizard |
-| API | http://localhost:8000/api/v1 |
-| Swagger UI | http://localhost:8000/docs |
-| Health | http://localhost:8000/health |
+| Mode | Command | Use when |
+|------|---------|----------|
+| **API only** | `npm run dev` | Backend development, Swagger, tests |
+| **Cockpit (classic)** | `.\scripts\start.ps1 dev` | Standalone planner UI on port 3001 |
+| **Portal (full stack)** | `.\scripts\start.ps1 portal` | Auth + embedded planning at `/planning/*` |
+| **Docker** | `docker compose up --build` | Containerized API + cockpit |
 
-Alternativ nur Cockpit manuell:
+Manual cockpit (without script):
 
 ```bash
-cd cockpit
-npm install
-npm run dev
+cd cockpit && npm install && npm run dev
 ```
 
-### Docker
+### Services and URLs
 
-```bash
-docker-compose up --build
-```
+| Service | Default URL | Notes |
+|---------|-------------|-------|
+| Allocation API (v1) | http://localhost:8000/api/v1 | Core allocation & planning |
+| Enterprise API (v2) | http://localhost:8000/api/v2 | Rules, exceptions, mass jobs |
+| Agent API (v3) | http://localhost:8000/api/v3 | Morning briefing, LLM agents |
+| Swagger UI | http://localhost:8000/docs | OpenAPI |
+| Health | http://localhost:8000/health | Live cache & scheduling status |
+| Cockpit (standalone) | http://localhost:3001 | Daily wizard, line optimization |
+| Portal frontend | http://localhost:5173 | Login + `/planning/detailed-scheduling`, `/planning/line-optimization` |
+| OR-Tools sidecar | http://localhost:8010 | Started with `start.ps1 dev` when configured |
 
-- Backend: http://localhost:8000
-- Cockpit: http://localhost:3001
+**Key planner routes (Portal):**
 
-## API Endpoints
+- Detailed scheduling — `/planning/detailed-scheduling`  
+- Line optimization — `/planning/line-optimization`  
+- Admin master data — `/planning/admin/data/planning-orders`  
+
+Demo roles (cockpit header): `planner`, `qa`, `supplychain`, `admin`, `viewer`
+
+---
+
+## API highlights
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/v1/orders` | List packaging orders |
-| GET | `/api/v1/batches` | List finished goods batches |
-| POST | `/api/v1/allocation/simulate` | Simulate allocation |
-| POST | `/api/v1/allocation/execute` | Execute allocation |
-| POST | `/api/v1/allocation/mass-simulate` | Bulk simulation |
-| GET | `/api/v1/audit-trail` | Audit trail |
-| GET | `/api/v1/rules` | Get rules configuration |
-| PUT | `/api/v1/rules` | Update country rules |
-| GET | `/api/v1/dashboard` | Dashboard KPIs |
+| GET | `/api/v1/orders` | Packaging orders |
+| POST | `/api/v1/allocation/simulate` | Simulate batch allocation |
+| POST | `/api/v1/allocation/execute` | Execute allocation (audited) |
+| POST | `/api/v1/planning/optimize-sequence` | Explicit sequence optimization |
+| GET | `/api/v1/planning/scheduling-status` | Heuristic vs. OR-Tools availability |
+| GET | `/api/v1/admin/data/:slug` | Master data CRUD (layered backend) |
+| GET | `/api/v3/agents/morning-briefing` | AI schedule briefing |
 
-### Example: Simulate Allocation
+Example:
 
 ```bash
 curl -X POST http://localhost:8000/api/v1/allocation/simulate \
@@ -231,57 +182,68 @@ curl -X POST http://localhost:8000/api/v1/allocation/simulate \
   -d '{"packagingOrderId":"PO-20001","userId":"API-USER"}'
 ```
 
-## Data Files
+Business rules (configurable via `data/rules.json`): TRIC, RMSL, FIFO, batch split, Japan sequence, quality release, audit trail.
 
-| File | Content |
-|------|---------|
-| `data/orders.json` | Sales orders + packaging orders |
-| `data/batches.json` | Finished goods batches |
-| `data/rules.json` | Country rules, rule definitions, sequence state |
-| `data/auditTrail.json` | Allocation audit log |
+---
 
-## Demo Scenarios
+## Development
 
-| Order | Country | Expected Batch | Rule Highlight |
-|-------|---------|----------------|----------------|
-| PO-20001 | DE | BATCH-DE-001 | FIFO skips blocked batch |
-| PO-20002 | GB | BATCH-GB-001 | No batch split |
-| PO-20003 | JP | BATCH-JP-001 | Sequence B01 |
-| PO-20004 | JP | BATCH-JP-002 | After PO-20003 executed |
-| PO-20006 | CH | BATCH-CH-001 | Skips low-RMSL batch |
+```bash
+npm run dev              # API with --watch
+npm run dev:all          # PowerShell: backend + cockpit + OR-Tools
+npm run build:backend    # TypeScript → backend/dist/
+npm run seed             # Seed JSON into HAP_DATA_DIR
+npm run reset:demo       # Reset demo environment
+npm test                 # Smoke (32) + E2E HTTP (31)
+npm run test:smoke       # Backend engines only
+npm run test:e2e         # Live API (server must be running)
+```
 
-## SAP Integration Path
+Layered backend details: [backend/README.md](backend/README.md)
 
-Replace `utils/jsonRepository.js` with SAP adapters:
+Scheduling design: [docs/scheduling/SCHEDULING-SERVICE-DESIGN.md](docs/scheduling/SCHEDULING-SERVICE-DESIGN.md)
 
-- **OData** — read packaging orders, batches, country rules
-- **RFC/BAPI** — post allocation confirmations, update inventory
-- **CDS Views** — TRIC approvals, RMSL requirements
+---
 
-Engine and service layers remain unchanged.
+## Documentation
 
-## Project Structure
+| Document | Description |
+|----------|-------------|
+| [Product Strategy](docs/PRODUCT_STRATEGY.md) | Canonical product direction, PPS/PPP, roadmap phases |
+| [Roadmap](docs/ROADMAP.md) | Implementation phases (scheduling, OR-Tools, agents, demo data) |
+| [Documentation index](docs/README.md) | Full map of all docs |
+| [MVP 2.0 Enterprise](docs/mvp2/README.md) | Rules, exceptions, risk, mass allocation |
+| [Daily planning cockpit](docs/daily-planning/README.md) | Wizard and daily sequencing |
+| [Line optimization](docs/line-optimization/README.md) | Combined planning & Gantt |
+| [Enterprise architecture](docs/enterprise/ARCHITECTURE.md) | Platform architecture |
+| [GMP compliance](docs/compliance/PHARMACEUTICAL-COMPLIANCE.md) | Pharmaceutical compliance notes |
+| [Control tower (MVP 4)](docs/control-tower/README.md) | Global supply chain control tower |
+| [AI allocation (MVP 3)](docs/mvp3/README.md) | Multi-agent and knowledge graph |
+
+---
+
+## Project structure
 
 ```
 .
-├── server.js
-├── package.json
-├── Dockerfile
-├── docker-compose.yml
-├── routes/
-├── controllers/
-├── services/
-├── engines/
-├── data/
-├── swagger/
-├── utils/
-├── cockpit/           # Vue 3 Enterprise Cockpit (Haupt-UI)
+├── server.js                 # Main Express entry
+├── routes/ controllers/      # HTTP layer
+├── engines/ services/        # Business logic
+├── data/                     # JSON data store
+├── backend/                  # TypeScript layered backend
+├── cockpit/                  # Vue 3 planner UI
+├── portal/                   # Auth + embedded planning shell
+├── scripts/                  # start.ps1, OR-Tools, demo data
+├── docs/                     # Product & technical documentation
+└── swagger/                  # OpenAPI specification
 ```
+
+---
 
 ## License
 
-Proprietary — internal MVP. All rights reserved.
+Proprietary — internal pharmaceutical planning platform. All rights reserved.
 
 ## Contributing
 
-This repository is maintained as an internal pharmaceutical planning platform. For changes: branch from `main`, commit with a clear message, and push to [origin](https://github.com/schmeckm/pharma_planing_plattform).
+Branch from `main`, use clear commit messages, and open a pull request against [origin](https://github.com/schmeckm/pharma_planing_plattform). Do not commit secrets or production data.

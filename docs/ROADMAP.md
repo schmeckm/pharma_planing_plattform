@@ -1,5 +1,7 @@
 # MVP 2.0 Enterprise — Implementation Roadmap
 
+> **Product direction:** [PRODUCT_STRATEGY.md](./PRODUCT_STRATEGY.md) — Fit before purpose, PPS/PPP BPM KPIs, executable planning layer (not OMP/APO).
+
 ## Phase A — Scheduling Performance (completed)
 
 - [x] `SchedulingService` facade with constraint pipeline + cache
