@@ -10,6 +10,14 @@ const planningController = require('../controllers/planning.controller');
 const schedulerController = require('../controllers/scheduler.controller');
 const performanceController = require('../controllers/performance.controller');
 const settingsController = require('../controllers/settings.controller');
+const detailedSchedulingController = require('../controllers/detailedScheduling.controller');
+const adminDataController = require('../controllers/adminData.controller');
+let registerBackendRoutes = null;
+try {
+  ({ registerBackendRoutes } = require('../backend/dist/bridge'));
+} catch {
+  registerBackendRoutes = null;
+}
 
 const router = express.Router();
 
@@ -53,6 +61,9 @@ router.get('/planning/sap-operations', planningController.getSapOperationsStatus
 router.post('/planning/sap-operations/sync', planningController.syncSapOperations);
 router.get('/settings/horizons', settingsController.getHorizons);
 router.post('/planning/what-if', planningController.whatIf);
+router.post('/planning/operations/what-if', planningController.operationsWhatIf);
+router.get('/planning/horizon-rules', planningController.getPlanningHorizonRules);
+router.post('/planning/horizon/evaluate', planningController.evaluatePlanningHorizon);
 router.post('/planning/confirm-sequence', planningController.confirmSequence);
 router.post('/planning/simulate-batch-assignment', planningController.simulateBatchAssignment);
 router.get('/planning/exceptions', planningController.getExceptions);
@@ -68,5 +79,28 @@ router.put('/performance/line-factors/:lineId', performanceController.updateLine
 router.get('/performance/historical-analysis', performanceController.getHistoricalAnalysis);
 router.get('/performance/shift-history', performanceController.getShiftHistory);
 router.post('/performance/apply-derived-factors', performanceController.applyDerivedFactors);
+
+router.get('/planning/detailed-scheduling/master-data', detailedSchedulingController.getMasterData);
+router.get('/planning/detailed-scheduling/dashboard', detailedSchedulingController.getDashboard);
+router.post('/planning/detailed-scheduling/build', detailedSchedulingController.buildSchedule);
+router.get('/planning/detailed-scheduling/schedule', detailedSchedulingController.getSchedule);
+router.post('/planning/detailed-scheduling/what-if', detailedSchedulingController.runWhatIf);
+router.post('/planning/detailed-scheduling/reschedule', detailedSchedulingController.rescheduleOrder);
+router.post('/planning/detailed-scheduling/confirm', detailedSchedulingController.confirmSchedule);
+router.get('/planning/detailed-scheduling/explain/order/:orderNumber', detailedSchedulingController.explainOrder);
+router.get('/planning/detailed-scheduling/explain/schedule', detailedSchedulingController.explainSchedule);
+router.get('/planning/detailed-scheduling/integration', detailedSchedulingController.getIntegrationCatalog);
+
+if (registerBackendRoutes) {
+  registerBackendRoutes(router);
+} else {
+  router.get('/admin/data/entities', adminDataController.listEntitiesMeta);
+  router.get('/admin/data/:slug', adminDataController.listRecords);
+  router.get('/admin/data/:slug/:id', adminDataController.getRecord);
+  router.post('/admin/data/:slug', adminDataController.createRecord);
+  router.put('/admin/data/:slug/:id', adminDataController.updateRecord);
+  router.delete('/admin/data/:slug/:id', adminDataController.deleteRecord);
+  adminDataController.registerEntityRoutes(router);
+}
 
 module.exports = router;

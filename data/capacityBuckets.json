@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "bucketId": "CB-PL01-2026W36",
+      "plantId": "1000",
+      "lineId": "PACK_LINE_01",
+      "weekStarting": "2026-09-01",
+      "totalCapacity": 56000,
+      "allocatedCapacity": 42000,
+      "remainingCapacity": 14000,
+      "utilizationPercent": 75
+    },
+    {
+      "bucketId": "CB-PL02-2026W36",
+      "plantId": "1000",
+      "lineId": "PACK_LINE_02",
+      "weekStarting": "2026-09-01",
+      "totalCapacity": 42000,
+      "allocatedCapacity": 38000,
+      "remainingCapacity": 4000,
+      "utilizationPercent": 90.5
+    },
+    {
+      "bucketId": "CB-PLANT-2026W36",
+      "plantId": "1000",
+      "lineId": null,
+      "weekStarting": "2026-09-01",
+      "totalCapacity": 125000,
+      "allocatedCapacity": 98000,
+      "remainingCapacity": 27000,
+      "utilizationPercent": 78.4
+    }
+  ]
+}

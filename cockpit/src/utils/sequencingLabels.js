@@ -78,5 +78,13 @@ export const SEQ_LABELS = {
   OPERATIONS_SOLVER_ORTOOLS: 'Ops OR-Tools',
   OPERATIONS_SOLVER_HEURISTIC: 'Ops heuristic',
   OPERATIONS_SOLVER_FALLBACK: 'Ops fallback',
+
+  OPERATION_DETAIL: 'Vorgangsdetail',
+  SELECT_OPERATION: 'Vorgang im Gantt auswählen',
+  OP_TIME_SETUP: 'Rüstzeit',
+  OP_TIME_PRODUCTION: 'Produktionszeit',
+  OP_TIME_TEARDOWN: 'Abrüstzeit',
+  OP_TIME_TOTAL: 'Gesamt',
+  OP_TIME_LEGEND: 'Vorgangszeiten (SAP)',
 };
 

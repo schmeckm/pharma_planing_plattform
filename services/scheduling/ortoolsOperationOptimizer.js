@@ -68,7 +68,7 @@ class OrtoolsOperationOptimizer {
     }
   }
 
-  _buildPayload({ operations, workCenters, startAnchor, horizonDays }) {
+  _buildPayload({ operations, workCenters, startAnchor, horizonDays, pinnedOperations = [] }) {
     const hoursPerDay = parseInt(process.env.PLANNING_HOURS_PER_DAY || '8', 10) * 2;
     return {
       horizonStart: startAnchor,
@@ -77,6 +77,7 @@ class OrtoolsOperationOptimizer {
       lineBalanceWeight: parseInt(process.env.ORTOOLS_LINE_BALANCE_WEIGHT || '15', 10),
       numWorkers: parseInt(process.env.ORTOOLS_NUM_WORKERS || '8', 10),
       hoursPerDay,
+      pinnedOperations,
       workCenters: workCenters.map((wc) => ({
         workCenterId: wc.workCenterId,
         performanceFactor: wc.performanceFactor,
@@ -96,8 +97,10 @@ class OrtoolsOperationOptimizer {
     };
   }
 
-  async optimize({ operations, workCenters, startAnchor, horizonDays }) {
-    const payload = this._buildPayload({ operations, workCenters, startAnchor, horizonDays });
+  async optimize({ operations, workCenters, startAnchor, horizonDays, pinnedOperations = [] }) {
+    const payload = this._buildPayload({
+      operations, workCenters, startAnchor, horizonDays, pinnedOperations,
+    });
     const response = await this._request('POST', '/optimize-operations', payload);
     return {
       engine: this.name,

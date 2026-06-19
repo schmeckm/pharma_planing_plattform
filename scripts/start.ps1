@@ -2,6 +2,7 @@
 #
 # Usage:
 #   .\scripts\start.ps1 dev           # Backend + Cockpit (Haupt-Portal)
+#   .\scripts\start.ps1 portal        # Allocation API + Portal Backend + Portal Frontend
 #   .\scripts\start.ps1 backend       # nur Node-Backend (+ OR-Tools wenn .env)
 #   .\scripts\start.ps1 cockpit       # nur Vue-Cockpit (Port 3001)
 #   .\scripts\start.ps1 docker        # docker compose up (build + detach)
@@ -15,17 +16,21 @@
 # Optionale Parameter:
 #   -BackendPort 8000      Port für das Node-Backend (Default 8000)
 #   -CockpitPort 3001      Port für das Cockpit-Frontend (Default 3001)
+#   -PortalBackendPort 3000   Port für Portal-Backend (Default 3000)
+#   -PortalFrontendPort 5173  Port für Portal-Frontend (Default 5173)
 #   -NoCockpit             Nur Backend starten (ohne UI)
 #   -Detached              Lokale Dienste in separaten Fenstern statt im aktuellen Job
 
 [CmdletBinding()]
 param(
   [Parameter(Position = 0)]
-  [ValidateSet('dev', 'backend', 'ortools', 'cockpit', 'docker', 'docker:mvp2', 'docker:mvp3', 'docker:down', 'stop', 'status', 'test', 'help')]
+  [ValidateSet('dev', 'portal', 'backend', 'ortools', 'cockpit', 'docker', 'docker:mvp2', 'docker:mvp3', 'docker:down', 'stop', 'status', 'test', 'help')]
   [string]$Mode = 'help',
 
   [int]$BackendPort = 8000,
   [int]$CockpitPort = 3001,
+  [int]$PortalBackendPort = 3000,
+  [int]$PortalFrontendPort = 5173,
   [switch]$NoCockpit,
   [switch]$Detached
 )
@@ -308,6 +313,103 @@ function Mode-Cockpit {
   return $false
 }
 
+function Mode-PortalBackend {
+  param([int]$Port = $PortalBackendPort)
+  Write-Step "Portal-Backend starten auf Port $Port"
+  Stop-PortListener $Port | Out-Null
+  $portalBackendDir = Join-Path $ProjectRoot 'portal\backend'
+  Ensure-Dependencies $portalBackendDir
+  $logDir = Join-Path (Get-RuntimeDir) 'logs'
+  $logFile = Join-Path $logDir 'portal-backend.log'
+  $errFile = Join-Path $logDir 'portal-backend.err.log'
+  $env:PORT = "$Port"
+  $env:HOST = '127.0.0.1'
+  if (-not $env:FRONTEND_URL) { $env:FRONTEND_URL = "http://127.0.0.1:$PortalFrontendPort" }
+  if (-not $env:CORS_ORIGIN) {
+    $env:CORS_ORIGIN = "http://127.0.0.1:$PortalFrontendPort,http://localhost:$PortalFrontendPort"
+  }
+  $proc = Start-Process -FilePath 'node' `
+    -ArgumentList @('server.js') `
+    -WorkingDirectory $portalBackendDir -WindowStyle Hidden `
+    -RedirectStandardOutput $logFile -RedirectStandardError $errFile -PassThru
+  Write-Ok "portal-backend gestartet (PID $($proc.Id), Log: $logFile)"
+  Save-Pid 'portal-backend' $proc.Id
+  if (Wait-Health "http://127.0.0.1:$Port/api/health" 45) {
+    Write-Ok "Portal-Backend live: http://127.0.0.1:$Port/api/health"
+    return $true
+  }
+  Write-Err "Portal-Backend nicht erreichbar — check $logFile und $errFile"
+  return $false
+}
+
+function Mode-PortalFrontend {
+  param(
+    [int]$Port = $PortalFrontendPort,
+    [int]$PortalApiPort = $PortalBackendPort,
+    [int]$AllocationApiPort = $BackendPort
+  )
+  Write-Step "Portal-Frontend starten auf Port $Port"
+  Stop-PortListener $Port | Out-Null
+  $portalFrontendDir = Join-Path $ProjectRoot 'portal\frontend'
+  Ensure-Dependencies $portalFrontendDir
+  $viteBin = Join-Path $portalFrontendDir 'node_modules\vite\bin\vite.js'
+  if (-not (Test-Path $viteBin)) {
+    Write-Err "Portal-Frontend: vite fehlt — cd portal/frontend && npm install"
+    return $false
+  }
+  $logDir = Join-Path (Get-RuntimeDir) 'logs'
+  $logFile = Join-Path $logDir 'portal-frontend.log'
+  $errFile = Join-Path $logDir 'portal-frontend.err.log'
+  $env:VITE_API_URL = "http://127.0.0.1:$PortalApiPort"
+  $env:VITE_ALLOCATION_API_URL = "http://127.0.0.1:$AllocationApiPort"
+  $env:VITE_APP_URL = "http://127.0.0.1:$Port"
+  $proc = Start-Process -FilePath 'node' `
+    -ArgumentList @('node_modules\vite\bin\vite.js', '--port', "$Port", '--host', '0.0.0.0') `
+    -WorkingDirectory $portalFrontendDir -WindowStyle Hidden `
+    -RedirectStandardOutput $logFile -RedirectStandardError $errFile -PassThru
+  Write-Ok "portal-frontend gestartet (PID $($proc.Id), Log: $logFile)"
+  Save-Pid 'portal-frontend' $proc.Id
+  if (Wait-Health "http://127.0.0.1:$Port/" 30) {
+    Write-Ok "Portal live: http://127.0.0.1:$Port/"
+    return $true
+  }
+  Write-Err "Portal-Frontend nicht erreichbar — check $logFile und $errFile"
+  return $false
+}
+
+function Mode-Portal {
+  Write-Step "Hard Allocation Platform — Portal-Mode"
+
+  if ($env:SCHEDULING_OPTIMIZER -eq 'ortools') {
+    Ensure-OrtoolsIfConfigured | Out-Null
+  } else {
+    $ortoolsOk = Mode-Ortools
+    if ($ortoolsOk) {
+      $env:SCHEDULING_OPTIMIZER = 'ortools'
+      $env:ORTOOLS_URL = 'http://127.0.0.1:8010'
+    }
+  }
+
+  Mode-Backend | Out-Null
+  Mode-PortalBackend -Port $PortalBackendPort | Out-Null
+  Mode-PortalFrontend -Port $PortalFrontendPort -PortalApiPort $PortalBackendPort -AllocationApiPort $BackendPort | Out-Null
+
+  Write-Host ""
+  Write-Step "Status:"
+  Write-Ok "Allocation API: http://127.0.0.1:$BackendPort"
+  Write-Ok "Portal API:       http://127.0.0.1:$PortalBackendPort"
+  if ($env:SCHEDULING_OPTIMIZER -eq 'ortools' -and (Wait-Health "http://127.0.0.1:8010/health" 2)) {
+    Write-Ok "OR-Tools:         http://127.0.0.1:8010/health"
+  }
+  Write-Host "  >>> Portal:       http://127.0.0.1:$PortalFrontendPort/" -ForegroundColor Green
+  Write-Host "  >>> Planning:     http://127.0.0.1:$PortalFrontendPort/planning/wizard" -ForegroundColor Green
+  Write-Host ""
+  if (-not $Detached) {
+    Write-Warn2 "Prozesse laufen im Hintergrund weiter. Stoppen mit: .\scripts\start.ps1 stop"
+    Write-Warn2 "Logs: .runtime\logs\*.log     |    PIDs: .runtime\pids.json"
+  }
+}
+
 function Mode-Dev {
   Write-Step "Hard Allocation Platform — Dev-Mode"
 
@@ -387,7 +489,7 @@ function Mode-Stop {
   Clear-SavedPids
 
   # 2) Fallback: alles auf den bekannten Ports töten
-  foreach ($p in @($BackendPort, $CockpitPort, 8010)) {
+  foreach ($p in @($BackendPort, $CockpitPort, $PortalBackendPort, $PortalFrontendPort, 8010)) {
     if (Stop-PortListener $p) { $stopped++ }
   }
 
@@ -414,7 +516,7 @@ function Mode-Status {
   }
 
   Write-Step "Ports"
-  foreach ($p in @($BackendPort, $CockpitPort, 8010)) {
+  foreach ($p in @($BackendPort, $CockpitPort, $PortalBackendPort, $PortalFrontendPort, 8010)) {
     $c = Get-NetTCPConnection -LocalPort $p -State Listen -ErrorAction SilentlyContinue
     if ($c) {
       $proc = Get-Process -Id ($c[0].OwningProcess) -ErrorAction SilentlyContinue
@@ -473,6 +575,7 @@ Load-EnvFile
 switch ($Mode) {
   'help'        { Mode-Help }
   'dev'         { Mode-Dev }
+  'portal'      { Mode-Portal }
   'backend'     { Mode-Backend | Out-Null }
   'ortools'     { Mode-Ortools | Out-Null }
   'cockpit'     { Mode-Cockpit | Out-Null }

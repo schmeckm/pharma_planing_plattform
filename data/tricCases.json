@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "tricCaseId": "TRIC-0001",
+      "batchNumber": "BATCH-0001",
+      "materialNumber": "DP-1000",
+      "country": "DE",
+      "status": "APPROVED",
+      "validFrom": "2025-02-10",
+      "validTo": "2030-02-10",
+      "notes": "Standard EU release"
+    },
+    {
+      "tricCaseId": "TRIC-0002",
+      "batchNumber": "BATCH-0001",
+      "materialNumber": "DP-1000",
+      "country": "US",
+      "status": "APPROVED",
+      "validFrom": "2025-02-10",
+      "validTo": "2030-02-10",
+      "notes": "FDA approved"
+    },
+    {
+      "tricCaseId": "TRIC-0003",
+      "batchNumber": "BATCH-DE-001",
+      "materialNumber": "DP-1000",
+      "country": "US",
+      "status": "BLOCKED",
+      "validFrom": null,
+      "validTo": null,
+      "notes": "Pending US market authorization"
+    }
+  ]
+}

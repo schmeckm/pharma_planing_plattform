@@ -66,6 +66,20 @@ def optimize_operations_payload(payload: dict[str, Any]) -> dict[str, Any]:
         ends[oid] = model.NewIntVar(dur, horizon, f"end_{oid}")
         model.Add(ends[oid] == starts[oid] + dur)
 
+    pinned_map = {p["operationId"]: p for p in payload.get("pinnedOperations") or [] if p.get("operationId")}
+    for op in operations:
+        oid = op["operationId"]
+        pin = pinned_map.get(oid)
+        if not pin:
+            continue
+        if pin.get("plannedStartDate"):
+            try:
+                day = _days_between(horizon_start, pin["plannedStartDate"][:10])
+            except ValueError:
+                continue
+            day = max(0, min(day, horizon - durations[oid] - 1))
+            model.Add(starts[oid] == day)
+
     by_order: dict[str, list[dict]] = {}
     for op in operations:
         po = op.get("packagingOrderId") or op.get("packagingOrder")

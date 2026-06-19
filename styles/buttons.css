@@ -1,0 +1,282 @@
+/**
+ * Einheitliche Button-Größen und -Farben — Portal (.btn), Element Plus, PrimeVue.
+ * Nutzt ausschließlich Variablen aus design-tokens.css.
+ */
+
+/* PrimeVue — Design-Token-Mapping */
+:root,
+[data-theme='light'],
+[data-theme='dark'],
+.cockpit-embed[data-cockpit-theme='light'] {
+  --p-button-border-radius: var(--btn-radius);
+  --p-button-padding-y: var(--btn-padding-y);
+  --p-button-padding-x: var(--btn-padding-x);
+  --p-button-sm-padding-y: var(--btn-padding-y-sm);
+  --p-button-sm-padding-x: var(--btn-padding-x-sm);
+  --p-button-label-font-weight: var(--btn-font-weight);
+  --p-button-primary-background: var(--color-accent);
+  --p-button-primary-border-color: var(--color-accent);
+  --p-button-primary-color: var(--color-accent-on, #ffffff);
+  --p-button-primary-hover-background: var(--color-accent-hover, var(--color-accent-dark));
+  --p-button-primary-hover-border-color: var(--color-accent-hover, var(--color-accent-dark));
+  --p-button-primary-hover-color: var(--color-accent-on, #ffffff);
+  --p-button-primary-active-background: var(--color-accent-hover, var(--color-accent-dark));
+  --p-button-primary-active-border-color: var(--color-accent-hover, var(--color-accent-dark));
+  --p-button-outlined-primary-color: var(--color-accent);
+  --p-button-outlined-primary-border-color: var(--color-accent);
+  --p-button-outlined-primary-hover-background: var(--color-accent-soft);
+  --p-button-text-primary-color: var(--color-accent);
+  --p-button-text-primary-hover-background: var(--color-accent-soft);
+}
+
+/* Portal — native Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  min-height: var(--btn-height);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border: none;
+  border-radius: var(--btn-radius);
+  background: var(--color-accent);
+  color: var(--color-accent-on, #fff);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+[data-theme='light'] .btn {
+  color: var(--color-accent-on, #fff);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.btn--google {
+  background: #fff;
+  color: #1f1f1f;
+  border: 1px solid var(--color-border);
+}
+
+.btn--google:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--danger {
+  color: var(--color-error);
+  border-color: var(--color-error-border, rgba(187, 0, 0, 0.35));
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: var(--color-error-soft);
+  color: var(--color-error);
+}
+
+/* Element Plus */
+.el-button {
+  border-radius: var(--btn-radius);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  gap: var(--btn-gap);
+}
+
+.el-button:not(.is-text):not(.is-link):not(.el-button--small):not(.el-button--large) {
+  min-height: var(--btn-height);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+}
+
+.el-button--small:not(.is-text):not(.is-link) {
+  min-height: var(--btn-height-sm);
+  padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
+  font-size: var(--btn-font-size);
+}
+
+.el-button--large:not(.is-text):not(.is-link) {
+  min-height: 2.5rem;
+  padding: 0.5625rem 1.125rem;
+}
+
+.el-button--default:not(.is-text):not(.is-link):not(.el-button--primary):not(.is-plain) {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background: var(--color-panel, #ffffff);
+}
+
+.el-button--default:not(.is-text):not(.is-link):not(.el-button--primary):not(.is-plain):hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.el-button--primary,
+.cockpit-embed .el-button--primary {
+  --el-button-bg-color: var(--color-accent);
+  --el-button-border-color: var(--color-accent);
+  --el-button-hover-bg-color: var(--color-accent-hover, var(--color-accent-dark));
+  --el-button-hover-border-color: var(--color-accent-hover, var(--color-accent-dark));
+  --el-button-active-bg-color: var(--color-accent-hover, var(--color-accent-dark));
+  --el-button-active-border-color: var(--color-accent-hover, var(--color-accent-dark));
+  --el-button-text-color: var(--color-accent-on, #ffffff);
+  --el-button-hover-text-color: var(--color-accent-on, #ffffff);
+  --el-button-active-text-color: var(--color-accent-on, #ffffff);
+}
+
+/* PrimeVue — Akzent & Outline (Standalone + Embed) */
+.p-button:not(.p-button-sm):not(.p-button-lg):not(.p-button-icon-only) {
+  min-height: var(--btn-height);
+}
+
+.p-button.p-button-sm {
+  min-height: var(--btn-height-sm);
+}
+
+.p-button:not(.p-button-secondary):not(.p-button-success):not(.p-button-warn):not(.p-button-danger):not(.p-button-help):not(.p-button-text):not(.p-button-link):not(.p-togglebutton) {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-on, #ffffff);
+}
+
+.p-button:not(.p-button-secondary):not(.p-button-success):not(.p-button-warn):not(.p-button-danger):not(.p-button-help):not(.p-button-text):not(.p-button-link):not(.p-togglebutton):not(:disabled):hover {
+  background: var(--color-accent-hover, var(--color-accent-dark));
+  border-color: var(--color-accent-hover, var(--color-accent-dark));
+  color: var(--color-accent-on, #ffffff);
+}
+
+.p-button.p-button-outlined:not(.p-button-secondary):not(.p-button-success):not(.p-button-warn):not(.p-button-danger) {
+  background: transparent;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.p-button.p-button-outlined:not(.p-button-secondary):not(.p-button-success):not(.p-button-warn):not(.p-button-danger):not(:disabled):hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.p-button.p-button-text:not(.p-button-secondary):not(.p-button-success):not(.p-button-warn):not(.p-button-danger) {
+  color: var(--color-accent);
+}
+
+.p-button.p-button-text:not(.p-button-secondary):not(.p-button-success):not(.p-button-warn):not(.p-button-danger):not(:disabled):hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.p-button.p-button-secondary.p-button-outlined,
+.p-button.p-button-secondary:not(.p-button-outlined):not(.p-button-text) {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background: var(--color-panel, #ffffff);
+}
+
+.p-button.p-button-secondary.p-button-outlined:not(:disabled):hover,
+.p-button.p-button-secondary:not(.p-button-outlined):not(.p-button-text):not(:disabled):hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+/* PrimeVue SelectButton / ToggleButton */
+.p-selectbutton {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.p-selectbutton .p-togglebutton {
+  background: var(--color-panel, #ffffff);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: var(--btn-font-size);
+  font-weight: var(--font-weight-medium, 500);
+  min-height: var(--btn-height-sm);
+  padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
+}
+
+.p-selectbutton .p-togglebutton:not(:first-child) {
+  margin-left: -1px;
+}
+
+.p-selectbutton .p-togglebutton:first-child {
+  border-radius: var(--btn-radius) 0 0 var(--btn-radius);
+}
+
+.p-selectbutton .p-togglebutton:last-child {
+  border-radius: 0 var(--btn-radius) var(--btn-radius) 0;
+}
+
+.p-selectbutton .p-togglebutton:only-child {
+  border-radius: var(--btn-radius);
+}
+
+.p-selectbutton .p-togglebutton:not(.p-togglebutton-checked):not(:disabled):hover {
+  background: var(--blue-50, var(--color-accent-soft));
+  border-color: var(--blue-200, var(--color-accent-muted));
+  color: var(--blue-700, var(--color-accent));
+  z-index: 1;
+}
+
+.p-selectbutton .p-togglebutton.p-togglebutton-checked,
+.p-selectbutton .p-togglebutton-checked {
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-accent-on, #ffffff) !important;
+  z-index: 2;
+}
+
+.p-selectbutton .p-togglebutton.p-togglebutton-checked:not(:disabled):hover,
+.p-selectbutton .p-togglebutton-checked:not(:disabled):hover {
+  background: var(--color-accent-hover, var(--color-accent-dark)) !important;
+  border-color: var(--color-accent-hover, var(--color-accent-dark)) !important;
+  color: var(--color-accent-on, #ffffff) !important;
+}
+
+.p-selectbutton .p-togglebutton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Aura-Default: weißer Innenbereich bei Checked — erzeugt sichtbaren „Rahmen“ */
+.p-selectbutton .p-togglebutton-checked .p-togglebutton-content {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.p-selectbutton .p-togglebutton .p-togglebutton-label {
+  color: inherit;
+}
+
+.p-selectbutton .p-togglebutton-checked .p-togglebutton-label {
+  color: var(--color-accent-on, #ffffff) !important;
+}
+
+.p-selectbutton .p-togglebutton:focus,
+.p-selectbutton .p-togglebutton:focus-visible {
+  outline: none;
+  box-shadow: none;
+}

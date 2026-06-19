@@ -2,7 +2,8 @@
 REM Hard Allocation Platform — wrapper for PowerShell start script.
 REM Examples:
 REM   start                  -> shows help
-REM   start dev              -> backend + cockpit + frontend (local)
+REM   start dev              -> backend + cockpit (local)
+REM   start portal           -> allocation API + portal backend + portal frontend
 REM   start docker           -> docker compose up
 REM   start docker:down
 REM   start stop

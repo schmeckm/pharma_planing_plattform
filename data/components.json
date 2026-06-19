@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "componentId": "CMP-10001-BULK",
+      "orderId": "PO-10001",
+      "materialNumber": "BULK-1000",
+      "componentType": "BULK",
+      "requiredQuantity": 2000,
+      "unit": "EA",
+      "availableQuantity": 5000
+    },
+    {
+      "componentId": "CMP-10001-LBL",
+      "orderId": "PO-10001",
+      "materialNumber": "LBL-DE-1000",
+      "componentType": "LABEL",
+      "requiredQuantity": 2000,
+      "unit": "EA",
+      "availableQuantity": 8000
+    }
+  ]
+}

@@ -9,6 +9,9 @@ export default defineConfig(({ mode }) => {
   const portalApi = env.VITE_API_URL || 'http://localhost:3000';
   const allocationApi = env.VITE_ALLOCATION_API_URL || 'http://127.0.0.1:8000';
 
+  const portalRoot = __dirname;
+  const portalNodeModules = path.resolve(portalRoot, 'node_modules');
+
   return {
     plugins: [
       cockpitAliasPlugin(),
@@ -26,7 +29,10 @@ export default defineConfig(({ mode }) => {
       }),
     ],
     resolve: {
-      alias: {},
+      dedupe: ['vue', 'pinia', 'vue-router', 'primevue', '@primevue/themes'],
+      alias: {
+        primevue: path.resolve(portalNodeModules, 'primevue'),
+      },
     },
     optimizeDeps: {
       include: [
@@ -35,6 +41,8 @@ export default defineConfig(({ mode }) => {
         'primevue/config',
         'primevue/toast',
         'primevue/toastservice',
+        'primevue/usetoast',
+        'primevue/toasteventbus',
         '@primevue/themes/aura',
         'chart.js',
         'vue-chartjs',

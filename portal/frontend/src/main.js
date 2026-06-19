@@ -25,6 +25,7 @@ themeStore.init();
 
 const authStore = useAuthStore(pinia);
 if (authStore.isAuthenticated && authStore.user) {
+  authStore.syncThemeFromUser(authStore.user);
   applyCockpitAuthToStore(authStore.user).catch(() => {});
 }
 

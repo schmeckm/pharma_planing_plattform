@@ -40,6 +40,14 @@ export function getDefaultFeatureIdsForRole(role) {
     .map((f) => f.id);
 }
 
+/** All feature IDs a role may enable (permission check only). */
+export function getPermittedFeatureIdsForRole(role) {
+  if (role === 'ADMIN') return FEATURE_CATALOG.map((f) => f.id);
+  return FEATURE_CATALOG
+    .filter((f) => hasRolePermission(role, f.permission))
+    .map((f) => f.id);
+}
+
 export function findFirstAccessiblePath(canAccessPath, excludePath = null) {
   for (const feature of FEATURE_CATALOG) {
     if (feature.path === excludePath) continue;

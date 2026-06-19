@@ -194,7 +194,6 @@ onMounted(() => store.loadDashboard(selectedDate.value));
 .dp-grid { display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
 .panel { background: var(--color-bg, #fff); border: 1px solid var(--color-border, #ddd); border-radius: 8px; }
 .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--color-border, #eee); }
-.panel-header h2 { margin: 0; font-size: 0.9375rem; }
 .panel-body { padding: 16px; }
 .panel-body--flush { padding: 0; }
 .badge { font-size: 0.75rem; color: var(--text-color-secondary); }

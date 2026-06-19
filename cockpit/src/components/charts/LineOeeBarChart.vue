@@ -15,6 +15,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'vue-chartjs';
+import { chartColorAt, mergeChartOptions } from '@/utils/chartColors';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -33,25 +34,21 @@ const chartData = computed(() => {
       {
         label: 'OEE %',
         data: props.lines.map((l) => l[oeeKey] ?? 0),
-        backgroundColor: '#0a6ed1',
+        backgroundColor: chartColorAt(1),
         yAxisID: 'y',
       },
       {
         label: 'Leistungsfaktor',
         data: props.lines.map((l) => Math.round((l[factorKey] ?? 1) * 100)),
-        backgroundColor: '#107e3e',
+        backgroundColor: chartColorAt(2),
         yAxisID: 'y1',
       },
     ],
   };
 });
 
-const chartOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: { position: 'bottom' },
-  },
+const chartOptions = computed(() => mergeChartOptions({
+  plugins: { legend: { position: 'bottom' } },
   scales: {
     y: {
       type: 'linear',
@@ -67,7 +64,7 @@ const chartOptions = {
       title: { display: true, text: 'Faktor ×100' },
     },
   },
-};
+}));
 </script>
 
 <style scoped>

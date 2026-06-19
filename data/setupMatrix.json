@@ -1,0 +1,17 @@
+{
+  "items": [
+    { "fromColor": "Blue", "toColor": "Blue", "setupMinutes": 5, "description": "Same color — minimal rinse" },
+    { "fromColor": "Blue", "toColor": "Red", "setupMinutes": 30, "description": "Color change Blue → Red" },
+    { "fromColor": "Blue", "toColor": "Yellow", "setupMinutes": 45, "description": "Color change Blue → Yellow" },
+    { "fromColor": "Red", "toColor": "Red", "setupMinutes": 5, "description": "Same color — minimal rinse" },
+    { "fromColor": "Red", "toColor": "Yellow", "setupMinutes": 60, "description": "Color change Red → Yellow" },
+    { "fromColor": "Red", "toColor": "Blue", "setupMinutes": 35, "description": "Color change Red → Blue" },
+    { "fromColor": "Yellow", "toColor": "Yellow", "setupMinutes": 5, "description": "Same color — minimal rinse" },
+    { "fromColor": "Yellow", "toColor": "Blue", "setupMinutes": 40, "description": "Color change Yellow → Blue" },
+    { "fromColor": "Yellow", "toColor": "Red", "setupMinutes": 55, "description": "Color change Yellow → Red" },
+    { "fromColor": "Clear", "toColor": "Blue", "setupMinutes": 15, "description": "Line idle start" },
+    { "fromColor": "Clear", "toColor": "Red", "setupMinutes": 15, "description": "Line idle start" },
+    { "fromColor": "Clear", "toColor": "Yellow", "setupMinutes": 15, "description": "Line idle start" }
+  ],
+  "defaultSetupMinutes": 30
+}

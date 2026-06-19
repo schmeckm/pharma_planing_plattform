@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "resultId": "PR-DSCH-001",
+      "scheduleType": "DETAILED_SCHEDULING",
+      "label": "September packaging plan — v1",
+      "status": "READY",
+      "itemCount": 30,
+      "createdAt": "2026-06-14T10:00:00Z",
+      "kpisSummary": "OTIF 85%, setup 3.2h, 30 blocked",
+      "applicablePlanningHorizon": "PH-DP1000-FLEX",
+      "horizonType": "FLEXIBLE",
+      "horizonViolation": false,
+      "reschedulingAllowed": true,
+      "optimizationAllowed": true
+    },
+    {
+      "resultId": "PR-SEQ-001",
+      "scheduleType": "LINE_SEQUENCING",
+      "label": "Line sequence week 36",
+      "status": "CONFIRMED",
+      "itemCount": 45,
+      "createdAt": "2026-06-13T14:30:00Z",
+      "kpisSummary": "Late orders: 2, avg utilization 78%",
+      "applicablePlanningHorizon": "PH-PL01-FIXED",
+      "horizonType": "FIXED",
+      "horizonViolation": false,
+      "reschedulingAllowed": true,
+      "optimizationAllowed": false
+    }
+  ]
+}

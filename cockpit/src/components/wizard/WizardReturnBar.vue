@@ -1,10 +1,10 @@
 <template>
   <div v-if="fromWizard" class="wizard-return">
     <span>Sie kommen vom Tages-Wizard.</span>
-    <el-button type="primary" size="small" @click="completeAndReturn">
+    <el-button type="primary" @click="completeAndReturn">
       Schritt erledigen & zurück
     </el-button>
-    <el-button size="small" text @click="router.push('/wizard')">Nur zurück</el-button>
+    <el-button text @click="router.push('/wizard')">Nur zurück</el-button>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ function completeAndReturn() {
   background: #ecf5ff;
   border: 1px solid #b3d8ff;
   border-radius: var(--radius, 6px);
-  font-size: 0.875rem;
-  color: #303133;
+  font-size: var(--text-md);
+  color: var(--color-text);
 }
 </style>

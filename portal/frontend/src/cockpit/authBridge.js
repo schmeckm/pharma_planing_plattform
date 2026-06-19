@@ -1,4 +1,4 @@
-import { getDefaultFeatureIdsForRole } from '../../../../cockpit/src/config/features.js';
+import { getDefaultFeatureIdsForRole, getPermittedFeatureIdsForRole } from '../../../../cockpit/src/config/features.js';
 
 const PORTAL_ROLE_MAP = {
   admin: 'admin',
@@ -36,15 +36,30 @@ const FALLBACK_SESSIONS = {
   },
 };
 
+function resolvePortalFeatureIds(portalUser, cockpitRole) {
+  const defaults = getDefaultFeatureIdsForRole(cockpitRole);
+  const custom = portalUser?.preferences?.enabledFeatures;
+  if (custom == null) {
+    return { enabledFeatureIds: defaults, usesCustomFeatures: false };
+  }
+  if (!Array.isArray(custom)) {
+    return { enabledFeatureIds: defaults, usesCustomFeatures: false };
+  }
+  const permitted = new Set(getPermittedFeatureIdsForRole(cockpitRole));
+  return {
+    enabledFeatureIds: custom.filter((id) => permitted.has(id)),
+    usesCustomFeatures: true,
+  };
+}
+
 function enrichSession(base, portalUser) {
-  const enabledFeatureIds = getDefaultFeatureIdsForRole(base.role);
+  const featureState = resolvePortalFeatureIds(portalUser, base.role);
   return {
     ...base,
     displayName: portalUser.displayName || base.displayName,
     email: portalUser.email,
-    enabledFeatureIds,
-    usesCustomFeatures: false,
     portalUserId: portalUser.id,
+    ...featureState,
   };
 }
 
@@ -60,11 +75,13 @@ export async function syncCockpitAuthFromPortal(portalUser) {
   try {
     const { apiV2 } = await import('../../../../cockpit/src/api/v2.js');
     const session = await apiV2.login(allocationUsername);
+    const featureState = resolvePortalFeatureIds(portalUser, session.role);
     const enriched = {
       ...session,
       displayName: portalUser.displayName || session.displayName,
       email: portalUser.email,
       portalUserId: portalUser.id,
+      ...featureState,
     };
     localStorage.setItem('hap_user', JSON.stringify(enriched));
     return enriched;

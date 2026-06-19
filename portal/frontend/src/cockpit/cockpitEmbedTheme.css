@@ -1,0 +1,123 @@
+@import '../../../../styles/design-tokens.css';
+@import '../../../../styles/buttons.css';
+@import '../../../../styles/layout-spacing.css';
+@import '../../../../styles/cockpit-ui.css';
+
+/**
+ * Eingebettetes Cockpit — Komponenten-Overrides (Tokens in design-tokens.css).
+ */
+
+.cockpit-embed .panel,
+.cockpit-embed .kpi-card {
+  background: var(--cockpit-surface) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.cockpit-embed .kpi-card--primary {
+  border-top-color: var(--blue-500, var(--color-accent)) !important;
+}
+
+.cockpit-embed .kpi-card--info {
+  border-top-color: var(--blue-400, var(--color-accent)) !important;
+}
+
+.cockpit-embed .kpi-card--success {
+  border-top-color: var(--color-success, #107e3e) !important;
+}
+
+.cockpit-embed .kpi-card--warning {
+  border-top-color: var(--color-warning) !important;
+}
+
+.cockpit-embed .panel-header {
+  border-bottom-color: var(--color-border);
+}
+
+.cockpit-embed .panel-header h2,
+.cockpit-embed .page-subtitle,
+.cockpit-embed .kpi-card__value,
+.cockpit-embed .v2-page,
+.cockpit-embed .control-tower,
+.cockpit-embed .stat-row,
+.cockpit-embed .alloc-stat strong,
+.cockpit-embed .twin-summary {
+  color: var(--color-text);
+}
+
+.cockpit-embed .kpi-card__label,
+.cockpit-embed .kpi-card__subtitle,
+.cockpit-embed .stat-row span,
+.cockpit-embed .alloc-stat span {
+  color: var(--cockpit-muted);
+}
+
+.cockpit-embed .kpi-card__icon {
+  background: var(--blue-50, var(--color-accent-soft)) !important;
+  color: var(--blue-600, var(--color-accent)) !important;
+}
+
+.cockpit-embed .page-subtitle {
+  color: var(--cockpit-muted) !important;
+}
+
+.cockpit-embed .p-card {
+  background: var(--cockpit-surface) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.cockpit-embed .p-tabview-tab-header {
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+
+.cockpit-embed .p-tabview-tablist-item-active .p-tabview-tab-header {
+  color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+}
+
+.cockpit-embed .p-tabview-panels {
+  background: transparent !important;
+  color: var(--color-text);
+}
+
+.cockpit-embed .p-datatable-thead > tr > th {
+  background: var(--help-surface-strong) !important;
+  color: var(--color-text-muted) !important;
+  border-color: var(--color-border) !important;
+}
+
+.cockpit-embed .p-datatable-tbody > tr {
+  background: var(--cockpit-surface);
+  color: var(--color-text);
+}
+
+.cockpit-embed .p-datatable-tbody > tr:nth-child(even) {
+  background: var(--color-panel);
+}
+
+.cockpit-embed .p-chart {
+  background: var(--cockpit-surface);
+  border-radius: var(--radius);
+}
+
+/* Form controls — always light inside embed (portal dark theme must not leak) */
+.cockpit-embed .p-inputtext,
+.cockpit-embed .p-inputnumber-input,
+.cockpit-embed .p-select-label,
+.cockpit-embed .p-select-dropdown,
+.cockpit-embed .p-dropdown-label,
+.cockpit-embed .p-inputnumber {
+  background: var(--cockpit-surface, #ffffff) !important;
+  color: var(--color-text, #32363a) !important;
+  border-color: var(--color-border, #e5e5e5) !important;
+}
+
+.cockpit-embed .p-inputtext:enabled:focus,
+.cockpit-embed .p-inputnumber-input:enabled:focus {
+  border-color: var(--color-accent, var(--blue-500)) !important;
+  box-shadow: 0 0 0 1px var(--color-accent-soft, var(--blue-100));
+}

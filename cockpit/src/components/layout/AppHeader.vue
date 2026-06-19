@@ -184,8 +184,6 @@ async function switchUser(username) {
 
   justify-content: space-between;
 
-  padding: 0 24px;
-
   flex-shrink: 0;
 
 }

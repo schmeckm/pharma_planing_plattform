@@ -50,6 +50,7 @@ class DraftScheduleService {
     return {
       draftScheduleId: generateId('DRF'),
       scheduleId: generateId('SCH'),
+      scheduleType: 'LINE_SEQUENCING',
       plantId: '1000',
       label,
       status,
@@ -113,10 +114,101 @@ class DraftScheduleService {
       shadowPlanning: true,
       draftScheduleId: draft.draftScheduleId,
       scheduleId: draft.scheduleId,
+      scheduleType: draft.scheduleType,
       status: draft.status,
       itemCount: draft.items.length,
       comparison: draft.comparison,
       kpis: draft.kpis,
+    };
+  }
+
+  _buildDetailedDraftRecord({ schedule, label, userId, status }) {
+    const now = new Date().toISOString();
+    return {
+      draftScheduleId: generateId('DRF'),
+      scheduleId: schedule.scheduleId || generateId('DSCH'),
+      scheduleType: 'DETAILED_SCHEDULING',
+      plantId: '1000',
+      label,
+      status,
+      items: schedule.scheduledOrders || [],
+      blockedOrders: schedule.blockedOrders || [],
+      ganttTasks: schedule.ganttTasks || [],
+      exceptions: schedule.exceptions || [],
+      utilization: schedule.utilization || [],
+      score: schedule.solver?.score || {},
+      kpis: schedule.kpis || {},
+      comparison: null,
+      startAnchor: schedule.startAnchor,
+      timelineEnd: schedule.timelineEnd,
+      granularity: schedule.granularity || 'hour',
+      createdAt: now,
+      createdBy: userId,
+      updatedAt: now,
+      updatedBy: userId,
+      readyAt: status === DRAFT_STATUS.READY ? now : null,
+      readyBy: status === DRAFT_STATUS.READY ? userId : null,
+      activatedAt: null,
+      activatedBy: null,
+    };
+  }
+
+  confirmDetailedSchedule({
+    schedule,
+    label = 'Confirmed detailed schedule',
+    userId = 'SYSTEM',
+    draftScheduleId = null,
+  }) {
+    if (!schedule?.scheduledOrders?.length) {
+      throw new ValidationError('Detailed schedule enthält keine geplanten Aufträge');
+    }
+    const now = new Date().toISOString();
+    let draft;
+
+    if (draftScheduleId) {
+      const existing = this.getDraft(draftScheduleId);
+      draft = {
+        ...existing,
+        label,
+        status: DRAFT_STATUS.READY,
+        items: schedule.scheduledOrders,
+        blockedOrders: schedule.blockedOrders || [],
+        ganttTasks: schedule.ganttTasks || [],
+        exceptions: schedule.exceptions || [],
+        utilization: schedule.utilization || [],
+        kpis: schedule.kpis || {},
+        startAnchor: schedule.startAnchor,
+        timelineEnd: schedule.timelineEnd,
+        granularity: schedule.granularity || 'hour',
+        updatedAt: now,
+        updatedBy: userId,
+        readyAt: now,
+        readyBy: userId,
+      };
+    } else {
+      draft = this._buildDetailedDraftRecord({
+        schedule,
+        label,
+        userId,
+        status: DRAFT_STATUS.READY,
+      });
+    }
+
+    this._supersedeOtherReady(draft.draftScheduleId);
+    this._upsertDraft(draft);
+
+    return {
+      confirmed: true,
+      ready: true,
+      shadowPlanning: true,
+      scheduleType: 'DETAILED_SCHEDULING',
+      draftScheduleId: draft.draftScheduleId,
+      scheduleId: draft.scheduleId,
+      status: draft.status,
+      itemCount: draft.items.length,
+      blockedCount: draft.blockedOrders?.length || 0,
+      kpis: draft.kpis,
+      message: 'Detailed schedule als Shadow-Entwurf in draftSchedules.json gespeichert.',
     };
   }
 

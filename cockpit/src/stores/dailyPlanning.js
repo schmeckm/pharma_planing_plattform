@@ -3,6 +3,7 @@ import { ref, computed } from 'vue';
 import { planningApi } from '@/api/planning';
 import { lineOptimizationApi } from '@/api/lineOptimization';
 import { addDays } from '@/utils/dateHelpers';
+import { computeBarMetrics } from '@/utils/ganttTimeScale';
 import { SEQ_LABELS } from '@/utils/sequencingLabels';
 
 const PLANNING_SETTINGS_KEY = 'hap_planning_settings';
@@ -488,6 +489,63 @@ export const useDailyPlanningStore = defineStore('dailyPlanning', () => {
     return exc;
   }
 
+  async function runOperationsWhatIf(override) {
+    loading.value = true;
+    try {
+      const result = await planningApi.operationsWhatIf({
+        overrides: [override],
+        sequence: localSequence.value,
+        startAnchor: effectivePlanningStart.value,
+        horizonDays: horizonDays.value,
+      });
+      applyOperationPlan(result.operationPlan);
+      return result;
+    } finally {
+      loading.value = false;
+    }
+  }
+
+  function updateOperationPosition(operationId, workCenterId, plannedStartDate) {
+    if (!operationPlan.value?.operations?.length) return;
+    const ops = operationPlan.value.operations.map((op) => {
+      if (op.operationId !== operationId) return op;
+      const span = Math.max(
+        1,
+        Math.ceil((new Date(op.plannedEndDate) - new Date(op.plannedStartDate)) / 86400000) + 1,
+      );
+      const endDate = addDays(plannedStartDate, span - 1);
+      return { ...op, workCenterId, plannedStartDate, plannedEndDate: endDate };
+    });
+    const timelineStartVal = operationPlan.value.operationTimelineStart;
+    const timelineEndVal = operationPlan.value.operationTimelineEnd;
+    operationPlan.value = {
+      ...operationPlan.value,
+      operations: ops,
+      operationGanttTasks: ops.map((op) => {
+        const task = {
+          id: op.operationId,
+          packagingOrderId: op.packagingOrder,
+          operationNo: op.operationNo,
+          operationName: op.operationName,
+          name: `Op ${op.operationNo} · ${op.packagingOrder}`,
+          workCenterId: op.workCenterId,
+          productionLine: op.workCenterId,
+          isBottleneck: op.isBottleneck,
+          start: op.plannedStartDate,
+          end: op.plannedEndDate,
+          destinationCountry: op.destinationCountry,
+          priority: op.priority,
+          durationHours: op.durationHours,
+          setupHours: op.setupHours,
+          productionHours: op.productionHours,
+          teardownHours: op.teardownHours,
+        };
+        const metrics = computeBarMetrics(task, timelineStartVal, timelineEndVal, 'day');
+        return { ...task, ...metrics };
+      }),
+    };
+  }
+
   function updateTaskPosition(taskId, newLineId, newStartDate) {
     const order = orders.value.find((o) => (o.packagingOrder || o.packagingOrderId) === taskId);
     const duration = order
@@ -533,6 +591,7 @@ export const useDailyPlanningStore = defineStore('dailyPlanning', () => {
     loadDashboard, loadSchedulingDefaults, loadPlanningSettingsFromStorage, setPlanningHorizon,
     recalculatePlanning, runRecommendedSequence, runWhatIf, confirmSequence, saveDraftSequence,
     activateDraftSequence, loadDraftStatus, loadCombinedPlanning, selectCombinedOrder,
-    simulateBatchAssignment, loadExceptions, updateTaskPosition, selectTask,
+    simulateBatchAssignment, loadExceptions, updateTaskPosition, updateOperationPosition,
+    runOperationsWhatIf, selectTask,
   };
 });

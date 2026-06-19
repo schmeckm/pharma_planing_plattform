@@ -24,6 +24,13 @@ const routes = [
       { path: 'prognosis', name: 'MlPrognosis', component: () => import('@/views/MlPrognosisView.vue'), meta: { title: 'ML-Prognose', featureId: 'ml-prognosis' } },
       { path: 'audit', name: 'AuditTrail', component: () => import('@/views/AuditTrailView.vue'), meta: { title: 'Audit Trail', featureId: 'audit' } },
       { path: 'admin', name: 'Administration', component: () => import('@/views/AdministrationView.vue'), meta: { title: 'Administration', featureId: 'admin-system' } },
+      {
+        path: 'admin/data/:entitySlug?',
+        name: 'AdminDataManagement',
+        component: () => import('@/views/admin/AdminDataLayout.vue'),
+        meta: { title: 'Admin Data Management', featureId: 'admin-data' },
+        redirect: (to) => (to.params.entitySlug ? undefined : '/admin/data/planning-orders'),
+      },
       { path: 'rule-management', name: 'RuleManagement', component: () => import('@/views/v2/RuleManagementView.vue'), meta: { title: 'Rule Management', edition: '2.0', featureId: 'rule-management' } },
       { path: 'what-if', name: 'WhatIf', component: () => import('@/views/v2/WhatIfView.vue'), meta: { title: 'What-If Simulation', edition: '2.0', featureId: 'what-if' } },
       { path: 'exceptions', name: 'Exceptions', component: () => import('@/views/v2/ExceptionsView.vue'), meta: { title: 'Planning Exceptions', edition: '2.0', featureId: 'exceptions' } },
@@ -36,6 +43,7 @@ const routes = [
       { path: 'control-tower', name: 'ControlTower', component: () => import('@/views/v4/ControlTowerView.vue'), meta: { title: 'Control Tower', edition: '4.0', featureId: 'control-tower' } },
       { path: 'planning', name: 'Planning', component: () => import('@/views/v5/PlanningHubView.vue'), meta: { title: 'Time Planning', edition: '5.0', featureId: 'time-planning' } },
       { path: 'line-optimization', name: 'LineOptimization', component: () => import('@/views/LineOptimizationView.vue'), meta: { title: 'Production Sequencing', edition: '5.0', featureId: 'line-optimization' } },
+      { path: 'detailed-scheduling', name: 'DetailedScheduling', component: () => import('@/views/DetailedSchedulingView.vue'), meta: { title: 'Detailed Scheduling', edition: '5.0', featureId: 'detailed-scheduling' } },
     ],
   },
 ];

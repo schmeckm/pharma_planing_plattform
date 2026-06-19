@@ -43,6 +43,39 @@ async function whatIf(req, res, next) {
   } catch (e) { next(e); }
 }
 
+async function operationsWhatIf(req, res, next) {
+  try {
+    const { parseHorizonDays } = require('../utils/planningHorizon');
+    res.json(await svc.operationsWhatIf({
+      overrides: req.body?.overrides || [],
+      sequence: req.body?.sequence || [],
+      startAnchor: req.body?.startAnchor || null,
+      horizonDays: parseHorizonDays(req.body?.horizonDays),
+      manualOverride: req.body?.manualOverride !== false,
+    }));
+  } catch (e) { next(e); }
+}
+
+async function getPlanningHorizonRules(_req, res, next) {
+  try {
+    const { PlanningHorizonEngine } = require('../engines/planningHorizonEngine');
+    res.json({ items: new PlanningHorizonEngine().loadRules() });
+  } catch (e) { next(e); }
+}
+
+async function evaluatePlanningHorizon(req, res, next) {
+  try {
+    const { PlanningHorizonEngine } = require('../engines/planningHorizonEngine');
+    const engine = new PlanningHorizonEngine();
+    const ctx = engine.buildContext(req.body || {});
+    const horizon = engine.resolveHorizon(ctx, {
+      anchorDate: req.body?.anchorDate,
+      targetDate: req.body?.targetDate || req.body?.plannedStartDate,
+    });
+    res.json({ context: ctx, horizon });
+  } catch (e) { next(e); }
+}
+
 async function getSapOperationsStatus(req, res, next) {
   try {
     const { SapOperationsImportService } = require('../services/sapOperationsImportService');
@@ -151,6 +184,9 @@ module.exports = {
   getRecommendedSequence,
   optimizeSequence,
   whatIf,
+  operationsWhatIf,
+  getPlanningHorizonRules,
+  evaluatePlanningHorizon,
   confirmSequence,
   simulateBatchAssignment,
   getExceptions,

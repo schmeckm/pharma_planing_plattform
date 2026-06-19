@@ -5,6 +5,7 @@ import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
+import ConfirmationService from 'primevue/confirmationservice';
 import Aura from '@primevue/themes/aura';
 import 'primeicons/primeicons.css';
 
@@ -27,4 +28,5 @@ app.use(PrimeVue, {
   theme: { preset: Aura, options: { darkModeSelector: false } },
 });
 app.use(ToastService);
+app.use(ConfirmationService);
 app.mount('#app');

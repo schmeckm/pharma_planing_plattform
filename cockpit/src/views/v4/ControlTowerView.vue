@@ -171,6 +171,7 @@ import RiskBadge from '@/components/shared/RiskBadge.vue';
 import PlanningImpactPanel from '@/components/controlTower/PlanningImpactPanel.vue';
 import { useControlTowerStore } from '@/stores/controlTower';
 import { useHorizonSettingsStore } from '@/stores/horizonSettings';
+import { qualitativeChartColors, chartPrimaryColor, mergeChartOptions } from '@/utils/chartColors';
 
 const store = useControlTowerStore();
 const horizonSettings = useHorizonSettingsStore();
@@ -179,7 +180,7 @@ const horizon = computed({
   set: (value) => horizonSettings.setControlTowerHorizon(value),
 });
 const horizonOpts = computed(() => horizonSettings.controlTowerOptions);
-const chartOpts = { maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } };
+const chartOpts = mergeChartOptions();
 
 const kpis = computed(() => store.liveKpis || store.dashboard?.executive?.kpis || {});
 
@@ -206,15 +207,35 @@ const kpiCards = computed(() => {
 const inventoryRows = computed(() => store.dashboard?.inventory?.finishedGoods?.items || []);
 const plantChart = computed(() => {
   const d = store.dashboard?.inventory?.finishedGoods?.byPlant || {};
-  return { labels: Object.keys(d), datasets: [{ label: 'Available EA', data: Object.values(d), backgroundColor: '#0070f2' }] };
+  const labels = Object.keys(d);
+  return {
+    labels,
+    datasets: [{
+      label: 'Available EA',
+      data: Object.values(d),
+      backgroundColor: labels.length === 1 ? chartPrimaryColor() : qualitativeChartColors(labels.length),
+    }],
+  };
 });
 const countryChart = computed(() => {
   const d = store.dashboard?.inventory?.finishedGoods?.byCountry || {};
-  return { labels: Object.keys(d), datasets: [{ data: Object.values(d), backgroundColor: ['#0070f2','#107e3e','#e9730c','#bb0000','#6a6d70'] }] };
+  const labels = Object.keys(d);
+  return {
+    labels,
+    datasets: [{ data: Object.values(d), backgroundColor: qualitativeChartColors(labels.length) }],
+  };
 });
 const demandCountryChart = computed(() => {
   const rows = store.dashboard?.demand?.byCountry || [];
-  return { labels: rows.map((r) => r.countryCode), datasets: [{ label: 'Demand EA', data: rows.map((r) => r.quantity), backgroundColor: '#5899da' }] };
+  const labels = rows.map((r) => r.countryCode);
+  return {
+    labels,
+    datasets: [{
+      label: 'Demand EA',
+      data: rows.map((r) => r.quantity),
+      backgroundColor: qualitativeChartColors(labels.length),
+    }],
+  };
 });
 const allocStats = computed(() => {
   const s = store.dashboard?.allocation?.summary || {};

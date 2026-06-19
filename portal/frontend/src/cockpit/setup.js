@@ -3,8 +3,8 @@ import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
-import Aura from '@primevue/themes/aura';
 import 'primeicons/primeicons.css';
+import { CockpitPrimePreset, cockpitPrimeOptions } from './primeTheme.js';
 import '../../../../cockpit/src/styles/main.css';
 
 let registered = false;
@@ -19,7 +19,7 @@ export function setupCockpitPlugins(app) {
 
   app.use(ElementPlus);
   app.use(PrimeVue, {
-    theme: { preset: Aura, options: { darkModeSelector: false } },
+    theme: { preset: CockpitPrimePreset, options: cockpitPrimeOptions },
   });
   app.use(ToastService);
 }

@@ -2,7 +2,7 @@
   <div class="seq-toolbar panel">
     <div class="seq-toolbar-groups">
       <div class="seq-group">
-        <span class="seq-group-label">{{ SEQ_LABELS.TOOLBAR_PLAN }}</span>
+        <span class="toolbar-group-label">{{ SEQ_LABELS.TOOLBAR_PLAN }}</span>
         <div class="seq-group-actions">
           <Button
             :label="SEQ_LABELS.BUILD_SEQUENCE"
@@ -16,7 +16,7 @@
       <div class="seq-divider" aria-hidden="true" />
 
       <div class="seq-group">
-        <span class="seq-group-label">{{ SEQ_LABELS.TOOLBAR_SIMULATE }}</span>
+        <span class="toolbar-group-label">{{ SEQ_LABELS.TOOLBAR_SIMULATE }}</span>
         <div class="seq-group-actions">
           <Button
             :label="SEQ_LABELS.WHAT_IF"
@@ -32,7 +32,7 @@
       <div class="seq-divider" aria-hidden="true" />
 
       <div class="seq-group seq-group-publish">
-        <span class="seq-group-label">{{ SEQ_LABELS.TOOLBAR_PUBLISH }}</span>
+        <span class="toolbar-group-label">{{ SEQ_LABELS.TOOLBAR_PUBLISH }}</span>
         <div class="seq-group-actions">
           <Button
             :label="SEQ_LABELS.SAVE_DRAFT"
@@ -45,7 +45,7 @@
           <Button
             :label="SEQ_LABELS.CONFIRM"
             icon="pi pi-check"
-            severity="success"
+            severity="secondary"
             outlined
             :loading="loading"
             @click="$emit('confirm')"
@@ -54,7 +54,6 @@
             v-if="shadowPlanning"
             :label="SEQ_LABELS.ACTIVATE"
             icon="pi pi-bolt"
-            severity="success"
             :loading="loading"
             :disabled="!canActivate"
             :title="activateTooltip"
@@ -98,7 +97,7 @@
         <Menu id="seq-more-menu" ref="moreMenu" :model="moreItems" :popup="true" />
       </div>
     </div>
-    <p class="seq-toolbar-hint">{{ workflowHint }}</p>
+    <p class="toolbar-hint">{{ workflowHint }}</p>
   </div>
 </template>
 
@@ -153,9 +152,9 @@ function toggleMore(event) {
 <style scoped>
 .seq-toolbar {
   padding: 0.75rem 1rem;
-  border: 1px solid var(--color-border, #e2e8f0);
-  border-radius: 8px;
-  background: var(--color-bg, #fff);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-panel);
 }
 
 .seq-toolbar-groups {
@@ -172,14 +171,6 @@ function toggleMore(event) {
   padding: 0 0.75rem 0 0;
 }
 
-.seq-group-label {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--p-text-muted-color, #94a3b8);
-}
-
 .seq-group-actions {
   display: flex;
   flex-wrap: wrap;
@@ -191,7 +182,7 @@ function toggleMore(event) {
   align-self: stretch;
   min-height: 2.5rem;
   margin: 0 0.25rem;
-  background: var(--color-border, #e2e8f0);
+  background: var(--color-border);
 }
 
 .seq-toolbar-end {
@@ -204,13 +195,7 @@ function toggleMore(event) {
 }
 
 .seq-solver-tag {
-  font-size: 0.75rem;
-}
-
-.seq-toolbar-hint {
-  margin: 0.6rem 0 0;
-  font-size: 0.75rem;
-  color: var(--p-text-muted-color, #64748b);
+  font-size: var(--text-sm);
 }
 
 @media (max-width: 900px) {
@@ -218,7 +203,7 @@ function toggleMore(event) {
   .seq-group {
     width: 100%;
     padding-right: 0;
-    border-bottom: 1px solid var(--color-border, #f1f5f9);
+    border-bottom: 1px solid var(--help-surface-strong);
     padding-bottom: 0.5rem;
     margin-bottom: 0.25rem;
   }

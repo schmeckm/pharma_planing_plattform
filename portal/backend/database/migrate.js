@@ -23,4 +23,5 @@ export async function runMigrations() {
   await addColumnIfMissing('AuditLogs', 'UserId', 'INTEGER');
   await addColumnIfMissing('Users', 'displayName', 'VARCHAR(255)');
   await addColumnIfMissing('Users', 'googleId', 'VARCHAR(255)');
+  await addColumnIfMissing('Users', 'preferences', 'TEXT DEFAULT \'{}\'');
 }

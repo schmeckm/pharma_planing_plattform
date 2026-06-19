@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "materialNumber": "DP-1000",
+      "materialDescription": "Product Alpha 100mg Tablets",
+      "packageType": "Tablet",
+      "campaignGroup": "ALPHA_TABLET",
+      "colorFamily": "Blue",
+      "revenuePerUnit": 12.5,
+      "regulatoryCritical": false
+    },
+    {
+      "materialNumber": "DP-2000",
+      "materialDescription": "Product Beta 50mg Capsules",
+      "packageType": "Capsule",
+      "campaignGroup": "BETA_CAPSULE",
+      "colorFamily": "Red",
+      "revenuePerUnit": 9.8,
+      "regulatoryCritical": false
+    },
+    {
+      "materialNumber": "DP-3000",
+      "materialDescription": "Product Gamma Blister Pack",
+      "packageType": "Blister",
+      "campaignGroup": "GAMMA_BLISTER",
+      "colorFamily": "Yellow",
+      "revenuePerUnit": 15.2,
+      "regulatoryCritical": true
+    },
+    {
+      "materialNumber": "DP-4000",
+      "materialDescription": "Product Delta Liquid Fill",
+      "packageType": "Liquid",
+      "campaignGroup": "DELTA_LIQUID",
+      "colorFamily": "Blue",
+      "revenuePerUnit": 18.0,
+      "regulatoryCritical": false
+    },
+    {
+      "materialNumber": "DP-5000",
+      "materialDescription": "Product Epsilon Parenteral",
+      "packageType": "Parenteral",
+      "campaignGroup": "EPSILON_PARENTERAL",
+      "colorFamily": "Red",
+      "revenuePerUnit": 42.0,
+      "regulatoryCritical": true
+    }
+  ]
+}

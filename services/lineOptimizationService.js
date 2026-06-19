@@ -3,6 +3,7 @@ const path = require('node:path');
 const { getProvider } = require('../providers');
 const { LineSequencingEngine } = require('../engines/lineSequencingEngine');
 const { ScheduleImpactEngine } = require('../engines/scheduleImpactEngine');
+const { PlanningHorizonEngine } = require('../engines/planningHorizonEngine');
 const { AllocationService } = require('./allocationService');
 const { PerformanceService } = require('./performanceService');
 const { generateId } = require('../utils/idGenerator');
@@ -23,6 +24,7 @@ class LineOptimizationService {
     this.impact = new ScheduleImpactEngine();
     this.allocation = new AllocationService();
     this.draftSchedules = new DraftScheduleService(provider);
+    this.horizonEngine = new PlanningHorizonEngine();
   }
 
   _refreshSequencer() {
@@ -184,6 +186,14 @@ class LineOptimizationService {
       startAnchor || sequence[0]?.plannedStartDate,
       planningHorizon,
     );
+
+    const materials = this._read('materials').items || [];
+    const materialByNumber = Object.fromEntries(materials.map((m) => [m.materialNumber, m]));
+    const anchor = startAnchor || sequence[0]?.plannedStartDate || timelineStart;
+    result.simulated = this.horizonEngine.annotateScheduleItems(result.simulated, {
+      anchorDate: anchor,
+      materialByNumber,
+    });
 
     scenario.ganttTasks = this.sequencer.toGanttTasks(result.simulated, timelineStart, timelineEnd);
     scenario.timelineStart = timelineStart;

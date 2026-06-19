@@ -31,27 +31,28 @@ const formattedValue = computed(() => {
 
 <style scoped>
 .kpi-card {
-  background: var(--color-bg);
+  background: var(--color-panel, #ffffff);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 16px;
   display: flex;
   gap: 12px;
   box-shadow: var(--shadow-sm);
-  border-top: 3px solid var(--color-accent);
+  border-top: 3px solid var(--blue-500, var(--color-accent));
 }
 
+.kpi-card--primary { border-top-color: var(--blue-500, var(--color-accent)); }
 .kpi-card--success { border-top-color: var(--color-success); }
 .kpi-card--warning { border-top-color: var(--color-warning); }
-.kpi-card--info { border-top-color: var(--color-info); }
-.kpi-card--neutral { border-top-color: #89919a; }
+.kpi-card--info { border-top-color: var(--blue-400, var(--color-info)); }
+.kpi-card--neutral { border-top-color: var(--color-neutral); }
 
 .kpi-card__icon {
   width: 40px;
   height: 40px;
-  border-radius: 8px;
-  background: #f0f7fd;
-  color: var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--blue-50, var(--color-accent-soft));
+  color: var(--blue-600, var(--color-accent));
   display: flex;
   align-items: center;
   justify-content: center;

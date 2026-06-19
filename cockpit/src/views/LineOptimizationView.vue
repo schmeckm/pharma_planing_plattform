@@ -5,7 +5,7 @@
       {{ PLANNER_LABELS.PRODUCTION_SEQUENCING }} — {{ SEQ_LABELS.PAGE_SUBTITLE }}
     </p>
 
-    <div v-if="store.shadowPlanning" class="lo-shadow-banner">
+    <div v-if="store.shadowPlanning" class="callout callout--neutral lo-shadow-banner">
       <Tag
         :value="draftStatusLabel"
         :severity="draftStatusSeverity"
@@ -15,8 +15,8 @@
       </span>
     </div>
 
-    <div v-if="store.comparisonDeltaKpis.length" class="lo-delta-kpis">
-      <p class="lo-delta-title">Optimization: before → after</p>
+    <div v-if="store.comparisonDeltaKpis.length" class="accent-block lo-delta-kpis">
+      <p class="accent-block__title">Optimization: before → after</p>
       <div class="lo-delta-grid">
         <KpiCard
           v-for="k in store.comparisonDeltaKpis"
@@ -65,7 +65,7 @@
     />
 
     <div class="lo-main">
-      <div class="lo-gantt panel">
+      <div class="lo-gantt panel panel--compact">
         <div class="panel-header gantt-header">
           <h2>{{ SEQ_LABELS.GANTT_TITLE }}</h2>
           <div class="gantt-header-controls">
@@ -87,15 +87,16 @@
             </div>
           </div>
         </div>
-        <p v-if="ganttViewMode === 'operations'" class="gantt-ops-hint">{{ SEQ_LABELS.OPERATIONS_HINT }}</p>
-        <p v-if="scopeFilterLabel" class="gantt-scope-banner">
+        <p v-if="ganttViewMode === 'operations'" class="callout callout--warning callout--compact">{{ SEQ_LABELS.OPERATIONS_HINT }}</p>
+        <p v-if="scopeFilterLabel" class="callout callout--scope">
           Scope from Control Tower: {{ scopeFilterLabel }}
-          <RouterLink to="/line-optimization" class="scope-clear">Show all</RouterLink>
+          <RouterLink to="/line-optimization" class="text-link">Show all</RouterLink>
         </p>
-        <p v-if="lineImbalanceHint" class="gantt-warn">{{ lineImbalanceHint }}</p>
+        <p v-if="lineImbalanceHint" class="callout callout--warning">{{ lineImbalanceHint }}</p>
         <div class="panel-body">
           <SwimlaneGantt
             v-if="activeGanttTasks.length"
+            v-model:granularity="ganttGranularity"
             :tasks="activeGanttTasks"
             :lines="activeSwimlanes"
             :timeline-start="activeTimelineStart"
@@ -104,63 +105,30 @@
             :moved-order-ids="ganttViewMode === 'packaging' ? store.movedOrderIds : []"
             :moved-order-details="store.movedOrderDetails"
             :line-column-label="ganttViewMode === 'operations' ? 'Work center' : SEQ_LABELS.PRODUCTION_LINE"
+            :show-time-legend="ganttViewMode === 'operations'"
+            :time-legend-title="SEQ_LABELS.OP_TIME_LEGEND"
             @select="onSelect"
             @move="onMove"
           />
-          <p v-else-if="store.ganttTasks.length && showMovedOnly" class="empty">No moved orders in the current plan.</p>
-          <p v-else class="empty">{{ SEQ_LABELS.LOADING }}</p>
+          <p v-else-if="store.ganttTasks.length && showMovedOnly" class="empty-state">No moved orders in the current plan.</p>
+          <p v-else class="empty-state">{{ SEQ_LABELS.LOADING }}</p>
           <p class="hint">{{ SEQ_LABELS.GANTT_HINT }}</p>
         </div>
       </div>
 
-      <div class="lo-detail panel">
-        <div class="panel-header"><h2>{{ SEQ_LABELS.ORDER_DETAIL }}</h2></div>
+      <div class="lo-detail panel panel--compact">
+        <div class="panel-header"><h2>{{ detailPanelTitle }}</h2></div>
         <div class="panel-body" v-if="store.selectedTask">
-          <dl class="detail-list">
-            <dt>PO</dt><dd>{{ taskId(store.selectedTask) }}</dd>
-            <dt>Country</dt><dd>{{ store.selectedTask.destinationCountry }}</dd>
-            <dt>Line</dt><dd>{{ store.selectedTask.productionLine }}</dd>
-            <dt>Start / End</dt><dd>{{ store.selectedTask.plannedStartDate }} → {{ store.selectedTask.plannedEndDate }}</dd>
-            <dt>Delivery</dt><dd>{{ store.selectedTask.requestedDeliveryDate }}</dd>
-            <dt>Duration</dt><dd>{{ store.selectedTask.durationHours }} h</dd>
-            <dt v-if="store.selectedTask.estimatedRuntimeHours != null">Runtime</dt>
-            <dd v-if="store.selectedTask.estimatedRuntimeHours != null">{{ fmtH(store.selectedTask.estimatedRuntimeHours) }}</dd>
-            <dt v-if="store.selectedTask.estimatedSetupHours != null">Setup</dt>
-            <dd v-if="store.selectedTask.estimatedSetupHours != null">{{ fmtH(store.selectedTask.estimatedSetupHours) }}</dd>
-            <dt v-if="store.selectedTask.estimatedDowntimeHours != null">Downtime</dt>
-            <dd v-if="store.selectedTask.estimatedDowntimeHours != null">{{ fmtH(store.selectedTask.estimatedDowntimeHours) }}</dd>
-            <dt v-if="store.selectedTask.estimatedTeardownHours != null">Teardown</dt>
-            <dd v-if="store.selectedTask.estimatedTeardownHours != null">{{ fmtH(store.selectedTask.estimatedTeardownHours) }}</dd>
-            <dt>Priority</dt><dd>{{ store.selectedTask.priority }}</dd>
-            <dt>Batch</dt><dd>{{ store.selectedTask.recommendedBatchId || '—' }}</dd>
-            <dt>Status</dt><dd><RiskBadge :level="statusLevel(store.selectedTask)" /></dd>
-            <dt>Risk Score</dt><dd>{{ store.selectedTask.riskScore ?? '—' }}</dd>
-            <dt>Shelf-Life at Start</dt><dd>{{ store.selectedTask.rmslAtStart ?? '—' }} mo</dd>
-            <dt>Shelf-Life at End</dt><dd>{{ store.selectedTask.rmslAtEnd ?? '—' }} mo</dd>
-            <dt>Shelf-Life at Delivery</dt><dd>{{ store.selectedTask.rmslAtDelivery ?? '—' }} mo</dd>
-            <dt>Expected OEE</dt><dd>{{ store.selectedTask.expectedOee != null ? store.selectedTask.expectedOee + '%' : '—' }}</dd>
-            <dt>Expected Throughput</dt><dd>{{ store.selectedTask.expectedThroughput ?? '—' }}</dd>
-            <dt>Expected Yield</dt><dd>{{ store.selectedTask.expectedYield != null ? store.selectedTask.expectedYield + '%' : '—' }}</dd>
-            <dt>Line Score</dt><dd>{{ store.selectedTask.lineScore ?? '—' }}</dd>
-            <dt>Line Reliability</dt><dd>{{ store.selectedTask.lineReliability != null ? store.selectedTask.lineReliability + '%' : '—' }}</dd>
-          </dl>
-          <ul v-if="selectedOperations.length" class="ops-list">
-            <li v-for="op in selectedOperations" :key="op.operationId" :class="{ 'op-bn': op.isBottleneck }">
-              Op {{ op.operationNo }} {{ op.operationName }} · {{ op.workCenterId }}
-              · {{ op.plannedStartDate }} → {{ op.plannedEndDate }}
-              <Tag v-if="op.isBottleneck" severity="warn" value="Bottleneck" class="op-tag" />
-            </li>
-          </ul>
-          <ul v-if="store.selectedTask.issues?.length" class="issues">
-            <li v-for="(iss, i) in store.selectedTask.issues" :key="i">{{ plannerText(iss.message) }}</li>
-          </ul>
-          <CombinedPlanningDetail
-            :plan="store.selectedCombinedPlanning"
+          <OrderDetailPanel
+            :task="store.selectedTask"
+            :operations="selectedOperations"
+            :selected-operation="selectedOperation"
+            :combined-plan="store.selectedCombinedPlanning"
             :horizon-start="store.ganttTimelineStart"
             :horizon-end="store.ganttTimelineEnd"
           />
         </div>
-        <div v-else class="panel-body empty">{{ SEQ_LABELS.SELECT_ORDER }}</div>
+        <div v-else class="panel-body empty-state">{{ emptyDetailHint }}</div>
       </div>
     </div>
 
@@ -203,7 +171,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import Card from 'primevue/card';
 import Checkbox from 'primevue/checkbox';
@@ -214,8 +182,8 @@ import KpiCard from '@/components/dashboard/KpiCard.vue';
 import WizardReturnBar from '@/components/wizard/WizardReturnBar.vue';
 import RiskBadge from '@/components/shared/RiskBadge.vue';
 import SwimlaneGantt from '@/components/lineOptimization/SwimlaneGantt.vue';
+import OrderDetailPanel from '@/components/lineOptimization/OrderDetailPanel.vue';
 import CombinedPlanningPanel from '@/components/lineOptimization/CombinedPlanningPanel.vue';
-import CombinedPlanningDetail from '@/components/lineOptimization/CombinedPlanningDetail.vue';
 import PlanningHorizonBar from '@/components/lineOptimization/PlanningHorizonBar.vue';
 import OptimizationImpactBanner from '@/components/lineOptimization/OptimizationImpactBanner.vue';
 import SequencingToolbar from '@/components/lineOptimization/SequencingToolbar.vue';
@@ -223,7 +191,7 @@ import SelectButton from 'primevue/selectbutton';
 import WorkCenterCapacityPanel from '@/components/lineOptimization/WorkCenterCapacityPanel.vue';
 import { useDailyPlanningStore } from '@/stores/dailyPlanning';
 import { useHorizonSettingsStore } from '@/stores/horizonSettings';
-import { plannerText, PLANNER_LABELS } from '@/utils/plannerTerminology';
+import { PLANNER_LABELS } from '@/utils/plannerTerminology';
 import { SEQ_LABELS } from '@/utils/sequencingLabels';
 import { apiV4 } from '@/api/v4';
 
@@ -232,6 +200,13 @@ const horizonSettings = useHorizonSettingsStore();
 const route = useRoute();
 const toast = useToast();
 const showMovedOnly = ref(false);
+const selectedOperation = ref(null);
+const GANTT_ZOOM_KEY = 'hap_gantt_granularity';
+const ganttGranularity = ref(localStorage.getItem(GANTT_ZOOM_KEY) || 'day');
+
+watch(ganttGranularity, (v) => {
+  localStorage.setItem(GANTT_ZOOM_KEY, v);
+});
 
 const ganttViewOptions = [
   { label: SEQ_LABELS.GANTT_VIEW_OPERATIONS, value: 'operations' },
@@ -241,6 +216,10 @@ const ganttViewOptions = [
 const ganttViewMode = computed({
   get: () => store.ganttViewMode,
   set: (v) => { store.ganttViewMode = v; },
+});
+
+watch(ganttViewMode, (mode) => {
+  if (mode !== 'operations') selectedOperation.value = null;
 });
 
 const activeSwimlanes = computed(() => {
@@ -327,8 +306,23 @@ const lineImbalanceHint = computed(() => {
     .replace('{line}', d.dominantLine);
 });
 
-const selectedId = computed(() =>
-  store.selectedTask ? taskId(store.selectedTask) : null
+const selectedId = computed(() => {
+  if (ganttViewMode.value === 'operations' && selectedOperation.value?.operationId) {
+    return selectedOperation.value.operationId;
+  }
+  return store.selectedTask ? taskId(store.selectedTask) : null;
+});
+
+const detailPanelTitle = computed(() =>
+  (ganttViewMode.value === 'operations' && selectedOperation.value)
+    ? SEQ_LABELS.OPERATION_DETAIL
+    : SEQ_LABELS.ORDER_DETAIL,
+);
+
+const emptyDetailHint = computed(() =>
+  ganttViewMode.value === 'operations'
+    ? SEQ_LABELS.SELECT_OPERATION
+    : SEQ_LABELS.SELECT_ORDER,
 );
 
 const canActivate = computed(() => store.planningDraft?.status === 'READY');
@@ -350,23 +344,24 @@ const draftStatusSeverity = computed(() => {
   return 'secondary';
 });
 
-function fmtH(v) {
-  const n = Number(v);
-  if (!Number.isFinite(n)) return '—';
-  return `${Math.round(n * 10) / 10} h`;
-}
-
 function taskId(o) {
   return o.packagingOrder || o.packagingOrderId || o.id;
 }
 
-function statusLevel(o) {
-  if ((o.riskScore || 0) >= 30) return 'HIGH';
-  if (o.allocationStatus === 'AT_RISK') return 'MEDIUM';
-  return 'LOW';
-}
-
 function onSelect(task) {
+  if (task.operationNo) {
+    const fullOp = (store.operationPlan?.operations || []).find((o) => o.operationId === task.id) || task;
+    selectedOperation.value = fullOp;
+    const poId = task.packagingOrderId || task.packagingOrder;
+    const order = store.orders.find((o) => taskId(o) === poId);
+    if (order) {
+      store.selectTask({ id: poId, ...order });
+      return;
+    }
+  } else {
+    selectedOperation.value = null;
+  }
+
   if (task.packagingOrderId) {
     const order = store.orders.find(
       (o) => taskId(o) === task.packagingOrderId,
@@ -379,8 +374,20 @@ function onSelect(task) {
   store.selectTask(task);
 }
 
-async function onMove({ taskId, productionLine, plannedStartDate }) {
-  store.updateTaskPosition(taskId, productionLine, plannedStartDate);
+async function onMove({ taskId, productionLine, plannedStartDate, plannedStartDateTime }) {
+  const startDate = plannedStartDateTime?.slice(0, 10) || plannedStartDate;
+  if (ganttViewMode.value === 'operations') {
+    store.updateOperationPosition(taskId, productionLine, startDate);
+    await store.runOperationsWhatIf({
+      operationId: taskId,
+      workCenterId: productionLine,
+      plannedStartDate: startDate,
+    });
+    const op = (store.operationPlan?.operations || []).find((o) => o.operationId === taskId);
+    if (op) selectedOperation.value = op;
+    return;
+  }
+  store.updateTaskPosition(taskId, productionLine, startDate);
   await store.runWhatIf();
   const task = store.orders.find((o) => (o.packagingOrder || o.packagingOrderId) === taskId);
   if (task) store.selectTask({ id: taskId, ...task });
@@ -496,39 +503,25 @@ onMounted(async () => {
 
 <style scoped>
 .line-opt { display: flex; flex-direction: column; gap: 16px; }
-.lo-shadow-banner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border, #ddd);
-  background: var(--color-bg-muted, #f8f9fa);
-  font-size: 0.8125rem;
-}
-.lo-shadow-hint { color: var(--text-color-secondary); }
-.lo-delta-kpis {
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #86efac;
-  background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%);
-}
-.lo-delta-title {
-  margin: 0 0 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #166534;
-}
+.lo-shadow-hint { color: var(--color-text-muted); }
 .lo-delta-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 12px;
 }
 .lo-kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-.lo-main { display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
+.lo-main { display: grid; grid-template-columns: 1fr var(--detail-panel-width, 320px); gap: 16px; }
+.lo-detail {
+  position: sticky;
+  top: 0;
+  max-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+}
+.lo-detail .panel-body {
+  flex: 1;
+  overflow-y: auto;
+}
 .gantt-header {
   display: flex;
   flex-wrap: wrap;
@@ -542,51 +535,25 @@ onMounted(async () => {
   align-items: center;
   gap: 0.75rem;
 }
-.gantt-ops-hint {
-  margin: 0;
-  padding: 0.4rem 1rem;
-  font-size: 0.75rem;
-  color: #64748b;
-  background: #fffbeb;
-  border-bottom: 1px solid #fde68a;
-}
-.ops-list {
-  margin: 0 0 12px;
-  padding-left: 18px;
-  font-size: 0.75rem;
-  list-style: none;
-}
-.ops-list li {
-  padding: 4px 0;
-  border-bottom: 1px solid #f1f5f9;
-}
-.ops-list li.op-bn {
-  font-weight: 600;
-  color: #b45309;
-}
-.op-tag {
-  margin-left: 0.35rem;
-  vertical-align: middle;
-}
 .gantt-controls {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1rem;
-  font-size: 0.75rem;
+  font-size: var(--text-sm);
 }
 .gantt-legend {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #166534;
+  color: var(--color-accent);
 }
 .gantt-legend-swatch {
   width: 14px;
   height: 14px;
   border-radius: 3px;
-  background: #0070f2;
-  outline: 2px dashed #16a34a;
+  background: var(--color-risk-ok);
+  outline: 2px dashed var(--color-accent);
   outline-offset: 1px;
 }
 .gantt-filter {
@@ -596,40 +563,10 @@ onMounted(async () => {
   cursor: pointer;
   user-select: none;
 }
-.gantt-warn {
-  margin: 0;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  color: #92400e;
-  background: #fffbeb;
-  border-bottom: 1px solid #fde68a;
-}
-.gantt-scope-banner {
-  margin: 0;
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  color: #1e40af;
-  background: #eff6ff;
-  border-bottom: 1px solid #93c5fd;
-}
-.scope-clear {
-  margin-left: 0.75rem;
-  color: var(--p-primary-color, #0070f2);
-  text-decoration: none;
-}
-.scope-clear:hover { text-decoration: underline; }
-.panel { background: var(--color-bg, #fff); border: 1px solid var(--color-border, #ddd); border-radius: 8px; }
-.panel-header { padding: 12px 16px; border-bottom: 1px solid var(--color-border, #eee); }
-.panel-header h2 { margin: 0; font-size: 0.9375rem; }
-.panel-body { padding: 16px; }
-.hint { font-size: 0.6875rem; color: var(--text-color-secondary); margin-top: 8px; }
-.detail-list { display: grid; grid-template-columns: 100px 1fr; gap: 6px 12px; font-size: 0.8125rem; margin: 0; }
-.detail-list dt { color: var(--text-color-secondary); }
-.issues { margin: 12px 0 0; padding-left: 18px; font-size: 0.75rem; color: #bb0000; }
-.empty { color: var(--text-color-secondary); font-size: 0.875rem; }
+.text-link { margin-left: 0.75rem; }
 .lo-compare, .lo-batch { margin-top: 8px; }
-.batch-summary { font-size: 0.875rem; margin: 0 0 12px; }
-.compare-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 12px; font-size: 0.875rem; }
+.batch-summary { font-size: var(--text-md); margin: 0 0 12px; }
+.compare-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 12px; font-size: var(--text-md); }
 @media (max-width: 1100px) {
   .lo-main { grid-template-columns: 1fr; }
   .compare-grid { grid-template-columns: 1fr 1fr; }

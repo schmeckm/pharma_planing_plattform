@@ -1,23 +1,4 @@
-:root {
-  --color-bg: #ffffff;
-  --color-sidebar: #1d2d3e;
-  --color-sidebar-hover: #2a4159;
-  --color-sidebar-active: #0a6ed1;
-  --color-accent: #0a6ed1;
-  --color-accent-dark: #0854a0;
-  --color-text: #32363a;
-  --color-text-muted: #6a6d70;
-  --color-border: #e5e5e5;
-  --color-panel: #fafafa;
-  --color-success: #107e3e;
-  --color-warning: #e9730c;
-  --color-error: #bb0000;
-  --color-info: #0a6ed1;
-  --sidebar-width: 240px;
-  --detail-panel-width: 440px;
-  --header-height: 56px;
-  --font-family: '72', '72 Full', 'Segoe UI', Tahoma, Arial, sans-serif;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --radius: 8px;
-}
+/**
+ * Cockpit-spezifische Erweiterungen (optional).
+ * Zentrale Tokens: ../../../styles/design-tokens.css (via enterprise-theme.css)
+ */

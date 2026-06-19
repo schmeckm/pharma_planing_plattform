@@ -88,6 +88,34 @@ router.get('/me', authMiddleware, async (req, res) => {
   sendSuccess(res, { user: serializeUser(req.user) });
 });
 
+router.get('/features', authMiddleware, async (req, res) => {
+  try {
+    const { getFeatureProfile } = await import('../services/profileService.js');
+    const profile = await getFeatureProfile(req.user);
+    sendSuccess(res, profile);
+  } catch (err) {
+    console.error(err);
+    sendError(res, req, 500, 'errors.internal');
+  }
+});
+
+router.patch('/profile', authMiddleware, async (req, res) => {
+  try {
+    const { updateUserProfile } = await import('../services/profileService.js');
+    const user = await updateUserProfile(req.user.id, req.body || {});
+    if (!user) {
+      return sendError(res, req, 404, 'errors.notFound');
+    }
+    sendSuccess(res, { user });
+  } catch (err) {
+    if (err.code === 'profile.invalidAccentColor' || err.code === 'profile.invalidFeatures') {
+      return sendError(res, req, 400, 'errors.validation');
+    }
+    console.error(err);
+    sendError(res, req, 500, 'errors.internal');
+  }
+});
+
 router.get('/google', authLimiter, async (req, res) => {
   try {
     const redirectAfterLogin = typeof req.query.redirect === 'string' ? req.query.redirect : '/dashboard';

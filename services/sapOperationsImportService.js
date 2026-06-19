@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { enrichOperationWithTimes } = require('../utils/operationTimeBreakdown');
 
 /**
  * Phase 5 — SAP-style operation routings (AFVC / CRHD mock).
@@ -44,7 +45,7 @@ class SapOperationsImportService {
 
   _mapSapStep(step, order, poId, packagingLine, routingId) {
     const wcId = (step.workCenterId || step.workCenter || '').replace('{{packagingLine}}', packagingLine);
-    return {
+    return enrichOperationWithTimes({
       operationId: `${poId}-OP${step.operationNo}`,
       packagingOrder: poId,
       packagingOrderId: poId,
@@ -54,7 +55,10 @@ class SapOperationsImportService {
       operationName: step.description || step.operationName || `Op ${step.operationNo}`,
       workCenterId: wcId,
       isBottleneck: !!step.isBottleneck,
-      durationHours: step.standardDurationHours || step.durationHours || 8,
+      standardSetupHours: step.standardSetupHours,
+      standardProductionHours: step.standardProductionHours,
+      standardTeardownHours: step.standardTeardownHours,
+      standardDurationHours: step.standardDurationHours || step.durationHours || 8,
       durationDays: null,
       plannedStartDate: null,
       plannedEndDate: null,
@@ -67,7 +71,7 @@ class SapOperationsImportService {
       routingSource: 'SAP',
       sapRoutingId: routingId || null,
       controlKey: step.controlKey || 'PP01',
-    };
+    });
   }
 
   _mapTemplateStep(step, order, poId, packagingLine) {

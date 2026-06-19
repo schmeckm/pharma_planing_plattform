@@ -14,19 +14,19 @@
       </div>
     </div>
 
-    <p class="wc-hint">
+    <p class="callout callout--muted wc-hint">
       <strong>Capacity</strong> = hard limit (hours/day per work center).
       <strong>OEE / performance factor</strong> adjusts duration only — it does not replace capacity checks.
     </p>
 
     <div v-if="utilization.length" class="panel-body wc-bars">
       <div v-for="wc in utilization" :key="wc.workCenterId" class="wc-row">
-        <span class="wc-label" :class="{ 'wc-bn': wc.isBottleneck }">
+        <span class="wc-label" :class="{ 'text-emphasis-warning': wc.isBottleneck }">
           {{ wc.isBottleneck ? '⦿ ' : '' }}{{ wc.workCenterName || wc.workCenterId }}
         </span>
-        <div class="wc-track">
+        <div class="util-track">
           <div
-            class="wc-fill"
+            class="util-fill"
             :class="fillClass(wc.peakUtilizationPercent)"
             :style="{ width: Math.min(100, wc.peakUtilizationPercent || 0) + '%' }"
           />
@@ -46,7 +46,7 @@
         </thead>
         <tbody>
           <tr v-for="wc in utilization" :key="'hm-' + wc.workCenterId">
-            <td class="wc-hm-label" :class="{ 'wc-bn': wc.isBottleneck }">
+            <td class="wc-hm-label" :class="{ 'text-emphasis-warning': wc.isBottleneck }">
               {{ wc.workCenterId }}
             </td>
             <td
@@ -101,10 +101,10 @@ function cellPct(wcId, date) {
 
 function cellClass(wcId, date) {
   const h = heatmapMap.value[`${wcId}|${date}`];
-  if (!h) return 'wc-cell--empty';
-  if (h.status === 'BOTTLENECK') return 'wc-cell--bn';
-  if (h.status === 'HIGH') return 'wc-cell--high';
-  return 'wc-cell--ok';
+  if (!h) return 'cap-cell--empty';
+  if (h.status === 'BOTTLENECK') return 'cap-cell--critical';
+  if (h.status === 'HIGH') return 'cap-cell--high';
+  return 'cap-cell--ok';
 }
 
 function cellTitle(wcId, date) {
@@ -114,9 +114,9 @@ function cellTitle(wcId, date) {
 }
 
 function fillClass(pct) {
-  if (pct > 90) return 'wc-fill--bn';
-  if (pct > 75) return 'wc-fill--high';
-  return 'wc-fill--ok';
+  if (pct > 90) return 'util-fill--critical';
+  if (pct > 75) return 'util-fill--high';
+  return 'util-fill--ok';
 }
 </script>
 
@@ -130,8 +130,6 @@ function fillClass(pct) {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--color-border, #eee);
 }
 
 .wc-cap-header h2 {
@@ -141,16 +139,7 @@ function fillClass(pct) {
 
 .wc-cap-meta {
   font-size: 0.75rem;
-  color: var(--p-text-muted-color, #64748b);
-}
-
-.wc-hint {
-  margin: 0;
-  padding: 0.5rem 1rem;
-  font-size: 0.72rem;
-  color: #64748b;
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  color: var(--color-text-muted);
 }
 
 .wc-alerts {
@@ -167,9 +156,9 @@ function fillClass(pct) {
 }
 
 .wc-alert--high {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #991b1b;
+  background: var(--color-error-soft);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error-text);
 }
 
 .wc-bars {
@@ -192,30 +181,9 @@ function fillClass(pct) {
   text-overflow: ellipsis;
 }
 
-.wc-bn {
-  font-weight: 600;
-  color: #b45309;
-}
-
-.wc-track {
-  height: 10px;
-  background: #f1f5f9;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.wc-fill {
-  height: 100%;
-  border-radius: 4px;
-}
-
-.wc-fill--ok { background: #22c55e; }
-.wc-fill--high { background: #f59e0b; }
-.wc-fill--bn { background: #ef4444; }
-
 .wc-pct, .wc-avg {
   font-size: 0.68rem;
-  color: #64748b;
+  color: var(--color-text-muted);
   text-align: right;
 }
 
@@ -232,7 +200,7 @@ function fillClass(pct) {
 
 .wc-heatmap th,
 .wc-heatmap td {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
   padding: 2px 4px;
   text-align: center;
 }
@@ -242,9 +210,4 @@ function fillClass(pct) {
   font-weight: 500;
   white-space: nowrap;
 }
-
-.wc-cell--empty { background: #fafafa; color: #cbd5e1; }
-.wc-cell--ok { background: #f0fdf4; }
-.wc-cell--high { background: #fffbeb; color: #92400e; }
-.wc-cell--bn { background: #fef2f2; color: #991b1b; font-weight: 600; }
 </style>

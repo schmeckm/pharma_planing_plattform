@@ -15,6 +15,7 @@ export const COCKPIT_ROUTE_DEFS = [
   { path: 'prognosis', name: 'MlPrognosis', featureId: 'ml-prognosis', component: () => import('../../../../cockpit/src/views/MlPrognosisView.vue') },
   { path: 'audit', name: 'PlanningAuditTrail', featureId: 'audit', component: () => import('../../../../cockpit/src/views/AuditTrailView.vue') },
   { path: 'admin', name: 'PlanningAdministration', featureId: 'admin-system', component: () => import('../../../../cockpit/src/views/AdministrationView.vue') },
+  { path: 'admin/data/:entitySlug?', name: 'AdminDataManagement', featureId: 'admin-data', component: () => import('../../../../cockpit/src/views/admin/AdminDataLayout.vue') },
   { path: 'rule-management', name: 'RuleManagement', featureId: 'rule-management', component: () => import('../../../../cockpit/src/views/v2/RuleManagementView.vue') },
   { path: 'what-if', name: 'WhatIf', featureId: 'what-if', component: () => import('../../../../cockpit/src/views/v2/WhatIfView.vue') },
   { path: 'exceptions', name: 'Exceptions', featureId: 'exceptions', component: () => import('../../../../cockpit/src/views/v2/ExceptionsView.vue') },
@@ -27,6 +28,7 @@ export const COCKPIT_ROUTE_DEFS = [
   { path: 'control-tower', name: 'ControlTower', featureId: 'control-tower', component: () => import('../../../../cockpit/src/views/v4/ControlTowerView.vue') },
   { path: 'planning', name: 'Planning', featureId: 'time-planning', component: () => import('../../../../cockpit/src/views/v5/PlanningHubView.vue') },
   { path: 'line-optimization', name: 'LineOptimization', featureId: 'line-optimization', component: () => import('../../../../cockpit/src/views/LineOptimizationView.vue') },
+  { path: 'detailed-scheduling', name: 'DetailedScheduling', featureId: 'detailed-scheduling', component: () => import('../../../../cockpit/src/views/DetailedSchedulingView.vue') },
 ];
 
 export function buildPlanningRoutes() {

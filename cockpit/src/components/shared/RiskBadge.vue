@@ -18,5 +18,5 @@ const severity = computed(() => {
 </script>
 
 <style scoped>
-.risk-badge { font-size: 0.75rem; font-weight: 600; }
+.risk-badge { font-size: var(--text-sm); font-weight: var(--font-weight-semibold); }
 </style>

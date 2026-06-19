@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createCorsOptions } from './config/corsOptions.js';
 import { Sentry } from './instrument.js';
 import { requestIdMiddleware } from './middleware/requestIdMiddleware.js';
 import { metricsMiddleware } from './middleware/metricsMiddleware.js';
@@ -17,7 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: process.env.CORS_ORIGIN || true, credentials: true }));
+app.use(cors(createCorsOptions()));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(

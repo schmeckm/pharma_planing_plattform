@@ -12,11 +12,11 @@
           <i class="pi pi-info-circle" />
         </button>
       </div>
-      <span class="horizon-preview">{{ previewLabel }}</span>
+      <span class="form-field__preview">{{ previewLabel }}</span>
     </div>
     <div class="panel-body horizon-fields">
-      <div class="horizon-field">
-        <span>Quick select</span>
+      <div class="form-field">
+        <span class="form-field__label">Quick select</span>
         <SelectButton
           v-model="selectedPreset"
           :options="presetOptions"
@@ -26,9 +26,10 @@
           @change="onPresetChange"
         />
       </div>
-      <label class="horizon-field horizon-field-custom">
-        <span>Custom days</span>
+      <div class="form-field form-field--narrow">
+        <label class="form-field__label" for="horizon-custom-days">Custom days</label>
         <InputNumber
+          input-id="horizon-custom-days"
           v-model="localHorizon"
           :min="store.horizonDaysMin"
           :max="store.horizonDaysMax"
@@ -36,21 +37,30 @@
           :disabled="store.loading"
           @blur="applyCustomHorizon"
         />
-      </label>
-      <label class="horizon-field">
-        <span>Planning start</span>
+      </div>
+      <div class="form-field form-field--planning-start">
+        <span class="form-field__label">Planning start</span>
         <div class="start-row">
           <input
+            v-if="!autoStart"
+            id="horizon-planning-start"
             v-model="localStart"
             type="date"
             class="date-input"
-            :disabled="autoStart || store.loading"
+            :disabled="store.loading"
             @change="applyStart"
           />
+          <span
+            v-else
+            class="date-readonly"
+            :title="`Start date from rough plan: ${localStart}`"
+          >
+            {{ localStart }}
+          </span>
           <Checkbox v-model="autoStart" binary input-id="horizon-auto-start" @change="toggleAutoStart" />
           <label for="horizon-auto-start" class="auto-label">Auto (rough plan)</label>
         </div>
-      </label>
+      </div>
       <Button
         label="Recalculate"
         icon="pi pi-sync"
@@ -167,12 +177,6 @@ function recalculate() {
   gap: 0.35rem;
 }
 
-.panel-header h2 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
 .info-btn {
   display: inline-flex;
   align-items: center;
@@ -188,12 +192,7 @@ function recalculate() {
 }
 
 .info-btn:hover {
-  color: var(--p-primary-color, #0070f2);
-}
-
-.horizon-preview {
-  font-size: 0.85rem;
-  color: var(--p-text-muted-color, #64748b);
+  color: var(--color-accent);
 }
 
 .horizon-fields {
@@ -204,33 +203,51 @@ function recalculate() {
   padding: 0.75rem 1rem 1rem;
 }
 
-.horizon-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-size: 0.8rem;
-  color: var(--p-text-muted-color, #64748b);
+.form-field--narrow {
+  max-width: 8rem;
 }
 
-.horizon-field-custom {
-  max-width: 8rem;
+.form-field--planning-start {
+  min-width: 0;
 }
 
 .start-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .date-input {
+  width: 10.5rem;
+  max-width: 100%;
+  flex: 0 0 auto;
   padding: 0.4rem 0.5rem;
   border: 1px solid var(--p-content-border-color, #cbd5e1);
   border-radius: 6px;
   font: inherit;
+  background: var(--color-panel, #ffffff);
+  color: var(--color-text);
+}
+
+.date-readonly {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--btn-height-sm, 1.75rem);
+  padding: 0.4rem 0.625rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  background: var(--color-bg-muted, var(--blue-50));
+  white-space: nowrap;
 }
 
 .auto-label {
-  font-size: 0.8rem;
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
 }

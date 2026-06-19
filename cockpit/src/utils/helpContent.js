@@ -1,5 +1,36 @@
 /** In-app help — German, planner-oriented. */
 
+/** Kurzbeschreibung pro Feature-ID — synchron mit config/featureCatalog.json */
+export const FEATURE_PURPOSES = {
+  'daily-wizard': 'Geführter Planer-Alltag — KI-Agenten, Morning Briefing, Empfehlungen.',
+  help: 'Dokumentation der verfügbaren Module und Begriffe.',
+  dashboard: 'KPIs und Schnellzugriff auf Empfehlungen und Massen-Simulation.',
+  'line-optimization': 'Reihenfolge auf Verpackungslinien optimieren und speichern.',
+  simulation: 'Einzelauftrag simulieren: welche Charge passt, welche Regeln greifen.',
+  allocations: 'Ausgeführte und simulierte Allokationsergebnisse einsehen.',
+  'confirmed-assignments': 'Bestätigte Chargen-Zuordnungen und Zeitplan freigeben.',
+  'control-tower': 'Globale Supply-Chain-Übersicht und Lagebild.',
+  exceptions: 'Blockierte Fälle kommentieren, eskalieren oder lösen.',
+  inventory: 'Verfügbare Chargen, Qualitätsstatus und Haltbarkeit.',
+  'rule-management': 'Versionierte Regeln pflegen (Land, Kunde, Markt, Sequenz, RMSL).',
+  audit: 'Historie aller Simulations- und Zuordnungsentscheidungen.',
+  'admin-system': 'Datenquelle, Integrationen und Benutzer-Funktionszugriff.',
+  'daily-planning': 'Tagesübersicht mit Gantt, Linienauslastung und KPIs.',
+  orders: 'Liste aller Verpackungsaufträge mit Status und Zielland.',
+  analytics: 'Leistungsgrad, OEE und historische Linien-Performance.',
+  'ml-prognosis': 'Statistische Prognose: Nachfrage, OEE, Risiko-Wahrscheinlichkeiten.',
+  reports: 'Allokations-Performance und Compliance-Reporting.',
+  'mass-jobs': 'Massen-Simulation oder -Ausführung im Hintergrund.',
+  'what-if': 'Szenarien durchspielen: andere Reihenfolge oder Charge.',
+  'time-planning': 'Zeitbasierte Planung, Kapazität, Gantt (Preview).',
+  'rules-legacy': 'Gate-Regeln und Länder-Parameter (Legacy).',
+  'agent-console': 'Agenten manuell starten, Briefing, Empfehlungs-Queue.',
+  'allocation-copilot': 'Erklärt Allokationsentscheidungen (Regel-basiert).',
+  'planning-copilot': 'Graph-aware Q&A zu Aufträgen, Chargen und Märkten.',
+  'executive-cockpit': 'Management-KPIs, Risiko-Heatmap, Agenten-Empfehlungen.',
+  autopilot: 'Alpha: automatisierter Planungsentwurf (Dry-Run).',
+};
+
 export const SYSTEM_SUMMARY = {
   title: 'Hard Allocation Platform',
   subtitle: 'Pharma-Planungsplattform für Chargen-Zuordnung',

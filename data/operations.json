@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "operationId": "PO-10001-OP10",
+      "orderId": "PO-10001",
+      "operationNo": 10,
+      "operationName": "Bulk dispensing",
+      "workCenterId": "FILL_01",
+      "setupTimeMinutes": 30,
+      "runTimeMinutes": 240,
+      "teardownTimeMinutes": 15,
+      "cleaningTimeMinutes": 45,
+      "isBottleneck": true,
+      "plannedStartDate": "2026-08-28",
+      "plannedEndDate": "2026-08-29"
+    },
+    {
+      "operationId": "PO-10001-OP20",
+      "orderId": "PO-10001",
+      "operationNo": 20,
+      "operationName": "Primary packaging",
+      "workCenterId": "PK_01",
+      "setupTimeMinutes": 20,
+      "runTimeMinutes": 180,
+      "teardownTimeMinutes": 10,
+      "cleaningTimeMinutes": 30,
+      "isBottleneck": false,
+      "plannedStartDate": "2026-08-30",
+      "plannedEndDate": "2026-08-31"
+    },
+    {
+      "operationId": "PO-10001-OP30",
+      "orderId": "PO-10001",
+      "operationNo": 30,
+      "operationName": "Secondary packaging",
+      "workCenterId": "PACK_LINE_01",
+      "setupTimeMinutes": 15,
+      "runTimeMinutes": 360,
+      "teardownTimeMinutes": 15,
+      "cleaningTimeMinutes": 20,
+      "isBottleneck": false,
+      "plannedStartDate": "2026-09-01",
+      "plannedEndDate": "2026-09-02"
+    }
+  ]
+}

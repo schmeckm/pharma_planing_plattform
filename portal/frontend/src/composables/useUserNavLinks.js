@@ -12,7 +12,6 @@ export function useUserNavLinks() {
 
   return computed(() => [
     { to: '/dashboard', label: t('nav.dashboard') },
-    { to: '/planning/wizard', label: t('nav.planning') },
   ]);
 
 }

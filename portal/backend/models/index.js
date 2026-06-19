@@ -28,6 +28,7 @@ export function defineModels(sequelize) {
     googleId: { type: DataTypes.STRING, unique: true, allowNull: true },
     role: { type: DataTypes.ENUM('admin', 'user'), defaultValue: 'user' },
     language: { type: DataTypes.STRING, defaultValue: 'en' },
+    preferences: { type: DataTypes.JSON, defaultValue: {} },
     emailVerified: { type: DataTypes.BOOLEAN, defaultValue: false },
     twoFactorEnabled: { type: DataTypes.BOOLEAN, defaultValue: false },
     twoFactorSecret: { type: DataTypes.STRING },

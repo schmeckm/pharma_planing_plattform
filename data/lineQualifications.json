@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "lineId": "PACK_LINE_01",
+      "lineName": "Packaging Line 01 — Tablets",
+      "qualifiedPackageTypes": ["Tablet", "Bottle"],
+      "defaultOee": 0.85,
+      "isBottleneck": false
+    },
+    {
+      "lineId": "PACK_LINE_02",
+      "lineName": "Packaging Line 02 — Capsules",
+      "qualifiedPackageTypes": ["Capsule", "Bottle"],
+      "defaultOee": 0.82,
+      "isBottleneck": false
+    },
+    {
+      "lineId": "PACK_LINE_03",
+      "lineName": "Packaging Line 03 — Blister",
+      "qualifiedPackageTypes": ["Blister", "Tablet"],
+      "defaultOee": 0.84,
+      "isBottleneck": true
+    },
+    {
+      "lineId": "PACK_LINE_04",
+      "lineName": "Packaging Line 04 — Parenteral",
+      "qualifiedPackageTypes": ["Parenteral"],
+      "defaultOee": 0.78,
+      "isBottleneck": true
+    },
+    {
+      "lineId": "PACK_LINE_05",
+      "lineName": "Packaging Line 05 — Liquid Fill",
+      "qualifiedPackageTypes": ["Liquid", "Bottle"],
+      "defaultOee": 0.8,
+      "isBottleneck": false
+    }
+  ]
+}

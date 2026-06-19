@@ -1,8 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const { addDays, daysBetween } = require('../utils/dateUtils');
+const { computeBarMetrics } = require('../utils/ganttTimeScale');
+const { enrichOperationWithTimes } = require('../utils/operationTimeBreakdown');
 const { SapOperationsImportService } = require('../services/sapOperationsImportService');
 const { OrtoolsOperationOptimizer } = require('../services/scheduling/ortoolsOperationOptimizer');
+const { PlanningHorizonEngine } = require('./planningHorizonEngine');
 
 const HOURS_PER_DAY = parseInt(process.env.PLANNING_HOURS_PER_DAY || '8', 10) * 2;
 
@@ -15,6 +18,7 @@ class OperationPlanningEngine {
     this._dir = dataDir || process.env.HAP_DATA_DIR || path.join(__dirname, '../data');
     this._sapImport = new SapOperationsImportService(this._dir);
     this._opOptimizer = new OrtoolsOperationOptimizer();
+    this._horizonEngine = new PlanningHorizonEngine();
   }
 
   _read(name) {
@@ -57,7 +61,7 @@ class OperationPlanningEngine {
     return steps.map((step) => {
       const wcId = (step.workCenterId || '').replace('{{packagingLine}}', packagingLine);
       const hours = Math.max(1, Math.round(totalHours * (step.durationShare || 0.33)));
-      return {
+      return enrichOperationWithTimes({
         operationId: `${poId}-OP${step.operationNo}`,
         packagingOrder: poId,
         packagingOrderId: poId,
@@ -73,8 +77,214 @@ class OperationPlanningEngine {
         priority: order.priority,
         quantity: order.quantity,
         materialNumber: order.material || order.materialNumber,
-      };
+        routingSource: 'TEMPLATE',
+      });
     });
+  }
+
+  async rescheduleWithOverrides(orders, overrides = [], { startAnchor = null, horizonDays = 14, manualOverride = true } = {}) {
+    const workCenters = this.loadWorkCenters();
+    const wcMap = Object.fromEntries(workCenters.map((w) => [w.workCenterId, w]));
+    const anchor = startAnchor || orders[0]?.plannedStartDate || '2026-09-01';
+
+    const horizonViolations = [];
+    for (const ov of overrides) {
+      const parentOrder = orders.find(
+        (o) => (o.packagingOrder || o.packagingOrderId) === ov.packagingOrderId
+          || `${o.packagingOrder || o.packagingOrderId}-OP${String(ov.operationNo || '').padStart(2, '0')}` === ov.operationId,
+      ) || orders[0];
+      const ctx = this._horizonEngine.buildContext({
+        ...parentOrder,
+        workCenterId: ov.workCenterId,
+        plannedStartDate: ov.plannedStartDate,
+      });
+      const check = this._horizonEngine.canAutoMove(ctx, {
+        anchorDate: anchor,
+        targetDate: ov.plannedStartDate,
+        isManualOverride: manualOverride,
+      });
+      if (!check.allowed) {
+        horizonViolations.push(this._horizonEngine.buildHorizonViolationException(
+          { ...parentOrder, orderNumber: ov.operationId },
+          check.horizon,
+          { anchorDate: anchor },
+        ));
+      }
+    }
+    if (horizonViolations.length && !manualOverride) {
+      return {
+        operations: [],
+        orders: [],
+        workCenters,
+        bottleneckWorkCenters: [],
+        solverMeta: { horizonBlocked: true, violations: horizonViolations },
+        horizonViolations,
+      };
+    }
+
+    const imported = this._sapImport.importForOrders(orders);
+
+    const enrichedOrders = imported.orders.map((order) => {
+      const ops = (order.operations || []).map((op) => ({
+        ...op,
+        requestedDeliveryDate: op.requestedDeliveryDate || order.requestedDeliveryDate,
+        priority: op.priority || order.priority,
+      }));
+      return { ...order, operations: ops };
+    });
+
+    let allOperations = enrichedOrders.flatMap((o) => o.operations);
+    const overrideMap = Object.fromEntries(overrides.map((o) => [o.operationId, o]));
+
+    for (const ov of overrides) {
+      allOperations = this._applyOperationOverride(allOperations, ov, wcMap);
+    }
+
+    const solverMode = process.env.OPERATIONS_SOLVER || 'ortools';
+    let solverMeta = {
+      phase: 5,
+      routingSource: imported.summary,
+      solverEngine: 'heuristic-bottleneck',
+      solverStatus: 'HEURISTIC',
+      ortoolsFallback: false,
+      overridesApplied: overrides.length,
+    };
+
+    let scheduledOps = allOperations;
+
+    if (solverMode === 'ortools' && allOperations.length > 0) {
+      try {
+        const pinnedOperations = overrides.map((ov) => ({
+          operationId: ov.operationId,
+          plannedStartDate: ov.plannedStartDate,
+          workCenterId: ov.workCenterId,
+        }));
+        const result = await this._opOptimizer.optimize({
+          operations: allOperations,
+          workCenters,
+          startAnchor: anchor,
+          horizonDays,
+          pinnedOperations,
+        });
+        if (result.operations?.length) {
+          scheduledOps = result.operations;
+          solverMeta = {
+            phase: 5,
+            routingSource: imported.summary,
+            solverEngine: result.engine,
+            solverStatus: result.solverStatus,
+            ortoolsFallback: false,
+            runtimeMs: result.runtimeMs,
+            score: result.score,
+            overridesApplied: overrides.length,
+          };
+        }
+      } catch (err) {
+        if (process.env.OPERATIONS_ORTOOLS_REQUIRED === 'true') throw err;
+        const heuristic = this._scheduleImportedHeuristic(enrichedOrders, { startAnchor: anchor, wcMap });
+        scheduledOps = this._mergeOverridesIntoOps(heuristic.operations, overrideMap, wcMap);
+        solverMeta = {
+          phase: 5,
+          routingSource: imported.summary,
+          solverEngine: 'heuristic-bottleneck',
+          solverStatus: 'FALLBACK',
+          ortoolsFallback: true,
+          ortoolsError: err.message,
+          overridesApplied: overrides.length,
+        };
+      }
+    } else {
+      const heuristic = this._scheduleImportedHeuristic(enrichedOrders, { startAnchor: anchor, wcMap });
+      scheduledOps = this._mergeOverridesIntoOps(heuristic.operations, overrideMap, wcMap);
+    }
+
+    const originalById = Object.fromEntries(allOperations.map((o) => [o.operationId, o]));
+    const opById = Object.fromEntries(scheduledOps.map((o) => [o.operationId, o]));
+    for (const order of enrichedOrders) {
+      order.operations = (order.operations || []).map((op) => {
+        const scheduled = opById[op.operationId] || op;
+        return enrichOperationWithTimes({ ...originalById[op.operationId], ...op, ...scheduled });
+      });
+      const bottleneckOp = order.operations.find((o) => o.isBottleneck);
+      order.bottleneckWorkCenter = bottleneckOp?.workCenterId || null;
+      order.bottleneckStart = bottleneckOp?.plannedStartDate;
+      order.bottleneckEnd = bottleneckOp?.plannedEndDate;
+    }
+
+    scheduledOps = scheduledOps.map((op) =>
+      enrichOperationWithTimes({ ...originalById[op.operationId], ...op }),
+    );
+
+    return {
+      operations: scheduledOps,
+      orders: enrichedOrders,
+      workCenters,
+      bottleneckWorkCenters: workCenters.filter((w) => w.isBottleneck).map((w) => w.workCenterId),
+      solverMeta,
+      horizonViolations,
+    };
+  }
+
+  _applyOperationOverride(operations, override, wcMap) {
+    const idx = operations.findIndex((o) => o.operationId === override.operationId);
+    if (idx < 0) return operations;
+    const next = [...operations];
+    const op = { ...next[idx] };
+    if (override.workCenterId) op.workCenterId = override.workCenterId;
+    if (override.plannedStartDate) {
+      const span = Math.max(
+        1,
+        daysBetween(op.plannedStartDate || override.plannedStartDate, op.plannedEndDate || override.plannedStartDate) + 1,
+      );
+      op.plannedStartDate = override.plannedStartDate;
+      op.plannedEndDate = addDays(override.plannedStartDate, span - 1);
+      op.durationDays = span;
+    }
+    next[idx] = op;
+    return this._rippleOrderOperations(next, op, wcMap);
+  }
+
+  _mergeOverridesIntoOps(operations, overrideMap, wcMap) {
+    let ops = [...operations];
+    for (const ov of Object.values(overrideMap)) {
+      ops = this._applyOperationOverride(ops, ov, wcMap);
+    }
+    return ops;
+  }
+
+  _rippleOrderOperations(operations, movedOp, wcMap) {
+    const poId = movedOp.packagingOrderId || movedOp.packagingOrder;
+    const orderOps = operations
+      .filter((o) => (o.packagingOrderId || o.packagingOrder) === poId)
+      .sort((a, b) => a.operationNo - b.operationNo);
+    const movedIdx = orderOps.findIndex((o) => o.operationId === movedOp.operationId);
+    if (movedIdx < 0) return operations;
+
+    const byId = Object.fromEntries(operations.map((o) => [o.operationId, { ...o }]));
+
+    for (let i = movedIdx + 1; i < orderOps.length; i += 1) {
+      const prev = byId[orderOps[i - 1].operationId];
+      const cur = byId[orderOps[i].operationId];
+      const wc = wcMap[cur.workCenterId] || {};
+      const days = cur.durationDays || this._hoursToDays(cur.durationHours || 8, wc);
+      cur.plannedStartDate = addDays(prev.plannedEndDate, 1);
+      cur.plannedEndDate = addDays(cur.plannedStartDate, days - 1);
+      cur.durationDays = days;
+      byId[cur.operationId] = cur;
+    }
+
+    for (let i = movedIdx - 1; i >= 0; i -= 1) {
+      const next = byId[orderOps[i + 1].operationId];
+      const cur = byId[orderOps[i].operationId];
+      const wc = wcMap[cur.workCenterId] || {};
+      const days = cur.durationDays || this._hoursToDays(cur.durationHours || 8, wc);
+      cur.plannedEndDate = addDays(next.plannedStartDate, -1);
+      cur.plannedStartDate = addDays(cur.plannedEndDate, -(days - 1));
+      cur.durationDays = days;
+      byId[cur.operationId] = cur;
+    }
+
+    return operations.map((o) => byId[o.operationId] || o);
   }
 
   /**
@@ -145,14 +355,22 @@ class OperationPlanningEngine {
       scheduledOps = heuristic.operations;
     }
 
+    const originalById = Object.fromEntries(allOperations.map((o) => [o.operationId, o]));
     const opById = Object.fromEntries(scheduledOps.map((o) => [o.operationId, o]));
     for (const order of enrichedOrders) {
-      order.operations = (order.operations || []).map((op) => opById[op.operationId] || op);
+      order.operations = (order.operations || []).map((op) => {
+        const scheduled = opById[op.operationId] || op;
+        return enrichOperationWithTimes({ ...originalById[op.operationId], ...op, ...scheduled });
+      });
       const bottleneckOp = order.operations.find((o) => o.isBottleneck);
       order.bottleneckWorkCenter = bottleneckOp?.workCenterId || null;
       order.bottleneckStart = bottleneckOp?.plannedStartDate;
       order.bottleneckEnd = bottleneckOp?.plannedEndDate;
     }
+
+    scheduledOps = scheduledOps.map((op) =>
+      enrichOperationWithTimes({ ...originalById[op.operationId], ...op }),
+    );
 
     return {
       operations: scheduledOps,
@@ -410,11 +628,8 @@ class OperationPlanningEngine {
   }
 
   toOperationGanttTasks(operations, timelineStart, timelineEnd) {
-    const totalDays = Math.max(1, daysBetween(timelineStart, timelineEnd) + 1);
     return operations.map((op) => {
-      const startOffset = daysBetween(timelineStart, op.plannedStartDate);
-      const duration = Math.max(1, daysBetween(op.plannedStartDate, op.plannedEndDate) + 1);
-      return {
+      const task = {
         id: op.operationId,
         packagingOrderId: op.packagingOrder,
         operationNo: op.operationNo,
@@ -425,14 +640,17 @@ class OperationPlanningEngine {
         isBottleneck: op.isBottleneck,
         start: op.plannedStartDate,
         end: op.plannedEndDate,
-        startOffset,
-        duration,
-        leftPercent: Math.round((startOffset / totalDays) * 1000) / 10,
-        widthPercent: Math.round((duration / totalDays) * 1000) / 10,
         destinationCountry: op.destinationCountry,
         priority: op.priority,
         durationHours: op.durationHours,
+        setupHours: op.setupHours,
+        productionHours: op.productionHours,
+        teardownHours: op.teardownHours,
+        setupPct: op.setupPct,
+        productionPct: op.productionPct,
+        teardownPct: op.teardownPct,
       };
+      return { ...task, ...computeBarMetrics(task, timelineStart, timelineEnd, 'day') };
     });
   }
 

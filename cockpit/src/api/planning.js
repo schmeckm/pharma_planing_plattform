@@ -52,6 +52,7 @@ export const planningApi = {
       compareToBaseline,
       ...(options.horizonDays != null ? { horizonDays: options.horizonDays } : {}),
     }),
+  operationsWhatIf: (payload) => req('post', '/planning/operations/what-if', payload),
   confirmSequence: (payload) => req('post', '/planning/confirm-sequence', payload),
   activateDraft: (payload) => req('post', '/scheduler/activate-draft', payload),
   getDraftStatus: () => req('get', '/scheduler/draft/latest'),

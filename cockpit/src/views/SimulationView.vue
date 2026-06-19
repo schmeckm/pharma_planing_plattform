@@ -13,13 +13,13 @@
               <el-option label="Open" value="OPEN" />
               <el-option label="All" value="" />
             </el-select>
-            <el-button type="primary" size="small" :loading="appStore.loading" @click="runMass">
+            <el-button type="primary" :loading="appStore.loading" @click="runMass">
               Mass Simulate
             </el-button>
-            <el-button type="success" size="small" :loading="appStore.loading" @click="runMassAllocate">
+            <el-button type="success" :loading="appStore.loading" @click="runMassAllocate">
               Mass Allocation
             </el-button>
-            <el-button type="warning" size="small" :loading="appStore.loading" @click="runMassUnallocate">
+            <el-button type="warning" :loading="appStore.loading" @click="runMassUnallocate">
               Mass Unallocate
             </el-button>
           </div>

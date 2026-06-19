@@ -73,13 +73,12 @@ watch(
   display: flex;
   flex-direction: column;
   min-width: 0;
-  background: #f5f6f7;
+  background: var(--color-bg);
 }
 
 .cockpit-content {
   flex: 1;
   overflow: auto;
-  padding: 20px 24px;
 }
 
 .global-alert {

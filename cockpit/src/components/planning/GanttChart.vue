@@ -46,10 +46,10 @@ const dateLabels = computed(() => {
 .gantt-track { flex: 1; position: relative; height: 28px; background: var(--surface-100); border-radius: 4px; min-width: 300px; }
 .gantt-bar {
   position: absolute; top: 4px; height: 20px; border-radius: 4px;
-  background: #0070f2; color: #fff; font-size: 0.625rem;
+  background: var(--color-risk-ok); color: var(--color-bar-text); font-size: 0.625rem;
   display: flex; align-items: center; justify-content: center; min-width: 24px;
 }
-.gantt-bar.priority-high { background: #bb0000; }
-.gantt-bar.priority-medium { background: #e9730c; }
-.gantt-bar.priority-low { background: #107e3e; }
+.gantt-bar.priority-high { background: var(--color-risk-high); }
+.gantt-bar.priority-medium { background: var(--color-risk-medium); }
+.gantt-bar.priority-low { background: var(--color-capacity-ok); }
 </style>

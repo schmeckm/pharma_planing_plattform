@@ -1,6 +1,6 @@
 <template>
 
-  <div class="simulation-panel panel">
+  <div class="simulation-panel panel detail-panel">
 
     <div class="panel-header">
 
@@ -353,39 +353,6 @@ function strategyLabel(strategy) {
 
 
 <style scoped>
-.simulation-panel {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.9375rem;
-}
-
-.panel-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px 18px;
-}
-
-.detail-section {
-  margin-bottom: 20px;
-}
-
-.detail-section__title {
-  margin: 0 0 10px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  letter-spacing: 0.04em;
-}
-
-.detail-hint {
-  margin: 0 0 12px;
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-  line-height: 1.45;
-}
-
 .rule-list,
 .eval-list {
   margin: 0;
@@ -415,80 +382,17 @@ function strategyLabel(strategy) {
 
 .rule-list__name,
 .eval-list__name {
-  font-weight: 600;
-  font-size: 0.9375rem;
-  line-height: 1.35;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-base);
+  line-height: var(--line-height-tight);
 }
 
 .rule-list__desc,
 .eval-list__msg {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.45;
-  color: var(--color-text-secondary, #4a5568);
-}
-
-.detail-empty {
-  font-size: 0.9375rem;
+  font-size: var(--text-sm);
+  line-height: var(--line-height-normal);
   color: var(--color-text-muted);
-  margin: 0;
-  line-height: 1.45;
-}
-
-.detail-empty-box {
-  background: var(--color-bg-subtle, #f5f7fa);
-  padding: 14px;
-  border-radius: 6px;
-  font-size: 0.9375rem;
-  line-height: 1.45;
-  color: var(--color-text-muted);
-  margin-bottom: 16px;
-}
-
-.detail-sub {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  margin-left: 4px;
-}
-
-.failure-box {
-  background: #ffebee;
-  color: var(--color-error);
-  padding: 12px 14px;
-  border-radius: 6px;
-  font-size: 0.9375rem;
-  line-height: 1.45;
-  margin-bottom: 16px;
-}
-
-.panel-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-top: 10px;
-}
-
-.panel-actions .el-button {
-  width: 100%;
-  margin: 0;
-  font-size: 0.9375rem;
-}
-
-.panel-empty {
-  color: var(--color-text-muted);
-  font-size: 1rem;
-  line-height: 1.5;
-  text-align: center;
-  padding-top: 40px;
-}
-
-.simulation-panel :deep(.detail-row) {
-  font-size: 0.9375rem;
-  padding: 11px 0;
-}
-
-.simulation-panel :deep(.panel-header h2) {
-  font-size: 1.125rem;
 }
 </style>
 

@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "resourceId": "RES-PLANNER-01",
+      "resourceName": "Senior Planner — Shift A",
+      "resourceType": "PERSON",
+      "plant": "1000",
+      "capacityHoursPerDay": 8,
+      "active": true
+    },
+    {
+      "resourceId": "RES-FILL-TEAM-01",
+      "resourceName": "Filling Team 01",
+      "resourceType": "EQUIPMENT",
+      "plant": "1000",
+      "capacityHoursPerDay": 16,
+      "active": true
+    },
+    {
+      "resourceId": "RES-QC-LAB-01",
+      "resourceName": "QC Lab Station 01",
+      "resourceType": "TOOL",
+      "plant": "1000",
+      "capacityHoursPerDay": 12,
+      "active": true
+    }
+  ]
+}

@@ -1,51 +1,36 @@
 <template>
-  <div class="cockpit-embed">
-    <Toast position="top-right" />
-    <el-alert
-      v-if="appStore.error"
-      type="error"
-      :title="appStore.error"
-      show-icon
-      closable
-      class="cockpit-embed__alert"
-      @close="appStore.clearError()"
-    />
-    <RouterView v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
+  <div class="cockpit-embed" data-cockpit-theme="light" :style="embedAccentStyle">
+    <RouterView v-slot="{ Component, route }">
+      <component :is="Component" v-if="Component" :key="route.fullPath" class="cockpit-embed__page" />
+      <p v-else class="cockpit-embed__empty">{{ t('planning.routeMissing') }}</p>
     </RouterView>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
 import { RouterView } from 'vue-router';
-import Toast from 'primevue/toast';
-import { useAppStore } from '../../../../cockpit/src/stores/app.js';
+import { useI18n } from 'vue-i18n';
+import { useThemeStore } from '../stores/themeStore';
+import { accentCssVars } from '../utils/accentColor';
+import '../cockpit/cockpitEmbedTheme.css';
 
-const appStore = useAppStore();
+const { t } = useI18n();
+const { accentColor } = storeToRefs(useThemeStore());
+
+/** Cockpit-Embed: Akzent explizit binden (Profil-Wechsel ohne Reload). */
+const embedAccentStyle = computed(() => accentCssVars(accentColor.value));
 </script>
 
 <style scoped>
-.cockpit-embed {
-  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 2.5rem);
-  margin: -1.25rem;
-  padding: 1rem 1.25rem 1.5rem;
-  background: #f5f6f7;
-  color: #0f172a;
+.cockpit-embed__page {
+  min-height: 12rem;
 }
 
-.cockpit-embed__alert {
-  margin-bottom: 1rem;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.15s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.cockpit-embed__empty {
+  margin: 0;
+  padding: 1rem 0;
+  color: var(--color-muted);
 }
 </style>

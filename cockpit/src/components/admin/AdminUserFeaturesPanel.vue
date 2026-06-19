@@ -284,7 +284,6 @@ onMounted(async () => {
 
 .panel-header h2 {
   margin: 0 0 4px;
-  font-size: 1rem;
 }
 
 .panel-body {

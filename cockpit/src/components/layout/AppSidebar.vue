@@ -224,7 +224,7 @@ function isActive(path) {
 
   gap: 12px;
 
-  padding: 20px 16px;
+  padding: 0 0 var(--sidebar-brand-gap);
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -280,7 +280,7 @@ function isActive(path) {
 
   flex: 1;
 
-  padding: 8px 8px 12px;
+  padding: 0;
 
   overflow-y: auto;
 
@@ -306,7 +306,7 @@ function isActive(path) {
 
   justify-content: space-between;
 
-  padding: 8px 10px;
+  padding: var(--sidebar-link-padding-y) var(--sidebar-link-padding-x);
 
   border: none;
 
@@ -324,7 +324,7 @@ function isActive(path) {
 
   cursor: pointer;
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 
 }
 
@@ -374,11 +374,11 @@ function isActive(path) {
 
   gap: 10px;
 
-  padding: 8px 12px;
+  padding: var(--sidebar-link-padding-y) var(--sidebar-link-padding-x);
 
   margin-bottom: 2px;
 
-  border-radius: 6px;
+  border-radius: var(--radius);
 
   color: rgba(255, 255, 255, 0.85);
 
@@ -414,7 +414,7 @@ function isActive(path) {
 
 .sidebar__footer {
 
-  padding: 12px 16px;
+  padding: var(--sidebar-brand-gap) 0 0;
 
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 

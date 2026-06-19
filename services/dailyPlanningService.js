@@ -36,6 +36,56 @@ class DailyPlanningService {
     this.operationPlanner = new OperationPlanningEngine();
   }
 
+  async operationsWhatIf({
+    overrides = [],
+    sequence = [],
+    startAnchor = null,
+    horizonDays = null,
+    manualOverride = true,
+  }) {
+    const { parseHorizonDays, resolveGanttTimeline } = require('../utils/planningHorizon');
+    const horizon = parseHorizonDays(horizonDays);
+    const anchor = startAnchor || sequence[0]?.plannedStartDate || this._resolveStartAnchor(null);
+    const scheduled = await this.operationPlanner.rescheduleWithOverrides(sequence, overrides, {
+      startAnchor: anchor,
+      horizonDays: horizon,
+      manualOverride,
+    });
+    const capacity = this.operationPlanner.buildWorkCenterCapacity(scheduled.operations, {
+      horizonDays: horizon,
+      startDate: anchor,
+    });
+    const { timelineStart, timelineEnd } = resolveGanttTimeline({
+      startAnchor: anchor,
+      horizonDays: horizon,
+      orderEndDates: scheduled.operations.map((o) => o.plannedEndDate),
+    });
+    return {
+      timestamp: new Date().toISOString(),
+      label: 'Operations what-if',
+      overrides,
+      horizonViolations: scheduled.horizonViolations || [],
+      operationPlan: {
+        phase: 5,
+        operations: scheduled.operations,
+        ordersWithOperations: scheduled.orders,
+        workCenters: scheduled.workCenters,
+        bottleneckWorkCenters: scheduled.bottleneckWorkCenters,
+        operationGanttTasks: this.operationPlanner.toOperationGanttTasks(
+          scheduled.operations,
+          timelineStart,
+          timelineEnd,
+        ),
+        workCenterSwimlanes: this.operationPlanner.workCentersAsSwimlanes(),
+        workCenterCapacity: capacity,
+        operationTimelineStart: timelineStart,
+        operationTimelineEnd: timelineEnd,
+        routingSummary: scheduled.solverMeta?.routingSource || null,
+        operationsSolver: scheduled.solverMeta || null,
+      },
+    };
+  }
+
   async _buildOperationPlan(orders, { startAnchor = null, horizonDays = null } = {}) {
     const horizon = parseHorizonDays(horizonDays);
     const anchor = startAnchor || orders[0]?.plannedStartDate || '2026-09-01';

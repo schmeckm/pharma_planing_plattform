@@ -22,6 +22,7 @@ export function serializeUser(user) {
     displayName: user.displayName || user.email,
     role: user.role,
     language: user.language,
+    preferences: user.preferences || {},
     emailVerified: Boolean(user.emailVerified),
     twoFactorEnabled: Boolean(user.twoFactorEnabled),
   };

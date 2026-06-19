@@ -14,6 +14,8 @@ const apiV4Routes = require('./routes/v4');
 const apiV5Routes = require('./routes/v5');
 const { AppError } = require('./utils/errors');
 const { WsHub } = require('./websocket/wsHub');
+const { SchedulingWsHub } = require('./websocket/schedulingWsHub');
+const { setSchedulingWsHub } = require('./services/detailedSchedulingService');
 
 const app = express();
 const server = http.createServer(app);
@@ -52,7 +54,15 @@ app.get('/health', async (_req, res) => {
     runtime: 'node',
     edition: 'Pharmaceutical Allocation & Production Sequencing Platform',
     editions: ['1.0', '2.0', '3.0', '4.0', '5.0'],
-    dataProvider: process.env.HAP_DATA_PROVIDER || 'json',
+    dataProvider: process.env.PERSISTENCE_PROVIDER || process.env.HAP_DATA_PROVIDER || 'json',
+    backendArchitecture: (() => {
+      try {
+        require('./backend/dist/bridge');
+        return 'layered-typescript';
+      } catch {
+        return 'legacy-javascript';
+      }
+    })(),
     liveCache: (() => {
       try {
         const { JsonRepository } = require('./utils/jsonRepository');
@@ -109,6 +119,8 @@ app.use((err, _req, res, _next) => {
 });
 
 const wsHub = new WsHub(server);
+const schedulingWsHub = new SchedulingWsHub(server);
+setSchedulingWsHub(schedulingWsHub);
 
 server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
@@ -125,6 +137,7 @@ server.listen(PORT, HOST, () => {
   console.log(`Control Tower: http://localhost:${PORT}${API_V4_PREFIX}`);
   console.log(`Planning API: http://localhost:${PORT}${API_V5_PREFIX}`);
   console.log(`WebSocket: ws://localhost:${PORT}/ws/control-tower`);
+  console.log(`Detailed Scheduling WS: ws://localhost:${PORT}/ws/detailed-scheduling`);
 
   try {
     const { warmupLiveCache } = require('./utils/jsonRepository');

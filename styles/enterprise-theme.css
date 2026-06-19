@@ -1,3 +1,7 @@
+@import './design-tokens.css';
+@import './buttons.css';
+@import './layout-spacing.css';
+
 /**
  * Enterprise typography & base tokens — shared across Cockpit, MVP1, React frontend.
  * SAP Fiori-style stack: "72" when installed locally, else Segoe UI / Tahoma.

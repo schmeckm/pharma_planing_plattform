@@ -1,5 +1,6 @@
 @import './variables.css';
 @import '../../../styles/enterprise-theme.css';
+@import '../../../styles/cockpit-ui.css';
 
 *,
 *::before,
@@ -22,13 +23,7 @@ a {
 }
 
 /* page-title, page-subtitle → enterprise-theme.css */
-
-.panel {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-}
+/* panel, callout, metric-chip → cockpit-ui.css */
 
 .panel-header {
   display: flex;
@@ -85,18 +80,20 @@ a {
   text-transform: uppercase;
 }
 
-.status-tag--success { background: #e8f5e9; color: var(--color-success); }
-.status-tag--warning { background: #fff3e0; color: var(--color-warning); }
-.status-tag--error { background: #ffebee; color: var(--color-error); }
-.status-tag--info { background: #e3f2fd; color: var(--color-info); }
-.status-tag--neutral { background: #f5f5f5; color: var(--color-text-muted); }
+.status-tag--success { background: var(--color-success-soft); color: var(--color-success); }
+.status-tag--warning { background: var(--color-warning-soft); color: var(--color-warning); }
+.status-tag--error { background: var(--color-error-soft); color: var(--color-error); }
+.status-tag--info { background: var(--color-info-soft); color: var(--color-info); }
+.status-tag--neutral { background: var(--color-neutral-soft); color: var(--color-text-muted); }
 
 .detail-row {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
   padding: 10px 0;
   border-bottom: 1px solid var(--color-border);
-  font-size: 0.8125rem;
+  font-size: var(--text-base);
 }
 
 .detail-row:last-child {
@@ -105,26 +102,19 @@ a {
 
 .detail-row__label {
   color: var(--color-text-muted);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
+  flex-shrink: 0;
 }
 
 .detail-row__value {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   text-align: right;
-  max-width: 55%;
-}
-
-.el-table {
-  --el-table-header-bg-color: #fafafa;
+  max-width: 58%;
+  word-break: break-word;
 }
 
 .panel-body--flush :deep(.el-table) {
   border-radius: 0 0 var(--radius) var(--radius);
 }
 
-.el-button--primary {
-  --el-button-bg-color: var(--color-accent);
-  --el-button-border-color: var(--color-accent);
-  --el-button-hover-bg-color: var(--color-accent-dark);
-  --el-button-hover-border-color: var(--color-accent-dark);
-}
+/* Element-Plus- & PrimeVue-Buttons → styles/buttons.css */

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import api from '../services/api';
 import { applyCockpitAuthToStore, clearCockpitAuth } from '../cockpit/authBridge';
+import { useThemeStore } from './themeStore';
 
 const STORAGE_KEY = 'portal.auth';
 
@@ -16,7 +17,7 @@ function apiBaseUrl() {
   return (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 }
 
-export const useAuthStore = defineStore('auth', {
+export const useAuthStore = defineStore('portalAuth', {
   state: () => ({
     token: loadPersisted().token || null,
     refreshToken: loadPersisted().refreshToken || null,
@@ -45,6 +46,7 @@ export const useAuthStore = defineStore('auth', {
       this.user = user;
       this.error = null;
       this.persist();
+      this.syncThemeFromUser(user);
       await applyCockpitAuthToStore(user);
     },
     async logout() {
@@ -65,6 +67,7 @@ export const useAuthStore = defineStore('auth', {
       const { data } = await api.get('/api/auth/me');
       this.user = data.user;
       this.persist();
+      this.syncThemeFromUser(this.user);
       await applyCockpitAuthToStore(this.user);
     },
     async login(email, password) {
@@ -99,6 +102,46 @@ export const useAuthStore = defineStore('auth', {
       } finally {
         this.loading = false;
       }
+    },
+    async updateAccentColor(accentColor) {
+      const { data } = await api.patch('/api/auth/profile', { accentColor });
+      this.user = data.user;
+      this.persist();
+      useThemeStore().setAccentColor(data.user.preferences?.accentColor);
+      return data.user;
+    },
+    async fetchFeatureProfile() {
+      const { data } = await api.get('/api/auth/features');
+      return data;
+    },
+    async updateEnabledFeatures(enabledFeatures) {
+      const { data } = await api.patch('/api/auth/profile', { enabledFeatures });
+      this.user = data.user;
+      this.persist();
+      await applyCockpitAuthToStore(this.user);
+      return data.user;
+    },
+    /** Akzent aus Profil anwenden; Grün-Presets und alte Defaults auf Portal-Blau migrieren. */
+    syncThemeFromUser(user) {
+      if (!user) return;
+
+      const migrated = useThemeStore().initFromUser(user);
+      if (!migrated) return;
+
+      const accentColor = useThemeStore().accentColor;
+      const targetUser = this.user || user;
+      this.user = {
+        ...targetUser,
+        preferences: {
+          ...(targetUser.preferences || {}),
+          accentColor,
+        },
+      };
+      this.persist();
+
+      api.patch('/api/auth/profile', { accentColor }).catch(() => {
+        /* Lokale Migration reicht für die UI */
+      });
     },
   },
 });

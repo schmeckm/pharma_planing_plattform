@@ -37,7 +37,7 @@
             <span>Bottleneck days: {{ data.capacity.summary.bottleneckDays }}</span>
             <span>Maintenance: {{ data.capacity.summary.maintenanceDays }} day-slots</span>
           </div>
-          <Chart type="bar" :data="capacityChart" :options="{ maintainAspectRatio: false }" class="cap-chart" />
+          <Chart type="bar" :data="capacityChart" :options="capacityChartOpts" class="cap-chart" />
           <DataTable :value="data.capacity.bottlenecks" size="small" striped-rows class="mt-3">
             <Column field="date" header="Date" />
             <Column field="lineId" header="Line" />
@@ -132,6 +132,7 @@ import ProgressSpinner from 'primevue/progressspinner';
 import GanttChart from '@/components/planning/GanttChart.vue';
 import { apiV5 } from '@/api/v5';
 import { plannerText } from '@/utils/plannerTerminology';
+import { chartColorAt, mergeChartOptions, qualitativeChartColors } from '@/utils/chartColors';
 
 const loading = ref(false);
 const data = ref(null);
@@ -150,11 +151,20 @@ const lineOptions = [
 
 const capacityChart = computed(() => {
   const util = data.value?.capacity?.lineUtilization || [];
+  const labels = util.map((l) => l.lineId);
   return {
-    labels: util.map((l) => l.lineId),
-    datasets: [{ label: 'Avg Utilization %', data: util.map((l) => l.avgUtilizationPercent), backgroundColor: '#5899da' }],
+    labels,
+    datasets: [{
+      label: 'Avg Utilization %',
+      data: util.map((l) => l.avgUtilizationPercent),
+      backgroundColor: labels.length === 1
+        ? chartColorAt(5)
+        : qualitativeChartColors(labels.length),
+    }],
   };
 });
+
+const capacityChartOpts = computed(() => mergeChartOptions());
 
 function cp(row, checkpoint) {
   const c = row.checkpoints?.find((x) => x.checkpoint === checkpoint);

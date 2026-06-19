@@ -10,6 +10,7 @@ const EXCEPTION_TYPES = {
   MISSING_PACKING_SYSTEM_REF: 'Missing Packing System Reference',
   QUALITY_BLOCKED: 'Quality Blocked',
   NO_COMPLIANT_BATCH: 'No Compliant Batch',
+  PLANNING_HORIZON_VIOLATION: 'Planning Horizon Violation',
 };
 
 class ExceptionEngine {

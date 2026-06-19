@@ -1,0 +1,263 @@
+/**
+ * Zentrale Design-Tokens — Hard Allocation Portal & Cockpit
+ *
+ * Einzige Quelle für Farben, Abstände, Schatten und UI-Library-Mappings.
+ * User-Akzent zur Laufzeit: themeStore setzt --color-accent* auf documentElement.
+ *
+ * Referenz JS: portal/frontend/src/config/accentPresets.js (DEFAULT_ACCENT_COLOR)
+ */
+
+:root {
+  /* Abgestufte Blau-Skala (Basis #4169E1 — wird zur Laufzeit via themeStore überschrieben) */
+  --blue-50: #eef2fd;
+  --blue-100: #dce4fa;
+  --blue-200: #b9c9f5;
+  --blue-300: #96aef0;
+  --blue-400: #7393eb;
+  --blue-500: #4169e1;
+  --blue-600: #2f57cf;
+  --blue-700: #284bb5;
+  --blue-800: #1f3a8c;
+  --blue-900: #162964;
+  --blue-950: #0d1838;
+
+  /* Markenfarben → Blau-Skala */
+  --brand-sap-blue: var(--blue-500);
+  --brand-sap-blue-hover: var(--blue-600);
+  --brand-sap-blue-soft: var(--blue-100);
+  --brand-mckinsey-green: #007f58;
+  --brand-mckinsey-green-hover: #006347;
+  --brand-mckinsey-green-soft: rgba(0, 127, 88, 0.14);
+
+  /* Semantik — unabhängig vom User-Akzent */
+  --color-neutral: #89919a;
+  --color-warning: #e9730c;
+  --color-error: #bb0000;
+  --color-risk-ok: var(--color-accent, var(--blue-500));
+  --color-risk-medium: #e9730c;
+  --color-risk-high: #bb0000;
+  --color-bar-text: #ffffff;
+  --color-focus-ring: var(--blue-800);
+
+  /* Status-Hintergründe & -Ränder */
+  --color-success-soft: #e8f5e9;
+  --color-success-border: #86efac;
+  --color-warning-soft: #fffbeb;
+  --color-warning-border: #fde68a;
+  --color-warning-text: #92400e;
+  --color-error-soft: #fef2f2;
+  --color-error-border: #fecaca;
+  --color-error-text: #991b1b;
+  --color-info-soft: var(--blue-50);
+  --color-info-border: var(--blue-200);
+  --color-info-text: var(--blue-800);
+  --color-neutral-soft: #f5f5f5;
+  --color-bg-muted: var(--blue-50);
+
+  /* Scope-/Info-Banner */
+  --color-scope-soft: var(--blue-50);
+  --color-scope-border: var(--blue-200);
+  --color-scope-text: var(--blue-700);
+
+  /* Kapazitäts-Ampel — OK folgt Blau-Akzent statt Grün */
+  --color-capacity-ok: var(--blue-600);
+  --color-capacity-high: #e9730c;
+  --color-capacity-critical: #bb0000;
+  --color-capacity-track: #f1f5f9;
+  --color-capacity-cell-ok: var(--blue-50);
+  --color-capacity-cell-high: #fffbeb;
+  --color-capacity-cell-critical: #fef2f2;
+
+  /* Chart-Palette — Primärserie aus Blau-Skala */
+  --chart-color-1: var(--blue-500);
+  --chart-color-2: var(--blue-400);
+  --chart-color-3: #e9730c;
+  --chart-color-4: #bb0000;
+  --chart-color-5: var(--blue-400);
+  --chart-color-6: var(--blue-600);
+  --chart-color-7: var(--blue-300);
+  --chart-color-8: var(--blue-700);
+  --chart-color-neutral: #64748b;
+  --chart-color-secondary: var(--blue-200);
+  --chart-color-free: var(--blue-100);
+  --chart-axis-text: #6a6d70;
+  --chart-grid: #e5e5e5;
+  --chart-legend-text: #32363a;
+
+  /* Layout */
+  --sidebar-width: 240px;
+  --detail-panel-width: 440px;
+  --header-height: 56px;
+  --footer-height: 36px;
+  --radius: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.08);
+
+  /* Hilfe-Flächen */
+  --help-surface: #f8fafc;
+  --help-surface-strong: #f1f5f9;
+
+  /* Buttons — einheitliche Größe über Portal, Element Plus & PrimeVue */
+  --btn-height: 2rem;
+  --btn-height-sm: 1.75rem;
+  --btn-padding-y: 0.4375rem;
+  --btn-padding-x: 0.875rem;
+  --btn-padding-y-sm: 0.3125rem;
+  --btn-padding-x-sm: 0.625rem;
+  --btn-font-size: var(--text-base, 0.8125rem);
+  --btn-font-weight: 600;
+  --btn-radius: var(--radius);
+  --btn-gap: 0.375rem;
+
+  /* Layout — Abstände Sidebar ↔ Content */
+  --sidebar-padding-x: 0.75rem;
+  --sidebar-padding-y: 1rem;
+  --sidebar-brand-gap: 0.75rem;
+  --sidebar-section-gap: 0.25rem;
+  --sidebar-link-padding-x: 0.65rem;
+  --sidebar-link-padding-y: 0.5rem;
+  --content-padding-x: 1.5rem;
+  --content-padding-y: 1.25rem;
+  --content-padding-bottom: 1.5rem;
+  --header-padding-x: 1.5rem;
+}
+
+/* Cockpit Standalone (:3001) — helles SAP-Fiori-Arbeitsblatt */
+:root {
+  --color-bg: #ffffff;
+  --color-panel: #ffffff;
+  --color-sidebar: #1d2d3e;
+  --color-sidebar-hover: #2a4159;
+  --color-sidebar-active: var(--brand-sap-blue);
+  --color-accent: var(--blue-500);
+  --color-accent-hover: var(--blue-600);
+  --color-accent-soft: var(--blue-100);
+  --color-accent-muted: var(--blue-200);
+  --color-accent-on: #ffffff;
+  --color-accent-dark: var(--blue-700);
+  --color-text: #32363a;
+  --color-text-muted: #6a6d70;
+  --color-muted: #6a6d70;
+  --color-border: #e5e5e5;
+  --color-success: #107e3e;
+  --color-info: var(--blue-500);
+  --help-highlight: var(--blue-50);
+}
+
+/* Portal — helles Theme */
+:root,
+[data-theme='light'] {
+  --color-bg: #f5f6f7;
+  --color-surface: #ffffff;
+  --color-panel: #ffffff;
+  --color-sidebar: #1d2d3e;
+  --color-text: #0f172a;
+  --color-text-inverse: #f8fafc;
+  --color-muted: #64748b;
+  --color-text-muted: #64748b;
+  --color-accent: var(--blue-500);
+  --color-accent-hover: var(--blue-600);
+  --color-accent-soft: var(--blue-100);
+  --color-accent-on: #ffffff;
+  --color-success: #00c853;
+  --color-border: rgba(15, 23, 42, 0.1);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* Portal — dunkles Theme (neutrale Slate-Flächen, Blau-Akzent) */
+[data-theme='dark'] {
+  --color-bg: #0f1419;
+  --color-surface: #1a1f26;
+  --color-panel: #1a1f26;
+  --color-sidebar: #1d2d3e;
+  --color-text: #e8eaed;
+  --color-text-inverse: #e8eaed;
+  --color-muted: #9aa0a6;
+  --color-text-muted: #9aa0a6;
+  --color-accent: var(--blue-500);
+  --color-accent-hover: var(--blue-600);
+  --color-accent-soft: var(--blue-100);
+  --color-accent-on: #ffffff;
+  --color-success: #107e3e;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --color-info-soft: var(--blue-950);
+  --color-info-border: var(--blue-800);
+  --color-info-text: var(--blue-200);
+}
+
+/* Eingebettetes Cockpit — helle Arbeitsfläche, Akzent vom Portal geerbt */
+.cockpit-embed[data-cockpit-theme='light'] {
+  color-scheme: light;
+  isolation: isolate;
+
+  --color-bg: #f5f6f7;
+  --color-panel: #ffffff;
+  --color-surface: #ffffff;
+  --cockpit-surface: #ffffff;
+  --color-text: #32363a;
+  --color-text-muted: #6a6d70;
+  --cockpit-muted: #6a6d70;
+  --color-border: #e5e5e5;
+  --surface-border: #e5e5e5;
+  --color-accent-dark: var(--blue-700);
+  --color-success: #107e3e;
+  --color-info: var(--blue-500);
+  --color-info-soft: var(--blue-50);
+  --color-info-border: var(--blue-200);
+  --color-info-text: var(--blue-700);
+  --color-scope-soft: var(--blue-50);
+  --color-scope-border: var(--blue-200);
+  --color-scope-text: var(--blue-700);
+  --help-highlight: var(--blue-50);
+
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* PrimeVue — Token-Mapping */
+:root,
+[data-theme='light'],
+[data-theme='dark'],
+.cockpit-embed[data-cockpit-theme='light'],
+.cockpit-embed[data-cockpit-theme='light'] * {
+  --p-primary-color: var(--color-accent);
+  --p-primary-contrast-color: var(--color-accent-on, #ffffff);
+  --p-content-background: var(--color-panel, #ffffff);
+  --p-content-color: var(--color-text, #32363a);
+  --p-content-border-color: var(--color-border, #e5e5e5);
+  --p-text-color: var(--color-text, #32363a);
+  --p-text-muted-color: var(--color-text-muted, var(--color-muted, #6a6d70));
+  --p-surface-0: var(--color-panel, #ffffff);
+  --p-surface-50: var(--color-bg, #f5f6f7);
+  --p-surface-100: var(--help-surface-strong, #f1f5f9);
+  --p-surface-200: var(--color-border, #e5e5e5);
+  --p-surface-border: var(--color-border, #e5e5e5);
+  --p-highlight-background: var(--blue-50);
+  --p-highlight-color: var(--blue-600);
+}
+
+/* Element Plus — Token-Mapping */
+:root,
+[data-theme='light'],
+[data-theme='dark'],
+.cockpit-embed[data-cockpit-theme='light'] {
+  --el-color-primary: var(--color-accent);
+  --el-color-primary-light-3: var(--blue-100);
+  --el-color-primary-light-5: var(--blue-50);
+  --el-color-primary-light-7: var(--blue-50);
+  --el-color-primary-light-8: var(--blue-50);
+  --el-color-primary-light-9: var(--blue-50);
+  --el-color-primary-dark-2: var(--blue-700);
+}
+
+.el-table {
+  --el-table-header-bg-color: var(--color-panel, #fafafa);
+}

@@ -1,0 +1,31 @@
+/**
+ * Einheitliche Abstände zwischen Sidebar und Content — Portal, Cockpit, Embed.
+ */
+
+/* Content-Bereich rechts neben der Sidebar */
+.layout__main:not(:has(.cockpit-embed)),
+.cockpit-content,
+.cockpit-embed[data-cockpit-theme='light'] {
+  padding: var(--content-padding-y) var(--content-padding-x) var(--content-padding-bottom);
+}
+
+.layout__main:has(.cockpit-embed) {
+  padding: 0;
+  background: var(--color-bg);
+}
+
+/* Header — horizontal mit Content ausrichten */
+.layout__header {
+  padding-left: var(--header-padding-x);
+  padding-right: var(--header-padding-x);
+}
+
+.app-header {
+  padding-left: var(--header-padding-x);
+  padding-right: var(--header-padding-x);
+}
+
+/* Sidebar — einheitlicher Innenabstand */
+.sidebar {
+  padding: var(--sidebar-padding-y) var(--sidebar-padding-x);
+}

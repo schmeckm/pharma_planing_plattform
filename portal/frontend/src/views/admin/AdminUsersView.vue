@@ -264,9 +264,4 @@ onMounted(load);
   flex-wrap: wrap;
   gap: 0.35rem;
 }
-
-.btn--danger {
-  color: var(--color-error);
-  border-color: rgba(248, 113, 113, 0.35);
-}
 </style>

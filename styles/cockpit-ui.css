@@ -1,0 +1,413 @@
+/**
+ * Gemeinsame Cockpit-UI-Patterns — nutzt ausschließlich design-tokens.css Variablen.
+ */
+
+/* Panels */
+.panel {
+  background: var(--color-panel, var(--color-bg));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.panel--compact .panel-header {
+  padding: 12px 16px;
+}
+
+.panel--compact .panel-body {
+  padding: 16px;
+}
+
+/* Horizontale Hinweiszeilen (Gantt, Kapazität) */
+.callout {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm, 0.75rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.callout--compact {
+  padding: 0.4rem 1rem;
+}
+
+.callout--warning {
+  color: var(--color-warning-text);
+  background: var(--color-warning-soft);
+  border-bottom-color: var(--color-warning-border);
+}
+
+.callout--info,
+.callout--scope {
+  color: var(--color-scope-text);
+  background: var(--color-scope-soft);
+  border-bottom-color: var(--color-scope-border);
+}
+
+.callout--muted {
+  color: var(--color-text-muted);
+  background: var(--help-surface);
+  border-bottom-color: var(--color-border);
+}
+
+.callout--neutral {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-muted);
+}
+
+/* Akzent-Highlight (Delta-KPIs, Optimierung) */
+.accent-block {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--blue-200, var(--color-accent-muted));
+  background: linear-gradient(
+    180deg,
+    var(--blue-50) 0%,
+    var(--blue-100) 40%,
+    var(--color-panel, var(--color-bg)) 100%
+  );
+}
+
+.accent-block__title {
+  margin: 0 0 0.5rem;
+  font-size: var(--text-sm, 0.75rem);
+  font-weight: var(--font-weight-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--blue-700, var(--color-accent));
+}
+
+/* Metrik-Kacheln (Optimization Impact) */
+.metric-chip {
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  background: var(--help-surface);
+  border: 1px solid var(--color-border);
+}
+
+.metric-chip--good {
+  border-color: var(--color-success-border);
+  background: var(--color-success-soft);
+}
+
+.metric-chip--warn {
+  border-color: var(--color-warning-border);
+  background: var(--color-warning-soft);
+}
+
+.metric-chip__label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.metric-chip__value {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.metric-chip__delta {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Kapazitäts-Balken & Heatmap */
+.util-track {
+  height: 10px;
+  background: var(--color-capacity-track);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.util-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.util-fill--ok { background: var(--color-capacity-ok); }
+.util-fill--high { background: var(--color-capacity-high); }
+.util-fill--critical { background: var(--color-capacity-critical); }
+
+.cap-cell--empty { background: var(--color-panel); color: var(--color-border); }
+.cap-cell--ok { background: var(--color-capacity-cell-ok); }
+.cap-cell--high { background: var(--color-capacity-cell-high); color: var(--color-warning-text); }
+.cap-cell--critical {
+  background: var(--color-capacity-cell-critical);
+  color: var(--color-error-text);
+  font-weight: 600;
+}
+
+.text-link {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.text-emphasis-warning {
+  color: var(--color-warning-text);
+  font-weight: 600;
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+/* ── Detail panels (Order detail, Simulation, Combined planning) ── */
+.detail-section {
+  margin-bottom: 16px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section__title {
+  margin: 0 0 8px;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.detail-hint {
+  margin: 0 0 12px;
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+}
+
+.detail-empty {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+.detail-empty-box {
+  background: var(--color-bg-muted);
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: var(--text-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.detail-sub {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-left: 4px;
+}
+
+.detail-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detail-list__item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-list__item:last-child {
+  border-bottom: none;
+}
+
+.detail-list__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.detail-list__name {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+}
+
+.detail-list__meta {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+}
+
+.detail-list__item--warn .detail-list__name {
+  color: var(--color-warning-text);
+}
+
+.issue-list {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  list-style: none;
+  background: var(--color-error-soft);
+  border-radius: var(--radius);
+  font-size: var(--text-base);
+  color: var(--color-error);
+  line-height: var(--line-height-normal);
+}
+
+.issue-list li + li {
+  margin-top: 4px;
+}
+
+.failure-box {
+  background: var(--color-error-soft);
+  color: var(--color-error);
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: var(--text-base);
+  line-height: var(--line-height-normal);
+  margin-bottom: 16px;
+}
+
+/* Side detail panel shell */
+.detail-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-base);
+}
+
+.detail-panel .panel-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.panel-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.panel-actions .el-button,
+.panel-actions .p-button {
+  width: 100%;
+  margin: 0;
+}
+
+.panel-empty {
+  color: var(--color-text-muted);
+  font-size: var(--text-md);
+  line-height: var(--line-height-normal);
+  text-align: center;
+  padding-top: 40px;
+}
+
+/* Toolbar groups (Sequencing, panel headers) */
+.toolbar-group-label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.toolbar-hint {
+  margin: 0.6rem 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Form fields in compact panels */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-field__label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.form-field__preview {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+}
+
+/* Planning window bars */
+.planning-windows {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.planning-windows__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.planning-windows__row {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+.planning-windows__row--highlight {
+  font-weight: var(--font-weight-semibold);
+}
+
+.planning-windows__label {
+  color: var(--color-text-muted);
+}
+
+.planning-windows__track {
+  position: relative;
+  height: 10px;
+  background: var(--color-bg-muted);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.planning-windows__bar {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 3px;
+  min-width: 4px;
+}
+
+.planning-windows__bar--backward { background: #6c757d; opacity: 0.85; }
+.planning-windows__bar--forward { background: #0d6efd; opacity: 0.85; }
+.planning-windows__bar--planned { background: #198754; opacity: 0.9; }
+
+.planning-windows__dates {
+  white-space: nowrap;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.planning-windows__dates--strong {
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.planning-windows__delivery {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.panel-body .hint {
+  margin-top: 8px;
+}

@@ -13,6 +13,9 @@
           "sapOperationNo": "0010",
           "workCenterId": "FILL_01",
           "description": "Tablet filling",
+          "standardSetupHours": 0.5,
+          "standardProductionHours": 5,
+          "standardTeardownHours": 0.5,
           "standardDurationHours": 6,
           "isBottleneck": true,
           "controlKey": "PP01"
@@ -22,6 +25,9 @@
           "sapOperationNo": "0020",
           "workCenterId": "PK_01",
           "description": "Blister primary pack",
+          "standardSetupHours": 0.25,
+          "standardProductionHours": 3.5,
+          "standardTeardownHours": 0.25,
           "standardDurationHours": 4,
           "isBottleneck": false,
           "controlKey": "PP01"
@@ -31,6 +37,9 @@
           "sapOperationNo": "0030",
           "workCenterId": "{{packagingLine}}",
           "description": "Secondary packaging",
+          "standardSetupHours": 0.5,
+          "standardProductionHours": 5,
+          "standardTeardownHours": 0.5,
           "standardDurationHours": 6,
           "isBottleneck": false,
           "controlKey": "PP01"
@@ -47,6 +56,9 @@
           "sapOperationNo": "0010",
           "workCenterId": "FILL_01",
           "description": "Capsule filling",
+          "standardSetupHours": 0.5,
+          "standardProductionHours": 4,
+          "standardTeardownHours": 0.5,
           "standardDurationHours": 5,
           "isBottleneck": true,
           "controlKey": "PP01"
@@ -56,6 +68,9 @@
           "sapOperationNo": "0020",
           "workCenterId": "PK_01",
           "description": "Capsule primary pack",
+          "standardSetupHours": 0.5,
+          "standardProductionHours": 4,
+          "standardTeardownHours": 0.5,
           "standardDurationHours": 5,
           "isBottleneck": false,
           "controlKey": "PP01"
@@ -65,6 +80,9 @@
           "sapOperationNo": "0030",
           "workCenterId": "{{packagingLine}}",
           "description": "Secondary packaging",
+          "standardSetupHours": 0.5,
+          "standardProductionHours": 5,
+          "standardTeardownHours": 0.5,
           "standardDurationHours": 6,
           "isBottleneck": false,
           "controlKey": "PP01"
@@ -81,6 +99,9 @@
           "sapOperationNo": "0010",
           "workCenterId": "FILL_01",
           "description": "Aseptic filling",
+          "standardSetupHours": 1,
+          "standardProductionHours": 6.5,
+          "standardTeardownHours": 0.5,
           "standardDurationHours": 8,
           "isBottleneck": true,
           "controlKey": "PP01"
@@ -90,6 +111,9 @@
           "sapOperationNo": "0020",
           "workCenterId": "PK_02",
           "description": "Blister pack",
+          "standardSetupHours": 0.25,
+          "standardProductionHours": 3.5,
+          "standardTeardownHours": 0.25,
           "standardDurationHours": 4,
           "isBottleneck": false,
           "controlKey": "PP01"
@@ -99,6 +123,9 @@
           "sapOperationNo": "0030",
           "workCenterId": "{{packagingLine}}",
           "description": "Secondary packaging",
+          "standardSetupHours": 0.5,
+          "standardProductionHours": 4,
+          "standardTeardownHours": 0.5,
           "standardDurationHours": 5,
           "isBottleneck": false,
           "controlKey": "PP01"

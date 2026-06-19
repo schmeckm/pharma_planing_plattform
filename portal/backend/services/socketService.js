@@ -1,10 +1,11 @@
 import { Server } from 'socket.io';
+import { createSocketCorsOptions } from '../config/corsOptions.js';
 
 let io;
 
 export function initSocket(httpServer) {
   io = new Server(httpServer, {
-    cors: { origin: process.env.CORS_ORIGIN || true, credentials: true },
+    cors: createSocketCorsOptions(),
   });
 
   io.on('connection', (socket) => {

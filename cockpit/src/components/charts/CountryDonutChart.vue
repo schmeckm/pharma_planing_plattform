@@ -8,6 +8,7 @@
 import { computed } from 'vue';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
+import { qualitativeChartColors, mergeChartOptions } from '@/utils/chartColors';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -24,20 +25,21 @@ const countryCounts = computed(() => {
   return counts;
 });
 
-const chartData = computed(() => ({
-  labels: Object.keys(countryCounts.value),
-  datasets: [
-    {
-      data: Object.values(countryCounts.value),
-      backgroundColor: ['#0a6ed1', '#107e3e', '#e9730c', '#bb0000', '#6a6d70', '#8859ff'],
-      borderWidth: 0,
-    },
-  ],
-}));
+const chartData = computed(() => {
+  const labels = Object.keys(countryCounts.value);
+  return {
+    labels,
+    datasets: [
+      {
+        data: Object.values(countryCounts.value),
+        backgroundColor: qualitativeChartColors(labels.length),
+        borderWidth: 0,
+      },
+    ],
+  };
+});
 
-const chartOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
+const chartOptions = computed(() => mergeChartOptions({
   plugins: {
     legend: {
       position: 'bottom',
@@ -45,7 +47,7 @@ const chartOptions = {
     },
   },
   cutout: '65%',
-};
+}));
 </script>
 
 <style scoped>

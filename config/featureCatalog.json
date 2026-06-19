@@ -5,6 +5,7 @@
     { "id": "dashboard", "path": "/dashboard", "section": "extended", "labelKey": "nav.items.dashboard", "permission": null, "defaultEnabled": false },
 
     { "id": "line-optimization", "path": "/line-optimization", "section": "planning", "labelKey": "nav.items.lineOptimization", "permission": null },
+    { "id": "detailed-scheduling", "path": "/detailed-scheduling", "section": "planning", "labelKey": "nav.items.detailedScheduling", "permission": null },
     { "id": "simulation", "path": "/simulation", "section": "planning", "labelKey": "nav.items.simulation", "permission": null },
     { "id": "allocations", "path": "/allocations", "section": "planning", "labelKey": "nav.items.allocations", "permission": null },
     { "id": "confirmed-assignments", "path": "/confirmed-assignments", "section": "planning", "labelKey": "nav.items.confirmedAssignments", "permission": null },
@@ -16,6 +17,7 @@
     { "id": "rule-management", "path": "/rule-management", "section": "governance", "labelKey": "nav.items.ruleManagement", "permission": "rules:read" },
     { "id": "audit", "path": "/audit", "section": "governance", "labelKey": "nav.items.audit", "permission": null },
     { "id": "admin-system", "path": "/admin", "section": "governance", "labelKey": "nav.items.admin", "permission": "users:manage" },
+    { "id": "admin-data", "path": "/admin/data", "section": "governance", "labelKey": "nav.items.adminData", "permission": "users:manage" },
 
     { "id": "daily-planning", "path": "/daily-planning", "section": "extended", "labelKey": "nav.items.dailyPlanning", "permission": null },
     { "id": "orders", "path": "/orders", "section": "extended", "labelKey": "nav.items.todaysOrders", "permission": null, "defaultEnabled": false },

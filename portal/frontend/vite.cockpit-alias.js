@@ -37,6 +37,10 @@ export function cockpitAliasPlugin() {
     name: 'cockpit-alias',
     enforce: 'pre',
     resolveId(source, importer) {
+      if (source === 'primevue' || source.startsWith('primevue/')) {
+        return path.resolve(__dirname, 'node_modules', source);
+      }
+
       if (source.startsWith('@config/')) {
         return path.resolve(configDir, source.slice('@config/'.length));
       }

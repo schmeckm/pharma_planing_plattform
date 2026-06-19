@@ -14,12 +14,12 @@
       <div
         v-for="metric in metrics"
         :key="metric.label"
-        class="opt-metric"
-        :class="metric.tone"
+        class="metric-chip"
+        :class="metric.tone === 'good' ? 'metric-chip--good' : metric.tone === 'warn' ? 'metric-chip--warn' : ''"
       >
-        <span class="opt-metric-label">{{ metric.label }}</span>
-        <span class="opt-metric-value">{{ metric.display }}</span>
-        <span v-if="metric.delta" class="opt-metric-delta">{{ metric.delta }}</span>
+        <span class="metric-chip__label">{{ metric.label }}</span>
+        <span class="metric-chip__value">{{ metric.display }}</span>
+        <span v-if="metric.delta" class="metric-chip__delta">{{ metric.delta }}</span>
       </div>
     </div>
     <p v-if="persistHint" class="opt-hint">{{ persistHint }}</p>
@@ -124,9 +124,6 @@ const persistHint = computed(() => {
 <style scoped>
 .opt-impact {
   margin-bottom: 1rem;
-  border: 1px solid var(--p-content-border-color, #e2e8f0);
-  border-radius: 8px;
-  background: var(--p-content-background, #fff);
   padding: 0.75rem 1rem 1rem;
 }
 
@@ -146,7 +143,7 @@ const persistHint = computed(() => {
 .opt-impact-summary {
   margin: 0;
   font-size: 0.85rem;
-  color: var(--p-text-muted-color, #64748b);
+  color: var(--color-text-muted);
 }
 
 .opt-impact-grid {
@@ -155,43 +152,9 @@ const persistHint = computed(() => {
   gap: 0.5rem;
 }
 
-.opt-metric {
-  border-radius: 6px;
-  padding: 0.5rem 0.65rem;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-}
-
-.opt-metric.good {
-  border-color: #86efac;
-  background: #f0fdf4;
-}
-
-.opt-metric.warn {
-  border-color: #fcd34d;
-  background: #fffbeb;
-}
-
-.opt-metric-label {
-  display: block;
-  font-size: 0.72rem;
-  color: #64748b;
-}
-
-.opt-metric-value {
-  display: block;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.opt-metric-delta {
-  font-size: 0.75rem;
-  color: #64748b;
-}
-
 .opt-hint {
   margin: 0.75rem 0 0;
   font-size: 0.78rem;
-  color: #64748b;
+  color: var(--color-text-muted);
 }
 </style>

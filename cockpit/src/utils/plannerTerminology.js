@@ -12,6 +12,7 @@ export const PLANNER_LABELS = {
   SEQUENCE_CHECK: 'Sequence Check',
   TODAYS_ORDERS: "Today's Orders",
   PRODUCTION_SEQUENCING: 'Production Sequencing',
+  DETAILED_SCHEDULING: 'Detailed Scheduling',
   BATCH_RECOMMENDATIONS: 'Batch Recommendations',
   CONFIRMED_BATCH_ASSIGNMENTS: 'Confirmed Batch Assignments',
   DAILY_PLANNING_DASHBOARD: 'Daily Planning Dashboard',
@@ -23,6 +24,7 @@ export const PLANNER_LABELS = {
 /** Primary planner navigation — flat list kept for compatibility; sidebar uses NAV_BASE in messages.js */
 export const PLANNER_NAV = [
   { path: '/wizard', label: 'Daily Wizard', icon: 'Guide' },
+  { path: '/detailed-scheduling', label: PLANNER_LABELS.DETAILED_SCHEDULING, icon: 'Calendar' },
   { path: '/line-optimization', label: PLANNER_LABELS.PRODUCTION_SEQUENCING, icon: 'Sort' },
   { path: '/simulation', label: PLANNER_LABELS.BATCH_RECOMMENDATIONS, icon: 'CircleCheck' },
   { path: '/allocations', label: 'Allocations', icon: 'Connection' },

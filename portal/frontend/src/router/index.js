@@ -12,6 +12,8 @@ import { buildPlanningRoutes } from '../cockpit/routes';
 
 import { PLANNING_PREFIX } from '../cockpit/pathUtils';
 
+import { installPlanningRouterBridge } from '../cockpit/planningRouterBridge.js';
+
 import PublicLayout from '../layouts/PublicLayout.vue';
 
 import AppLayout from '../layouts/AppLayout.vue';
@@ -78,6 +80,24 @@ const router = createRouter({
 
         },
 
+        {
+
+          path: 'planning',
+
+          component: CockpitEmbedLayout,
+
+          meta: { isPlanning: true },
+
+          children: [
+
+            { path: '', redirect: { name: 'DailyWizard' } },
+
+            ...buildPlanningRoutes(),
+
+          ],
+
+        },
+
       ],
 
     },
@@ -86,20 +106,7 @@ const router = createRouter({
 
       path: PLANNING_PREFIX,
 
-      component: AppLayout,
-
-      meta: { requiresAuth: true },
-
-      children: [
-        {
-          path: '',
-          component: CockpitEmbedLayout,
-          children: [
-            { path: '', redirect: 'wizard' },
-            ...buildPlanningRoutes(),
-          ],
-        },
-      ],
+      redirect: `${PLANNING_PREFIX}/wizard`,
 
     },
 
@@ -184,6 +191,8 @@ const router = createRouter({
 
 
 setupPlanningGuards(router);
+
+installPlanningRouterBridge(router);
 
 
 
