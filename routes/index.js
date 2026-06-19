@@ -68,6 +68,10 @@ router.post('/planning/confirm-sequence', planningController.confirmSequence);
 router.post('/planning/simulate-batch-assignment', planningController.simulateBatchAssignment);
 router.get('/planning/exceptions', planningController.getExceptions);
 router.get('/planning/confirmed-schedule', planningController.getConfirmedSchedule);
+router.get('/planning/executability', planningController.getExecutabilityOverview);
+router.get('/planning/line-scorecard', planningController.getLineScorecard);
+router.get('/planning/plan-stability', planningController.getPlanStability);
+router.post('/planning/impact/contribution', planningController.recordPlanningContribution);
 
 router.get('/scheduler/draft/latest', schedulerController.getDraftLatest);
 router.post('/scheduler/activate-draft', schedulerController.activateDraft);

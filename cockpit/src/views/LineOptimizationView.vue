@@ -43,6 +43,12 @@
 
     <PlanningHorizonBar @recalculate="recalculateFromHorizon" />
 
+    <LineScorecardPanel
+      :scorecard="store.lineScorecard"
+      :plan-stability="store.planStability"
+      :comparison="store.comparison"
+    />
+
     <OptimizationImpactBanner
       :comparison="store.comparison"
       :persisted="!!store.lastImpactEventId"
@@ -186,6 +192,7 @@ import OrderDetailPanel from '@/components/lineOptimization/OrderDetailPanel.vue
 import CombinedPlanningPanel from '@/components/lineOptimization/CombinedPlanningPanel.vue';
 import PlanningHorizonBar from '@/components/lineOptimization/PlanningHorizonBar.vue';
 import OptimizationImpactBanner from '@/components/lineOptimization/OptimizationImpactBanner.vue';
+import LineScorecardPanel from '@/components/lineOptimization/LineScorecardPanel.vue';
 import SequencingToolbar from '@/components/lineOptimization/SequencingToolbar.vue';
 import SelectButton from 'primevue/selectbutton';
 import WorkCenterCapacityPanel from '@/components/lineOptimization/WorkCenterCapacityPanel.vue';

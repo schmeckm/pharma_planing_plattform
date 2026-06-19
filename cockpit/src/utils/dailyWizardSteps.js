@@ -65,9 +65,18 @@ export const DAILY_WIZARD_STEPS = [
     primaryAction: 'Freigabe prüfen',
   },
   {
+    id: 'impact',
+    speakingTitle: 'Planungsbeitrag dokumentieren',
+    title: '7. Beitrag',
+    subtitle: 'MRP Impact Event',
+    description: 'Before/After festhalten — was hat die Planungsorganisation heute verbessert?',
+    path: null,
+    primaryAction: 'Beitrag speichern',
+  },
+  {
     id: 'exceptions',
     speakingTitle: 'Ausnahmen klären',
-    title: '7. Ausnahmen',
+    title: '8. Ausnahmen',
     subtitle: 'Planning Exceptions',
     description: 'Blockierte Fälle kommentieren, eskalieren oder lösen.',
     path: '/exceptions',
@@ -77,7 +86,7 @@ export const DAILY_WIZARD_STEPS = [
   {
     id: 'audit',
     speakingTitle: 'Tagesabschluss',
-    title: '8. Abschluss',
+    title: '9. Abschluss',
     subtitle: 'Audit Trail',
     description: 'Alle Entscheidungen sind protokolliert — Tag abschließen.',
     path: '/audit',
@@ -130,6 +139,11 @@ export function dynamicHint(stepId, ctx = {}) {
       return ctx.confirmedCount != null
         ? `${ctx.confirmedCount} Zuordnungen im bestätigten Plan.`
         : 'Bestätigte Chargen und Zeitplan freigeben.';
+    case 'impact':
+      if (ctx.executability) {
+        return `${ctx.executability.executableRate}% ausführbar — dokumentieren Sie Ihren Beitrag (Before/After).`;
+      }
+      return 'Planungsbeitrag für MRP und BPM festhalten.';
     case 'exceptions':
       return ctx.exceptionCount != null && ctx.exceptionCount > 0
         ? `${ctx.exceptionCount} Ausnahme(n) warten auf Sie.`

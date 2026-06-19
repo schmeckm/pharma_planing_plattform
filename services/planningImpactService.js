@@ -163,7 +163,46 @@ class PlanningImpactService {
     return event;
   }
 
-  _filterEvents(events, {
+  /**
+   * Manueller Planungsbeitrag aus dem Tages-Wizard (Schritt Impact).
+   */
+  recordContribution({
+    userId = 'SYSTEM',
+    userName = null,
+    note = '',
+    comparison = null,
+    items = [],
+    aiAssisted = false,
+    horizonDays = null,
+  } = {}) {
+    const aggregates = comparison ? this._extractAggregates(comparison) : {
+      lateOrdersAvoided: 0,
+      rmslViolationsReduced: 0,
+      riskScoreImprovement: 0,
+      ordersMoved: 0,
+    };
+    const dimensions = comparison ? this._buildDimensions(items, comparison) : {};
+    const event = {
+      impactEventId: generateId('IMP'),
+      eventType: 'PLANNING_CONTRIBUTION',
+      timestamp: new Date().toISOString(),
+      userId,
+      userName: userName || userId,
+      note: note || null,
+      aiAssisted,
+      horizonDays,
+      itemCount: items.length,
+      aggregates,
+      dimensions,
+      comparisonSummary: comparison?.summary || note || 'Manuell dokumentierter Planungsbeitrag',
+      ordersMoved: comparison?.ordersMoved ?? 0,
+    };
+
+    const store = this._loadEvents();
+    store.events = [event, ...(store.events || [])].slice(0, 500);
+    this._saveEvents(store);
+    return event;
+  }
     userId,
     scope,
     horizonDays,

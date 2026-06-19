@@ -71,4 +71,15 @@ function planningImpact(req, res, next) {
   } catch (err) { next(err); }
 }
 
-module.exports = { dashboard, inventory, demand, allocation, risk, executive, events, twin, recommendations, planningImpact };
+function planStability(req, res, next) {
+  try {
+    const { PlanStabilityService } = require('../../services/planStabilityService');
+    res.json(new PlanStabilityService().getPpsMetrics({
+      sinceDays: parseInt(req.query.sinceDays || '90', 10),
+      productionLine: req.query.productionLine || null,
+      mrpController: req.query.mrpController || null,
+    }));
+  } catch (e) { next(e); }
+}
+
+module.exports = { dashboard, inventory, demand, allocation, risk, executive, events, twin, recommendations, planningImpact, planStability };

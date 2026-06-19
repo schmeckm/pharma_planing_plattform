@@ -9,6 +9,8 @@ const { PerformanceService } = require('./performanceService');
 const { generateId } = require('../utils/idGenerator');
 const { isShadowPlanningEnabled } = require('../utils/shadowPlanning');
 const { DraftScheduleService } = require('./draftScheduleService');
+const { PlanningOrderSourceService } = require('./planningOrderSourceService');
+const { PlanStabilityService } = require('./planStabilityService');
 const {
   getDefaultHorizonDays,
   resolvePerformanceHorizonMode,
@@ -25,6 +27,8 @@ class LineOptimizationService {
     this.allocation = new AllocationService();
     this.draftSchedules = new DraftScheduleService(provider);
     this.horizonEngine = new PlanningHorizonEngine();
+    this.orderSource = new PlanningOrderSourceService();
+    this.planStability = new PlanStabilityService();
   }
 
   _refreshSequencer() {
@@ -53,7 +57,7 @@ class LineOptimizationService {
   }
 
   _roughOrders() {
-    return this._read('roughPlannedOrders').items || [];
+    return this.orderSource.list();
   }
 
   _lines(horizonDays = null) {
@@ -150,6 +154,8 @@ class LineOptimizationService {
     persistScenario = true,
     horizonDays = null,
     startAnchor = null,
+    userId = 'SYSTEM',
+    userName = null,
   } = {}) {
     this._refreshSequencer();
     const roughMap = this._roughMap();
@@ -200,6 +206,15 @@ class LineOptimizationService {
     scenario.timelineEnd = timelineEnd;
 
     if (persistScenario) this._appendScenario(scenario);
+
+    if (comparison?.moved?.length && this.planStability.getActiveSnapshot()) {
+      try {
+        this.planStability.recordChangesFromComparison(comparison, { userId, userName });
+      } catch {
+        /* PPS-Tracking darf Simulation nicht blockieren */
+      }
+    }
+
     return scenario;
   }
 

@@ -6,6 +6,11 @@
       <div><span>Spät</span><strong>{{ ctx.dashboardKpis?.lateOrders ?? '—' }}</strong></div>
       <div><span>Auslastung</span><strong>{{ ctx.dashboardKpis?.peakUtilization ?? '—' }} %</strong></div>
     </div>
+    <div v-if="stepId === 'daily-plan' && ctx.executability" class="step-embed__exec">
+      <span>Ausführbar: {{ ctx.executability.executable }}/{{ ctx.executability.total }}</span>
+      <span>Blockiert: {{ ctx.executability.blocked }}</span>
+      <span>Quote: {{ ctx.executability.executableRate }}%</span>
+    </div>
 
     <ul v-else-if="stepId === 'sequencing' && ctx.topSequence?.length" class="step-embed__list">
       <li v-for="(item, i) in ctx.topSequence.slice(0, 3)" :key="item.packagingOrder || item.packagingOrderId">
@@ -44,7 +49,7 @@ const props = defineProps({
 
 const hasContent = computed(() => {
   const { stepId, ctx } = props;
-  if (stepId === 'daily-plan') return !!ctx.dashboardKpis;
+  if (stepId === 'daily-plan') return !!ctx.dashboardKpis || !!ctx.executability;
   if (stepId === 'sequencing') return (ctx.topSequence?.length || ctx.degradedLines?.length);
   if (stepId === 'exceptions') return ctx.exceptionCount != null;
   if (stepId === 'confirm') return ctx.confirmedCount != null;
@@ -94,6 +99,15 @@ const hasContent = computed(() => {
 
 .step-embed__line {
   margin: 0;
+  color: var(--color-text-muted);
+}
+
+.step-embed__exec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
   color: var(--color-text-muted);
 }
 

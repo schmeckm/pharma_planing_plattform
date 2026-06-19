@@ -30,6 +30,7 @@ export const apiV4 = {
   twin: (horizon = 7) => v4Request('get', '/twin', { horizon }),
   recommendations: () => v4Request('get', '/recommendations'),
   planningImpact: (params = {}) => v4Request('get', '/planning-impact', params),
+  planStability: (params = {}) => v4Request('get', '/plan-stability', params),
 };
 
 export function connectControlTowerWs(onMessage) {

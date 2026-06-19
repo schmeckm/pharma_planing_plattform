@@ -179,6 +179,47 @@ function combinedPlanning(req, res, next) {
   } catch (e) { next(e); }
 }
 
+async function getExecutabilityOverview(_req, res, next) {
+  try {
+    res.json(svc.getExecutabilityOverview());
+  } catch (e) { next(e); }
+}
+
+async function getPlanStability(req, res, next) {
+  try {
+    res.json(svc.getPlanStabilityMetrics({
+      sinceDays: parseInt(req.query.sinceDays || '90', 10),
+      productionLine: req.query.productionLine || null,
+      mrpController: req.query.mrpController || null,
+    }));
+  } catch (e) { next(e); }
+}
+
+async function recordPlanningContribution(req, res, next) {
+  try {
+    const { parseHorizonDays } = require('../utils/planningHorizon');
+    res.json(svc.recordPlanningContribution({
+      userId: req.headers['x-user-id'] || req.body?.userId || 'SYSTEM',
+      userName: req.headers['x-user-name'] || req.body?.userName || null,
+      note: req.body?.note || '',
+      comparison: req.body?.comparison || null,
+      items: req.body?.items || [],
+      aiAssisted: req.body?.aiAssisted === true,
+      horizonDays: parseHorizonDays(req.body?.horizonDays),
+    }));
+  } catch (e) { next(e); }
+}
+
+async function getLineScorecard(req, res, next) {
+  try {
+    const dash = await svc.getPlannerDashboard({
+      startAnchor: req.query.startAnchor || null,
+      horizonDays: req.query.horizonDays || null,
+    });
+    res.json(dash.lineScorecard || svc.buildLineScorecard(dash.comparison, dash.orders));
+  } catch (e) { next(e); }
+}
+
 module.exports = {
   getDailyOrders,
   getRecommendedSequence,
@@ -196,4 +237,8 @@ module.exports = {
   combinedPlanning,
   getSapOperationsStatus,
   syncSapOperations,
+  getExecutabilityOverview,
+  getPlanStability,
+  recordPlanningContribution,
+  getLineScorecard,
 };

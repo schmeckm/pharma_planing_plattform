@@ -41,7 +41,8 @@ class MasterDataLoader {
       batchByMaterial[key].push(b);
     }
 
-    const roughOrders = (this._read('roughPlannedOrders').items || []).map((o) => this._toProductionOrder(o, materialByNumber));
+    const { PlanningOrderSourceService } = require('../../services/planningOrderSourceService');
+    const roughOrders = new PlanningOrderSourceService(this._repo).list().map((o) => this._toProductionOrder(o, materialByNumber));
 
     return {
       plants,

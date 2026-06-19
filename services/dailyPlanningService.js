@@ -10,6 +10,8 @@ const { generateId } = require('../utils/idGenerator');
 const { todayISO, addDays } = require('../utils/dateUtils');
 const { isShadowPlanningEnabled } = require('../utils/shadowPlanning');
 const { DraftScheduleService } = require('./draftScheduleService');
+const { PlanningOrderSourceService } = require('./planningOrderSourceService');
+const { PlanStabilityService } = require('./planStabilityService');
 const { SafeSchedulerWrapper } = require('./safeSchedulerWrapper');
 const { OperationPlanningEngine } = require('../engines/operationPlanningEngine');
 const { resolveGanttTimeline, parseHorizonDays } = require('../utils/planningHorizon');
@@ -34,6 +36,8 @@ class DailyPlanningService {
     this.draftSchedules = new DraftScheduleService(this.provider);
     this.safeScheduler = new SafeSchedulerWrapper(this.scheduling);
     this.operationPlanner = new OperationPlanningEngine();
+    this.orderSource = new PlanningOrderSourceService();
+    this.planStability = new PlanStabilityService();
   }
 
   async operationsWhatIf({
@@ -124,7 +128,7 @@ class DailyPlanningService {
 
   _resolveStartAnchor(startAnchor) {
     if (startAnchor) return startAnchor;
-    const rough = this._read('roughPlannedOrders').items || [];
+    const rough = this.orderSource.list();
     return rough[0]?.plannedStartDate
       || rough[0]?.roughPlannedStart?.slice(0, 10)
       || '2026-09-01';
@@ -233,7 +237,7 @@ class DailyPlanningService {
     const { parseHorizonDays } = require('../utils/planningHorizon');
     const horizon = parseHorizonDays(horizonDays);
     const anchor = this._resolveStartAnchor(startAnchor);
-    const rough = (this._read('roughPlannedOrders').items || []).map((o) => this._normalizeOrder(o));
+    const rough = this.orderSource.list().map((o) => this._normalizeOrder(o));
     const schedule = this._read('optimizedSchedule');
     const scheduled = (schedule.items || []).map((o) => this._normalizeOrder(o));
 
@@ -265,7 +269,16 @@ class DailyPlanningService {
         ordersForDate: filtered.length,
         roughPlanned: rough.length,
         confirmedSequence: schedule.status === 'CONFIRMED',
+        ...(() => {
+          const exec = this.orderSource.getSummary();
+          return {
+            executableOrders: exec.executable,
+            blockedOrders: exec.blocked,
+            executableRate: exec.executableRate,
+          };
+        })(),
       },
+      executability: this.orderSource.getSummary(),
     };
   }
 
@@ -452,6 +465,20 @@ class DailyPlanningService {
       /* non-blocking */
     }
 
+    let workPlanSnapshot = null;
+    try {
+      workPlanSnapshot = this.planStability.createWorkPlanSnapshot({
+        scheduleId: schedule.scheduleId,
+        items: sim.result,
+        userId,
+        userName,
+        label,
+        eventType: 'PLAN_CONFIRMED',
+      });
+    } catch {
+      /* non-blocking */
+    }
+
     return {
       confirmed: true,
       label: PLANNER_LABELS.CONFIRMED_BATCH_ASSIGNMENT,
@@ -461,6 +488,8 @@ class DailyPlanningService {
       comparison: sim.comparison,
       kpis: sim.kpis,
       impactEventId: impactEvent?.impactEventId || null,
+      stabilityAnchorAt: workPlanSnapshot?.stabilityAnchorAt || null,
+      snapshotId: workPlanSnapshot?.snapshotId || null,
       orders: this._enrichWithPlannerLabels(schedule.items),
     };
   }
@@ -641,6 +670,9 @@ class DailyPlanningService {
       },
       planningHorizon: recommended.planningHorizon || { startAnchor: anchor, horizonDays: horizon },
       operationPlan,
+      executability: daily.executability || this.orderSource.getSummary(),
+      lineScorecard: this.buildLineScorecard(recommended.comparison, sequenceOrders),
+      planStability: this.planStability.getPpsMetrics(),
     };
   }
 
@@ -722,6 +754,76 @@ class DailyPlanningService {
       total: unique.length,
       open: unique.filter((e) => e.status === 'OPEN').length,
       exceptions: unique,
+    };
+  }
+
+  getExecutabilityOverview() {
+    return this.orderSource.getExecutabilityOverview();
+  }
+
+  getPlanStabilityMetrics(options = {}) {
+    return this.planStability.getPpsMetrics(options);
+  }
+
+  recordPlanningContribution({
+    userId = 'SYSTEM',
+    userName = null,
+    note = '',
+    comparison = null,
+    items = [],
+    aiAssisted = false,
+    horizonDays = null,
+  } = {}) {
+    const { PlanningImpactService } = require('./planningImpactService');
+    return new PlanningImpactService().recordContribution({
+      userId,
+      userName,
+      note,
+      comparison,
+      items,
+      aiAssisted,
+      horizonDays,
+    });
+  }
+
+  buildLineScorecard(comparison, items = []) {
+    const lines = {};
+    for (const item of items) {
+      const line = item.productionLine || 'UNASSIGNED';
+      if (!lines[line]) {
+        lines[line] = {
+          lineId: line,
+          orderCount: 0,
+          lateOrders: 0,
+          movedOrders: 0,
+          utilizationPct: null,
+        };
+      }
+      lines[line].orderCount += 1;
+      if (item.late) lines[line].lateOrders += 1;
+    }
+    const movedIds = new Set((comparison?.moved || []).map((m) => m.packagingOrder));
+    for (const line of Object.values(lines)) {
+      line.movedOrders = (comparison?.moved || []).filter(
+        (m) => m.toLine === line.lineId || m.fromLine === line.lineId,
+      ).length;
+    }
+    if (comparison?.dimensions?.productionLine) {
+      for (const [lineId, bucket] of Object.entries(comparison.dimensions.productionLine)) {
+        if (!lines[lineId]) {
+          lines[lineId] = { lineId, orderCount: 0, lateOrders: 0, movedOrders: 0 };
+        }
+        lines[lineId].label = bucket.label || lineId;
+        lines[lineId].ordersMoved = bucket.ordersMoved || 0;
+        lines[lineId].lateOrders = bucket.lateOrders || lines[lineId].lateOrders;
+        lines[lineId].orderCount = bucket.orderCount || lines[lineId].orderCount;
+      }
+    }
+    return {
+      timestamp: new Date().toISOString(),
+      lines: Object.values(lines).sort((a, b) => b.orderCount - a.orderCount),
+      comparisonSummary: comparison?.summary || null,
+      aggregates: comparison ? new (require('./planningImpactService').PlanningImpactService)()._extractAggregates(comparison) : null,
     };
   }
 }

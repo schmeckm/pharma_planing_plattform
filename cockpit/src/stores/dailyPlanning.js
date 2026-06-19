@@ -23,6 +23,9 @@ export const useDailyPlanningStore = defineStore('dailyPlanning', () => {
   const kpis = ref({});
   const exceptions = ref([]);
   const comparison = ref(null);
+  const lineScorecard = ref(null);
+  const planStability = ref(null);
+  const executability = ref(null);
   const localSequence = ref([]);
   const selectedTask = ref(null);
   const batchResults = ref(null);
@@ -323,6 +326,9 @@ export const useDailyPlanningStore = defineStore('dailyPlanning', () => {
       lineUtilization.value = dash.lineUtilization || [];
       recommendations.value = dash.recommendations;
       comparison.value = dash.comparison;
+      lineScorecard.value = dash.lineScorecard || null;
+      planStability.value = dash.planStability || null;
+      executability.value = dash.executability || null;
       exceptions.value = exc.exceptions;
       shadowPlanning.value = !!dash.shadowPlanning;
       planningDraft.value = dash.planningDraft?.draft || null;
@@ -582,7 +588,8 @@ export const useDailyPlanningStore = defineStore('dailyPlanning', () => {
     horizonDays, horizonDaysMin, horizonDaysMax, planningStartAnchorOverride, effectivePlanningStart,
     solverEngine, solverStatus, schedulerDegraded, schedulerMessage, solverBadge,
     operationsSolverBadge, routingSourceBadge,
-    kpis, kpiCards, exceptions, comparison, localSequence, selectedTask, batchResults,
+    kpis, kpiCards, exceptions, comparison, lineScorecard, planStability, executability,
+    localSequence, selectedTask, batchResults,
     recommendations, lineUtilization, shadowPlanning, planningDraft, productionSchedule,
     combinedPlanning, combinedPlanningLoading, combinedPlanningSummary, combinedPlanningDisabled,
     combinedByOrderId, selectedCombinedPlanning, lastImpactEventId, comparisonDeltaKpis,

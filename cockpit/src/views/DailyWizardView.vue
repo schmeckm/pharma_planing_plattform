@@ -94,6 +94,22 @@
 
 
 
+        <WizardContributionPanel
+
+          v-else-if="currentStep.id === 'impact'"
+
+          :comparison="wizardComparison"
+
+          :items="topSequence"
+
+          :executability="executabilitySummary"
+
+          @saved="onContributionSaved"
+
+        />
+
+
+
         <template v-else>
 
           <WizardStepEmbed :step-id="currentStep.id" :ctx="wizardCtx" />
@@ -191,6 +207,7 @@ import Button from 'primevue/button';
 import AgentActivityPanel from '@/components/wizard/AgentActivityPanel.vue';
 
 import WizardStepEmbed from '@/components/wizard/WizardStepEmbed.vue';
+import WizardContributionPanel from '@/components/wizard/WizardContributionPanel.vue';
 import CopilotLauncher from '@/components/shared/CopilotLauncher.vue';
 
 import { apiV3 } from '@/api/v3';
@@ -263,6 +280,10 @@ const openOrders = ref(null);
 
 const lineFactors = ref([]);
 
+const executabilitySummary = ref(null);
+
+const wizardComparison = ref(null);
+
 
 
 const planDateLabel = formatPlanningDate(PLANNING_ANCHOR);
@@ -310,6 +331,8 @@ const wizardCtx = computed(() => ({
   confirmedCount: confirmedCount.value,
 
   openOrders: openOrders.value,
+
+  executability: executabilitySummary.value,
 
 }));
 
@@ -382,6 +405,8 @@ const stepIcon = computed(() => {
     mass: 'Timer',
 
     confirm: 'Finished',
+
+    impact: 'ChartLine',
 
     exceptions: 'Warning',
 
@@ -492,6 +517,14 @@ function onPrimaryAction() {
       loadBriefingOnly();
 
     }
+
+    return;
+
+  }
+
+
+
+  if (step.id === 'impact') {
 
     return;
 
@@ -673,6 +706,28 @@ async function runAgents() {
 
 
 
+function onContributionSaved(event) {
+
+  completeStep();
+
+  toast.add({
+
+    severity: 'success',
+
+    summary: 'Planungsbeitrag dokumentiert',
+
+    detail: event?.impactEventId || 'Impact Event gespeichert',
+
+    life: 4000,
+
+  });
+
+  nextStep();
+
+}
+
+
+
 async function loadWizardContext() {
 
   try {
@@ -696,6 +751,10 @@ async function loadWizardContext() {
     if (dash?.kpis) dashboardKpis.value = dash.kpis;
 
     if (dash?.recommendations?.sequence) topSequence.value = dash.recommendations.sequence;
+
+    if (dash?.executability) executabilitySummary.value = dash.executability;
+
+    if (dash?.comparison) wizardComparison.value = dash.comparison;
 
     if (exc?.exceptions) exceptionCount.value = exc.exceptions.length;
 

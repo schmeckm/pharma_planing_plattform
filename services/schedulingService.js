@@ -47,8 +47,8 @@ class SchedulingService {
   }
 
   _roughOrdersList() {
-    const data = this._repo.read('roughPlannedOrders');
-    const items = data?.items || [];
+    const { PlanningOrderSourceService } = require('./planningOrderSourceService');
+    const items = new PlanningOrderSourceService(this._repo).list();
     return items.map((raw) => ({
       ...raw,
       packagingOrderId: raw.packagingOrder || raw.packagingOrderId,

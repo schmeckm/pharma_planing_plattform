@@ -15,5 +15,6 @@ router.get('/events', authorize('orders:read'), ctrl.events);
 router.get('/twin', authorize('whatif:run'), ctrl.twin);
 router.get('/recommendations', authorize('orders:read'), ctrl.recommendations);
 router.get('/planning-impact', authorize('orders:read'), ctrl.planningImpact);
+router.get('/plan-stability', authorize('orders:read'), ctrl.planStability);
 
 module.exports = router;

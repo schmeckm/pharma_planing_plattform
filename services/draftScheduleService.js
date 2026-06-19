@@ -357,6 +357,22 @@ class DraftScheduleService {
       /* impact logging must not block activation */
     }
 
+    let workPlanSnapshot = null;
+    try {
+      const { PlanStabilityService } = require('./planStabilityService');
+      workPlanSnapshot = new PlanStabilityService(this.repository).createWorkPlanSnapshot({
+        scheduleId: schedule.scheduleId,
+        draftScheduleId: draft.draftScheduleId,
+        items: draft.items,
+        userId,
+        userName,
+        label: draft.label,
+        eventType: 'PLAN_ACTIVATED',
+      });
+    } catch {
+      /* PPS-Anker darf Aktivierung nicht blockieren */
+    }
+
     return {
       activated: true,
       shadowPlanning: true,
@@ -367,6 +383,8 @@ class DraftScheduleService {
       comparison: draft.comparison,
       kpis: draft.kpis,
       impactEventId: impactEvent?.impactEventId || null,
+      stabilityAnchorAt: workPlanSnapshot?.stabilityAnchorAt || null,
+      snapshotId: workPlanSnapshot?.snapshotId || null,
       message: 'Plan in Produktion übernommen — Allokation (RULE-014) kann nun bestätigten Gantt-Slot prüfen.',
     };
   }
